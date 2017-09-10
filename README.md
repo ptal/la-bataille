@@ -22,3 +22,5 @@ TP 1
 * Étendez les règles à votre sauce pour rendre le tout plus intéressant.
 * Faites un rapport d'une page maximum pour expliquer les nouvelles règles implémentées.
 * Veuillez à respecter la grille d'évaluation.
+
+La date de rendu est sur le [site du cours](hyc.io/teaching/java.html) et doit être rendu sous forme de [pull-request](https://help.github.com/articles/about-pull-requests/).

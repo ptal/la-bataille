@@ -21,11 +21,15 @@ public class Bataille
   public static void main(String[] args)
   {
     System.out.println("C'est le jeu de la bataille!\n");
-    System.out.print("Veuillez entrer un choix : ");
-    System.out.flush();
-    Scanner console = new Scanner(System.in);
-    String choice = console.nextLine();
-    System.out.println("\nL'utilisateur a choisi : \"" + choice + "\"");
-    System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");
+    System.out.print("Veuillez entrer un choix : "); //pas de retour à la ligne
+    System.out.flush(); //check, pas compris
+    Scanner console = new Scanner(System.in); //
+    int choice = console.nextInt(); // bloque jusqu'à écruture et enter
+    //System.out.println("\nL'utilisateur a choisi : \"" + choice + "\"");
+    //System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");
+  
+    Carte c= new Carte(choice);
+    System.out.println(c);
+    
   }
 }

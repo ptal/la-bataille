@@ -27,5 +27,11 @@ public class Bataille
     String choice = console.nextLine();
     System.out.println("\nL'utilisateur a choisi : \"" + choice + "\"");
     System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");
+    
+    Carte tirage1 = new Carte("pique",10);
+    System.out.println(tirage1);
+    
+    Carte tirage2 = new Carte("trefle",5);
+    System.out.println(tirage2);
   }
 }

@@ -20,6 +20,7 @@ public class Bataille
 {
   public static void main(String[] args)
   {
+    Carte c = new Carte("Rouge",3);
     System.out.println("C'est le jeu de la bataille!\n");
     System.out.print("Veuillez entrer un choix : ");
     System.out.flush();
@@ -27,5 +28,6 @@ public class Bataille
     String choice = console.nextLine();
     System.out.println("\nL'utilisateur a choisi : \"" + choice + "\"");
     System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");
+    System.out.println(c);
   }
 }

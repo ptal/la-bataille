@@ -30,14 +30,11 @@ public class Bataille
     System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");
     */
     Joueur joueur = new Joueur();
-    Joueur joueur2 = new Joueur();
-    
-    joueur.pioche();
-    
-    Carte carte = new Carte(2, "Rouge", "Coeur");
-    Carte carte2 = new Carte(3, "Noir", "Trefle");
-    
-    System.out.println(carte.compareCarte(carte2));
-    System.out.println(carte.toString());
+
+    while(joueur.getNbCartes() < 54)
+      joueur.pioche();
+
+    joueur.affCartes();
+
   }
 }

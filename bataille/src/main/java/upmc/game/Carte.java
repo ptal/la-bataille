@@ -5,6 +5,8 @@
  */
 package upmc.game;
 
+import java.util.Random;
+
 /**
  *
  * @author licence
@@ -12,15 +14,11 @@ package upmc.game;
 public class Carte {
     
     private int valeur;
-    private String couleur;
     private String forme;
     
-    public Carte(int valeur, String couleur, String forme) {
-        this.valeur = valeur;
-        
-        //TODO vérif entrées
-        this.couleur = couleur;
-        this.forme = forme;
+    public Carte() {
+        this.generateRandomValue();
+        this.generateColor();
     }
     
     public boolean compareCarte(Carte carte) {
@@ -29,6 +27,35 @@ public class Carte {
     
     @Override
     public String toString() {
-        return "Valeur: " + this.valeur + ", Forme: " + this.forme + ", Couleur: " + this.couleur;
+        return "Valeur: " + this.valeur + ", Couleur: " + this.forme ;
+    }
+
+    public int getValeur() {
+        return this.valeur;
+    }
+
+    public String getForme() {
+        return this.forme;
+    }
+
+    /**
+     * Méthodes utilisées pour joueur
+     */
+
+    public void regenerateCard() {
+        generateRandomValue();
+        generateRandomValue();
+    }
+
+    private void generateRandomValue() {
+        Random rand = new Random();
+        this.valeur = rand.nextInt(13) + 1;
+    }
+
+    private void generateColor() {
+        String formes[] = {"Coeur", "Pique", "Trefle", "Carreau"};
+        Random rand = new Random();
+
+        this.forme = formes[rand.nextInt(4)];
     }
 }

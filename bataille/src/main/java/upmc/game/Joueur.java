@@ -5,6 +5,7 @@
  */
 package upmc.game;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -13,35 +14,37 @@ import java.util.Random;
  */
 public class Joueur {
     
-    private Carte[] cartes;
-    
+    private ArrayList<Carte> cartes = new ArrayList<Carte>();
+
     public Joueur() {
         
     }
     
-    private int generateRandomValue() {
-        Random rand = new Random();
-        return rand.nextInt(13) + 1;
-    }
-    
-    private String generateRandomForme() {
-        String formes[] = {"Coeur", "Pique", "Trefle", "Carreau"};
-        Random rand = new Random();
-        
-        return formes[rand.nextInt(3)];
-    }
-    
-    private String generateRandomColor() {
-        String couleurs[] = {"Rouge", "Noir"};
-        Random rand = new Random();
-        
-        return couleurs[rand.nextInt(3)];
-    }
-    
     public void pioche() {
-        // Ajoute au tableau de cartes une carte générée
-        System.out.println(this.generateRandomValue());
-        System.out.println(this.generateRandomForme());
-        System.out.println(this.generateRandomColor());
+        Carte newCard = new Carte();
+
+        while (carteDejaTire(newCard))
+            newCard.regenerateCard();
+
+        this.cartes.add(newCard);
+    }
+
+    /**
+     *  Vérifie si la carte pioché à déja été tirée
+     */
+
+    // TODO Ne semble pas fontionner
+    private boolean carteDejaTire(Carte carte) {
+        return this.cartes.contains(carte);
+    }
+
+    public void affCartes() {
+        for (Carte carte: this.cartes) {
+            System.out.println(carte.getValeur() + ", " + carte.getForme());
+        }
+    }
+
+    public int getNbCartes() {
+        return this.cartes.size();
     }
 }

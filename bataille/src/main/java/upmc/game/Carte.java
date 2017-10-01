@@ -11,14 +11,26 @@ package upmc.game;
  */
 public class Carte {
     private String color;
-    private int valeur;
-    
-    public Carte (String color, int valeur){
+    private int value;
+    public static String cardsColor[] = {"pique", "carreau", "trèfle", "coeur"};
+    public static int cardsValues[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+
+    public Carte (String color, int value){
         this.color = color;
-        this.valeur = valeur;
+        this.value = value;
     }
-    
-    public String toString (){
-        return "Couleur = " + color + "\nValeur = " + valeur;
+
+
+    public int compareCards(int valueCard2){
+        if (value > valueCard2){
+            return 1;
+        }
+        else{
+            return 2;
+        }
+    }
+
+    public String toString() {
+        return this.value + " de " + this.color;
     }
 }

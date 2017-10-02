@@ -21,21 +21,7 @@ public class Joueur {
     }
     
     public void pioche() {
-        Carte newCard = new Carte();
-
-        while (carteDejaTire(newCard))
-            newCard.regenerateCard();
-
-        this.cartes.add(newCard);
-    }
-
-    /**
-     *  Vérifie si la carte pioché à déja été tirée
-     */
-
-    // TODO Ne semble pas fontionner
-    private boolean carteDejaTire(Carte carte) {
-        return this.cartes.contains(carte);
+        this.cartes.add(new Carte());
     }
 
     public void affCartes() {

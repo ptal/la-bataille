@@ -40,6 +40,7 @@ public class Bataille
         return joueur2;
     }
 
+    // TODO: Vérification Cartes déja tirées
     private void generate2PACks() {
         for (int i = 0; i < nbCartes/2; i++) {
             getJoueur1().getCartes().add(new Carte());

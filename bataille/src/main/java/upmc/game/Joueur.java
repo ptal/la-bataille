@@ -15,17 +15,17 @@ public class Joueur {
         
     }
     
-    public void pioche() {
-        this.cartes.add(new Carte());
-    }
-
     public void affCartes() {
-        for (Carte carte: this.cartes) {
-            System.out.println(carte.getValeur() + ", " + carte.getForme());
-        }
-    }
+	    for (Carte carte: this.cartes) {
+	        System.out.println(carte.getValeur() + ", " + carte.getForme());
+	    }
+	}
 
-    public int getNbCartes() {
-        return this.cartes.size();
+	public int getNbCartes() {
+	    return this.cartes.size();
+	}
+
+	public void pioche() {
+        this.cartes.add(new Carte());
     }
 }

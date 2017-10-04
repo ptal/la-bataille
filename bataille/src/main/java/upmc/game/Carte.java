@@ -43,7 +43,7 @@ public class Carte {
     }
 
     private void generateColor() {
-        String formes[] = {"Coeur", "Pique", "Trefle", "Carreau"};
+        string forme[] = {"Trèfle", "Carreau", "Coeur", "Pique"};
         Random rand = new Random();
 
         this.forme = formes[rand.nextInt(4)];

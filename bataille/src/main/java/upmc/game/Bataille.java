@@ -22,7 +22,7 @@ public class Bataille
 
     private ArrayList<Carte> carteJouees = new ArrayList<Carte>();
     private Joueur joueur1;
-    private Joueur joueur2;
+    private Joueur joueur2
     private int nbCartes = 32;
 
     public static void main(String[] args)

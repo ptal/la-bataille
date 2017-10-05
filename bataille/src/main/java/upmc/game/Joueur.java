@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class Joueur {
     
     private ArrayList<Carte> cartes = new ArrayList<Carte>();
+    private String nom;
 
     public Carte pioche(int index) {
         Carte carte = cartes.get(index);
@@ -35,5 +36,9 @@ public class Joueur {
 
     public ArrayList<Carte> getCartes() {
         return cartes;
+    }
+
+    public String getNom() {
+        return nom;
     }
 }

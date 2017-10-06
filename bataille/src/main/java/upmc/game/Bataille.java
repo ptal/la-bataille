@@ -41,7 +41,8 @@ public class Bataille
     }
 
     private void generate2PACks() {
-        for (int i = 0; i < nbCartes/2; i++) {
+        for (int i = 0; i < nbCartes/2; i++) 
+        {
             getJoueur1().getCartes().add(new Carte());
             getJoueur2().getCartes().add(new Carte());
         }
@@ -52,29 +53,37 @@ public class Bataille
     }
 
 
-    public void getGagnant() {
-        if (pointsJoueur > pointsOrdi) {
+    public void getGagnant() 
+    {
+        if (pointsJoueur > pointsOrdi) 
+        {
             System.out.println("Vous avez gagné avec " + pointsJoueur + " points contre " + pointsOrdi + "FIN !");
         }
-        else if(pointsOrdi > pointsJoueur) {
+        else if(pointsOrdi > pointsJoueur) 
+        {
             System.out.println("Vous avez perdu avec " + pointsJoueur + " points contre " + pointsOrdi +"FIN !");
         }
-        else {
+        else 
+        {
             System.out.println("Match nul, FIN.");
         }
     }
     
-    public void getWinnerRound(Carte carteJoueur, Carte carteOrdi) {
+    public void getWinnerRound(Carte carteJoueur, Carte carteOrdi) 
+    {
 
-        if (carteJoueur.getValeur() > carteOrdi.getValeur()) {
+        if (carteJoueur.getValeur() > carteOrdi.getValeur()) 
+        {
             System.out.println("Vous avez gagné: " + carteJoueur.toString() + " contre " + carteOrdi.toString());
             pointsJoueur++;
         }
-        else if(carteJoueur.getValeur() < carteOrdi.getValeur()) {
+        else if(carteJoueur.getValeur() < carteOrdi.getValeur()) 
+        {
             System.out.println("Vous avez perdu: "  + carteJoueur.toString() + " contre " + carteOrdi.toString());
             pointsOrdi++;
         }
-        else {
+        else 
+        {
             System.out.println("Match nul: " + carteJoueur.toString() + " contre " + carteOrdi.toString());
         }
         System.out.print("\n");
@@ -87,13 +96,15 @@ public class Bataille
         Joueur j1 = bataille.getJoueur1();
         Joueur j2 = bataille.getJoueur2();
 
-        while (bataille.getNbCartes() -2 != 0) {
+        while (bataille.getNbCartes() -2 != 0) 
+        {
             System.out.println("Choisissez une de vos cartes à piocher: ");
             j1.affCartes();
 
             Scanner console = new Scanner(System.in);
             int choice = console.nextInt();
-            while (choice > j1.getCartes().size() - 1) {
+            while (choice > j1.getCartes().size() - 1) 
+            {
                 System.out.println("Choisissez une valeur possible.");
                 console = new Scanner(System.in);
                 choice = console.nextInt();
@@ -107,16 +118,13 @@ public class Bataille
             bataille.getWinnerRound(carteJoueur1, carteOrdi);
         }
         bataille.getGagnant();
-          /*
-        System.out.println("C'est le jeu de la bataille!\n");
+       /* System.out.println("C'est le jeu de la bataille!\n");
         System.out.print("Veuillez entrer un choix : ");
         System.out.flush();
         Scanner console = new Scanner(System.in);
         String choice = console.nextLine();
         System.out.println("\nL'utilisateur a choisi : \"" + choice + "\"");
-        System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");
-        */
-
+        System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");*/
 
     }
 }

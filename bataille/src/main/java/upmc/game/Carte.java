@@ -14,7 +14,7 @@ public class Carte {
     private int num;
     private String couleur;
     
-    // CONSTRUCTEURS
+
     public Carte(){
         this.num=0;
         this.couleur="Joker";
@@ -24,7 +24,7 @@ public class Carte {
         this.couleur = pCouleur;
     }
     
-    //METHODES : returns number
+
     public int getNum(){
         return this.num;
     }

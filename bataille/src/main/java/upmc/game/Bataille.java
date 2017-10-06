@@ -51,7 +51,8 @@ public class Bataille {
             System.out.println("Votre choix : ");
             mode = scan.nextInt();
         }
-        scan.nextLine(); //vide la ligne
+        //vide la ligne
+        scan.nextLine();
         
         //Choix du nom des joueurs
         System.out.println("Nom du Joueur 1 : ");
@@ -64,7 +65,7 @@ public class Bataille {
             joueur2.setNom("Ordinateur");
         }
         
-        //Distribution égale des cartes entre les deux joueurs
+        //Distribution egales des cartes
         while(!deck.estVide()) {
             if(deck.nbCartes()%2==0)
                 joueur1.ajouterCarte(deck.derniereCarte());
@@ -74,57 +75,57 @@ public class Bataille {
         
         //Boucle de jeu principale
         while(!joueur1.deckVide() && !joueur2.deckVide() && !joueur1.boolAbandon() && !joueur2.boolAbandon()) {
-            //Les joueurs tirent leurs cartes puis elles sont place dans une pile temporaire pour la suite
+            //Tirages des cartes puis elles sont place dans une pile temporaire pour la suite
             carte1 = joueur1.tireCarte();
             carte2 = joueur2.tireCarte();
             deckTemp.ajouterCarte(carte1);
             deckTemp.ajouterCarte(carte2);
             
-                //Comparaison
+                //Compare les cartes
                 if(!bataille)
                     System.out.println("\n");
                 System.out.println("("+joueur1.afficheNom()+")"+carte1.toString()+" VS "+carte2.toString()+"("+joueur2.afficheNom()+")");
                 resultatManche = carte1.resultatManche(carte2);
 
-                //Si joueur 1 gagne le combat
+                //Si joueur 1 gagne la manche
                 if(resultatManche == 1) {
                     System.out.println(joueur1.afficheNom()+" gagne la manche\n");
                     joueur1.gagnePoint();
-                    //Le joueur 1 gagne les cartes
+                    //Le joueur 1 reprends les cartes
                     while(!deckTemp.estVide())
                         joueur1.ajouterCarte(deckTemp.derniereCarte());
-
                     bataille = false;
                 }
-                //Si joueur 2 gagne le combat
+                //Si joueur 2 gagne la manche
                 else if(resultatManche == -1) {
                     System.out.println(joueur2.afficheNom()+" gagne la manche\n");
                     joueur2.gagnePoint();
-                    //Le joueur 2 gagne les cartes
+                    //Le joueur 2 reprends les cartes
                     while(!deckTemp.estVide())
                         joueur2.ajouterCarte(deckTemp.derniereCarte());
-
                     bataille = false;
                 }
-                //Si bataille
+                /**Si bataille
+                *Les joueurs posent une carte suplementaire et on revient au debut de la boucle 
+                *avec cette fois plus de cartes dans le deck temp jusqu'a ce qu'un joueur l'emporte
+                */
                 else {
                     System.out.println("Bataille !\n");
-                    //Les deux joueurs posent une carte en plus et on revient au debut de la boucle 
-                    //avec cette fois plus de cartes dans le deck tempo jusqu'a qu'un joueur gagne
                     if(!joueur1.deckVide())
                         deckTemp.ajouterCarte(joueur1.tireCarte());
                     if(!joueur2.deckVide())
                         deckTemp.ajouterCarte(joueur2.tireCarte());
                     bataille = true;
                 }
-
-                //si bataille on passe cette etape
+                /**
+                *si bataille on passe cette etape
+                *Demande si les joueurs veulent continuer ou abandonner
+                */
                 if(!bataille) {
-                    //Demande si les joueurs veulent continuer ou abandonner
                     System.out.println("Chaque joueur peut maintenant choisir quoi faire :");
                     System.out.println(" - entree : continuer\n - q+entree : abandonner\n - s+entree : afficher ses stats");
                     choixJoueur(joueur1, joueur2);
-                    //Si c'est un mode de jeu a 2 joueurs
+                    //S'il y a deux joueurs
                     if(mode == 1) {
                         choixJoueur(joueur2, joueur1);
                     }
@@ -135,7 +136,7 @@ public class Bataille {
     }
     }
     /**
-     * Demande au joueur ce qu'il veut faire et agit en consequence
+     * Demande au joueur s'il veut continuer ou abandoner ou voir le score
      */
     public static void choixJoueur(Joueur joueur, Joueur autreJoueur) {
         Scanner scanChoix = new Scanner(System.in);
@@ -145,12 +146,12 @@ public class Bataille {
             System.out.println(joueur.afficheNom()+" : Que voulez-vous faire ? ");
             choix = scanChoix.nextLine();
             
-            //abandonne
+            //Abandon
             if(choix.equals("q")) {
                 joueur.abandonne();
                 System.out.println("Le joueur "+joueur.afficheNom()+" abandonne !");
             }
-            //Affiche les stats
+            //Affiche le score
             else if(choix.equals("s")) {
                 System.out.println(joueur.toString()+" | "+autreJoueur.toString()+"\n");
 
@@ -159,7 +160,7 @@ public class Bataille {
     }
     
     /**
-     * Affichage de gagnant
+     * Affichage du gagnant
      */
     public static void afficheGagnant(Joueur joueur1, Joueur joueur2) {
         //Si abandon

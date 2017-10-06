@@ -54,8 +54,7 @@ public class Carte {
             return 0;
     }
     /**
-     * retourne l'affichage de la carte
-
+     * Retourne l'affichage de la carte
      */ 
     public String toString() {
         String retour = tableauValeur[valeur] + tableauCouleur[couleur] ;                

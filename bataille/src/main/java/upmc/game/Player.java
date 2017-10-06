@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Player
 {
-    //NB : all the arrayList are call alXXXX where al means array list (personnal convention to know when we are dealing with an arraylist)
+    //NB : all the arrayList are called alXXXX where al means array list (personnal convention to know when we are dealing with an arraylist)
     private String name;
     private int score;
     private ArrayList<Card> alPlayerDeck = new ArrayList<Card>();
@@ -31,8 +31,7 @@ public class Player
     }
 
     /**
-     * Creating a player - user (based on Computer version but with a chosen name)
-     *
+     * Creating a player - user (based on Computer version but with a name)
      * @param name user can define a name
      */
     Player(String name)
@@ -44,7 +43,6 @@ public class Player
 
     /**
      * Enables the player to draw a card from the last position of his deck
-     *
      * @return the card that have been drawn
      */
     public Card drawCard()
@@ -57,9 +55,10 @@ public class Player
         }
         return null;
     }
+
+
     /**
      * Enables to create a player's deck from a main deck
-     *
      * @param start   beginning of where we cut the deck
      * @param end     end of deck's cut
      * @param alCards the main deck
@@ -68,7 +67,6 @@ public class Player
     {
         for (int i = start; i < end; i++)
             this.alPlayerDeck.add(alCards.get(i));
-
     }
 
     /**
@@ -96,10 +94,9 @@ public class Player
     }
 
     /**
-     * Get the percentage of winning rate
-     *
-     * @param numberOfGame the number of game the users made
-     * @return the percentage of winning rate
+     * Get the percentage of victory (win rate)
+     * @param numberOfGame the number of games the users chose
+     * @return the percentage of victory
      */
     public double percentageScore(int numberOfGame)
     {

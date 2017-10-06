@@ -11,13 +11,13 @@ import java.util.Collections;
 
 /**
  * This Class enables you to create a Deck of Cards (A list of x cards)
- * It's a kind of factory of cards. It is composed of 52 cards
+ * It's a kind of factory of cards. It is composed of 52 cards in this game but can be changed in the final fiedl "NB_CARDS"
  * In the game we have only one deck but each player has 50% of it (check .splitDeck())
  * @author Timothé Pardieu
  */
 public class Deck
 {
-    //NB : all the arrayList are call alXXXX where al means array list (personnal convention to know when we are dealing with an arraylist)
+    //NB : all the arrayList are called alXXXX where al means array list (personnal convention to know when we are dealing with an arraylist)
     private ArrayList<Card> alCards;
     private static final int NB_CARDS = 15;
 
@@ -26,7 +26,7 @@ public class Deck
      */
     public Deck()
     {
-        this.alCards = new ArrayList<>();
+        this.alCards = new ArrayList<Card>();
         //Build th deck, for each number from 2 to 14..
         for (int i = 2; i < NB_CARDS; i++)
         {
@@ -42,7 +42,7 @@ public class Deck
 
 
     /**
-     * Split the deck by 2 so the both players have 26 cards
+     * Split the deck in 2 so the both players have 26 cards
      *
      * @param deck the main deck with 52 cards
      * @param j1   the player 1 who will get the 26 cards

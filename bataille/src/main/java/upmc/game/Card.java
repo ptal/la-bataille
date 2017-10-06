@@ -18,7 +18,7 @@ public class Card
     private int value;
 
     /**
-     * Constructor in order to have two main variables
+     * Constructor in order to cosntruct the  two main variables
      * @param color the color of the card (color means Heart, Spade, Club and Diamond)
      * @param value the value represents the number from 2 to 10 + 11 to 14 which represents the Queen, King, As..
      */

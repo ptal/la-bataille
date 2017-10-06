@@ -3,11 +3,11 @@ package upmc.game;
 /**
  * This class enables you to create a different battle.
  * It's an improvement from the main game.
- * It can be trigger by selecting the 3rd choice in the menu
+ * It can be triggered by selecting the 3rd choice in the menu
  * It support the auto-run (IA vs IA) so we can use it to do some statistics
- * The program will invite you to enter how much runs you want and will display you the all-step and the final result
+ * The program will invite you to enter how much runs you want and will display all the steps and the final result
  * (usage : test with 3 or 4 battles then with 20 runs to show that the winning rate will go to the 50%, demonstrate the randomness)
- * It extends the main WarGame because it's a "type of WarGame". We can use some inheriting from the class.
+ * It extends the main WarGame because it's a "type of WarGame". We can use some inheriting from the WarGame class.
  * It can also be used as a unit-test in a way or to play a very quick game
  * @author Timothé Pardieu
  */
@@ -32,8 +32,7 @@ public class Statistics extends WarGame
 
     /**
      * run the test (based on warGame)
-     *
-     * @param numberOfIteration number of game we need to achieve
+     * @param numberOfIteration number of games we need to achieve
      */
     public void runStat(int numberOfIteration)
     {

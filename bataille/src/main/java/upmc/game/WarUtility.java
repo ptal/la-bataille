@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class WarUtility
 {
-    //NB : all the arrayList are call alXXXX where al means array list (personnal convention to know when we are dealing with an arraylist)
+    //NB : all the arrayList are called alXXXX where al means array list (personnal convention to know when we are dealing with an arraylist)
     /**
      * Checking who is winning and give the cards to the winner
      *
@@ -105,7 +105,7 @@ public class WarUtility
     /**
      * Enables the user to choose the game he wants
      *
-     * @param keyboardChoice the entry
+     * @param keyboardChoice the input
      * @return the value chosen by the user
      */
     public static int chooseGame(Scanner keyboardChoice)
@@ -123,7 +123,7 @@ public class WarUtility
     }
 
     /**
-     * Show the basic menu between each "player roun"
+     * Show the basic menu between each "player round"
      */
     public static void showMenu()
     {

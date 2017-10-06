@@ -23,7 +23,7 @@ public class WarGame
     }
 
     /**
-     * The main action, it enables to start a battle (choose a mode, draw a card, compare..)
+     * The main action, it enables the game to start a battle (choose a mode, draw a card, compare..)
      */
     private void start()
     {
@@ -107,7 +107,7 @@ public class WarGame
         Card j2CardChosen = j2.drawCard();
 
         //Create the temporary deck (cards in game which have been played by the players)
-        ArrayList<Card> alCardsInGame = new ArrayList<>();
+        ArrayList<Card> alCardsInGame = new ArrayList<Card>();
         alCardsInGame.add(j1CardChosen);
         alCardsInGame.add(j2CardChosen);
 

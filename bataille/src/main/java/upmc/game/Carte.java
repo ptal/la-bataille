@@ -24,7 +24,7 @@ public class Carte {
         this.couleur = pCouleur;
     }
     
-    //METHODES
+    //METHODES : returns number
     public int getNum(){
         return this.num;
     }

@@ -19,6 +19,7 @@ public class Carte {
         this.num=0;
         this.couleur="Joker";
     }
+    
     public Carte( int pNum, String pCouleur ){
         this.num = pNum;
         this.couleur = pCouleur;

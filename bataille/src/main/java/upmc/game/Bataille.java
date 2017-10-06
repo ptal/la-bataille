@@ -1,4 +1,4 @@
-// Copyright 2017 Pierre Talbot (IRCAM)
+﻿// Copyright 2017 Pierre Talbot (IRCAM)
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,6 +20,7 @@ public class Bataille
 {
   public static void main(String[] args)
   {
+	System.out.print();
     System.out.println("C'est le jeu de la bataille!\n");
     System.out.print("Veuillez entrer un choix : ");
     System.out.flush();

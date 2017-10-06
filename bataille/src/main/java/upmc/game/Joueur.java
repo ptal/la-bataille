@@ -17,13 +17,13 @@ public class Joueur {
     
     public String toString() {
         if (this.deck.nbCartes() <= 1 && this.point <= 1) 
-            return this.nom+"("+this.deck.nbCartes()+" carte) : "+this.point+" point";
+            return this.nom+" : "+this.deck.nbCartes()+" carte / "+this.point+" point";
         else if (this.deck.nbCartes() > 1 && this.point <= 1)
-            return this.nom+"("+this.deck.nbCartes()+" cartes) : "+this.point+" point";
+            return this.nom+" : "+this.deck.nbCartes()+" cartes / "+this.point+" point";
         else if (this.deck.nbCartes() <= 1 && this.point > 1)
-            return this.nom+"("+this.deck.nbCartes()+" carte) : "+this.point+" points";
+            return this.nom+" : "+this.deck.nbCartes()+" carte / "+this.point+" points";
         else
-            return this.nom+"("+this.deck.nbCartes()+" cartes) : "+this.point+" points";
+            return this.nom+" : "+this.deck.nbCartes()+" cartes / "+this.point+" points";
     }
     
     /**

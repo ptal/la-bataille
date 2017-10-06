@@ -25,7 +25,7 @@ public class Bataille {
         * Initialisation variables
         */
         Scanner scan = new Scanner(System.in);
-        int modeJeu = 0;
+        int mode = 0;
         int resultatManche = 0;
         boolean bataille = false;
         Paquet deckTemp = new Paquet(false);
@@ -36,29 +36,32 @@ public class Bataille {
         Carte carte2;
         
         //Initialisation du jeu
-        System.out.println("La Bataille\n");
-        System.out.println("Chaque manche les deux joueurs jouent leurs cartes en meme temps.");
-        System.out.println("But du jeu : avoir toute les cartes.");
+        System.out.println(" La Bataille\n");
+        System.out.println("Règle :\n - Chaque manche les deux joueurs jouent leurs cartes en meme temps.");
+        System.out.println(" - Celui qui à la plus grande valeur gagne la manche.");
+        System.out.println(" - Si les valeurs sont égal il y a bataille et il faut re-jouer chacun une nouvelle carte.");
+        System.out.println("\nBut du jeu : avoir toute les cartes.");
+        System.out.println("\n BONNE CHANCE");
         deck.melange();
         
         //Choix du mode de jeu
-        while(modeJeu != 1 && modeJeu != 2 && modeJeu != 3) {
-            System.out.println("\nChoisissez votre mode de jeu parmis les 3 suivants :");
-            System.out.println(" 1. Deux joueurs\n 2. Contre IA");
+        while(mode != 1 && mode != 2 && mode != 3) {
+            System.out.println("\nQuel mode de jeu voulez-vous ?");
+            System.out.println(" 1. À deux joueurs\n 2. En solo contre l'ordinateur");
             System.out.println("Votre choix : ");
-            modeJeu = scan.nextInt();
+            mode = scan.nextInt();
         }
         scan.nextLine(); //vide la ligne
         
         //Choix du nom des joueurs
-        System.out.println("Entre le nom du Joueur 1 : ");
+        System.out.println("Nom du Joueur 1 : ");
         joueur1.setNom(scan.nextLine());
-        if(modeJeu == 1) {
-            System.out.println("Entre le nom du Joueur 2 : ");
+        if(mode == 1) {
+            System.out.println("Nom du Joueur 2 : ");
             joueur2.setNom(scan.nextLine());
         }
         else {
-            joueur2.setNom("IA");
+            joueur2.setNom("Ordinateur");
         }
         
         //Distribution égale des cartes entre les deux joueurs
@@ -79,13 +82,13 @@ public class Bataille {
             
                 //Comparaison
                 if(!bataille)
-                    System.out.println("\n------");
+                    System.out.println("\n");
                 System.out.println("("+joueur1.afficheNom()+")"+carte1.toString()+" VS "+carte2.toString()+"("+joueur2.afficheNom()+")");
                 resultatManche = carte1.resultatManche(carte2);
 
                 //Si joueur 1 gagne le combat
                 if(resultatManche == 1) {
-                    System.out.println(joueur1.afficheNom()+" gagne le combat\n");
+                    System.out.println(joueur1.afficheNom()+" gagne la manche\n");
                     joueur1.gagnePoint();
                     //Le joueur 1 gagne les cartes
                     while(!deckTemp.estVide())
@@ -95,7 +98,7 @@ public class Bataille {
                 }
                 //Si joueur 2 gagne le combat
                 else if(resultatManche == -1) {
-                    System.out.println(joueur2.afficheNom()+" gagne le combat\n");
+                    System.out.println(joueur2.afficheNom()+" gagne la manche\n");
                     joueur2.gagnePoint();
                     //Le joueur 2 gagne les cartes
                     while(!deckTemp.estVide())
@@ -118,11 +121,11 @@ public class Bataille {
                 //si bataille on passe cette etape
                 if(!bataille) {
                     //Demande si les joueurs veulent continuer ou abandonner
-                    System.out.println("Chaque joueur peut maintenant quoi faire :");
+                    System.out.println("Chaque joueur peut maintenant choisir quoi faire :");
                     System.out.println(" - entree : continuer\n - q+entree : abandonner\n - s+entree : afficher ses stats");
                     choixJoueur(joueur1, joueur2);
                     //Si c'est un mode de jeu a 2 joueurs
-                    if(modeJeu == 1) {
+                    if(mode == 1) {
                         choixJoueur(joueur2, joueur1);
                     }
                 }        
@@ -130,7 +133,7 @@ public class Bataille {
         afficheGagnant(joueur1, joueur2);
         
     }
-    
+    }
     /**
      * Demande au joueur ce qu'il veut faire et agit en consequence
      */
@@ -142,7 +145,6 @@ public class Bataille {
             System.out.println(joueur.afficheNom()+" : Que voulez-vous faire ? ");
             choix = scanChoix.nextLine();
             
-            System.out.println("Choix : "+choix);
             //abandonne
             if(choix.equals("q")) {
                 joueur.abandonne();
@@ -150,26 +152,26 @@ public class Bataille {
             }
             //Affiche les stats
             else if(choix.equals("s")) {
-                System.out.println(joueur.toString());
-                System.out.println(autreJoueur.toString());
+                System.out.println(joueur.toString()+" | "+autreJoueur.toString()+"\n");
+
             }
         }
     }
     
     /**
-     * Affiche le gagnant
+     * Affichage de gagnant
      */
     public static void afficheGagnant(Joueur joueur1, Joueur joueur2) {
         //Si abandon
         if(joueur1.boolAbandon())
-            System.out.println(joueur1.afficheNom()+" a perdu par abandon !");
+            System.out.println(joueur2.afficheNom()+" gagne par abandon de "+joueur1.afficheNom()+" !");
         else if(joueur2.boolAbandon())
-            System.out.println(joueur2.afficheNom()+" a perdu par abandon !");
+            System.out.println(joueur1.afficheNom()+" gagne par abandon de "+joueur2.afficheNom()+" !");
         //Si plus de cartes
         else if(joueur1.deckVide())
-            System.out.println(joueur1.afficheNom()+" a perdu car il n'a plus de cartes !");
+            System.out.println(joueur2.afficheNom()+" gagne car"+joueur1.afficheNom()+" n'a plus de cartes !");
         else if(joueur2.deckVide())
-            System.out.println(joueur2.afficheNom()+" a perdu car il n'a plus de cartes !");
+            System.out.println(joueur1.afficheNom()+" gagne car"+joueur2.afficheNom()+" n'a plus de cartes !");
         
         System.out.println("===================");
         System.out.println("Score final : ");

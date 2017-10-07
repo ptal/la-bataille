@@ -100,30 +100,31 @@ public class Bataille {
       System.out.println(j2.getNom()+" remporte le tour");
       this.j2.gagneUnPoint();
     } else {
-      Bataille.grandeBataille(this.j1,this.j2,this.c1,this.c2);
+      this.grandeBataille();
     }
-
     this.affichageDuScore();
     this.nbTour++;
     return false;
   }
 
   public Carte tourJoueur(Joueur j) {
-    System.out.println(j.getNom()+", à votre tour : (1 ou autre) pour jouer , (2) pour quitter.");
     Carte c = null;
-    String choixJoueur = choixJeu.nextLine();
-    if(choixJoueur.equals("2")) {
-      return c;
+    if(j.estHumain()) {
+      System.out.println(j.getNom()+", à votre tour : (1 ou autre) pour jouer , (2) pour quitter.");
+      String choixJoueur = choixJeu.nextLine();
+      if(choixJoueur.equals("2")) {
+        return c;
+      }
     }
-    else {
       c = j.jouerCarte();
       System.out.println(j.getNom()+" joue la carte "+c.toString());
-    }
     return c;
   }
 
   public void distributionDesCartes() {
     System.out.println("Distribution des cartes...");
+    this.j1.ajouterCarteEnMain(new Carte("Trefle",3)); // A ENLEVER
+    this.j2.ajouterCarteEnMain(new Carte("Trefle",3)); // A ENLEVER
     while(pioche.size()!=0) {
       int pos1 = (int) (Math.random() *(pioche.size()));
       this.j1.ajouterCarteEnMain(pioche.get(pos1));
@@ -160,26 +161,29 @@ public class Bataille {
     }
   }
 
-  public static void grandeBataille(Joueur j1, Joueur j2, Carte c1, Carte c2) {
+  public void grandeBataille() {
     ArrayList<Carte> tas = new ArrayList<Carte>();
-    tas.addAll(Arrays.asList(c1,c2));
+    tas.addAll(Arrays.asList(this.c1,this.c2));
     System.out.println("BATAILLE !!!\n");
     do {
-      c1 = j1.jouerCarte();
-      tas.add(c1);
-      System.out.println(j1.getNom() + " joue la carte " + c1.toString());
-      c2 = j2.jouerCarte();
-      tas.add(c2);
-      System.out.println(j2.getNom() + " joue la carte " + c2.toString());
-      if (c1.compareA(c2) > 0) {
+      //Joueur 1
+      this.c1 = this.tourJoueur(j1);
+      tas.add(this.c1);
+      //Joueur 2
+      this.c2 = this.tourJoueur(j2);
+      tas.add(this.c2);
+
+      if (this.c1.compareA(this.c2) > 0) {
         j1.ajouterPlusieursCartesEnMain(tas);
-        System.out.println(j1.getNom()+" remporte la bataille");
+        System.out.println(this.j1.getNom()+" remporte la bataille");
+        j1.gagneUnPoint();
       }
-      else if (c1.compareA(c2) < 0) {
-        j2.ajouterPlusieursCartesEnMain(tas);
-        System.out.println(j2.getNom()+" remporte la bataille");
+      else if (this.c1.compareA(this.c2) < 0) {
+        this.j2.ajouterPlusieursCartesEnMain(tas);
+        System.out.println(this.j2.getNom()+" remporte la bataille");
+        j2.gagneUnPoint();
       }
-    } while(c1.compareA(c2) == 0);
+    } while(this.c1.compareA(this.c2) == 0);
   }
 
   public boolean joueurAGagnerLaPartie(Joueur j) {

@@ -15,13 +15,17 @@
 package upmc.game;
 
 import java.util.Scanner;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> 2a0aa9fd2b4ecdb54dbb9ee8ac1e295cb54597e8
 
 public class Bataille
 {
   public static void main(String[] args)
   {
     System.out.println("C'est le jeu de la bataille!\n");
+<<<<<<< HEAD
     System.out.flush();
     Scanner console = new Scanner(System.in);
     System.out.println("Souhaitez vous lancer le mode interactif ?(1/Oui,2/Non)");
@@ -180,3 +184,13 @@ public class Bataille
 }
   
 
+=======
+    System.out.print("Veuillez entrer un choix : ");
+    System.out.flush();
+    Scanner console = new Scanner(System.in);
+    String choice = console.nextLine();
+    System.out.println("\nL'utilisateur a choisi : \"" + choice + "\"");
+    System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");
+  }
+}
+>>>>>>> 2a0aa9fd2b4ecdb54dbb9ee8ac1e295cb54597e8

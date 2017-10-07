@@ -67,67 +67,59 @@ public class Bataille {
     this.distributionDesCartes();
 
     //La Partie
-    while(!joueurAGagnerLaPartie(j1) && !joueurAGagnerLaPartie(j2)) {
-      this.UnTour();
+    boolean partieFini=false;
+    while(!joueurAGagnerLaPartie(j1) && !joueurAGagnerLaPartie(j2) && !partieFini) {
+      partieFini = this.UnTour();
     }
     this.affichageVainqueurDeLaPartie();
   }
 
-
-  public void UnTour() {
+  public boolean UnTour() {
     System.out.println("Tour "+this.nbTour+" ==============");
-
     //Afficher les cartes de chaque joueurs
     System.out.println("carte de "+j1.getNom()+" : "+this.j1.getCartesEnMain() +" "+this.j1.getCartesEnMain().size());
     System.out.println("carte de "+j2.getNom()+" : "+this.j2.getCartesEnMain());
 
     //TOUR JOUEUR 1
-    System.out.println(this.j1.getNom()+", à votre tour : (1 ou autre) pour jouer , (2) pour quitter.");
-    String choixJ1 = choixJeu.nextLine();
-    if(choixJ1=="2") {
-      j2.setScore(this.scoreLimite);
-      return;
-    }
-    else {
-      this.c1 = this.j1.jouerCarte();
-      System.out.println(j1.getNom()+" joue la carte "+this.c1.toString());
-    }
+    this.c1 = tourJoueur(this.j1);
+    if(this.c1 == null) return true;
 
     //TOUR JOUEUR 2
-    if(this.j2.estHumain()) {
-      System.out.println(this.j2.getNom()+", à votre tour : (1 ou autre) pour jouer , (2) pour quitter.");
-      int choixJ2 = choixJeu.nextInt();
-      if(choixJ2==2) {
-        j1.setScore(this.scoreLimite);
-        return;
-      }
-      else {
-        this.c2 = this.j2.jouerCarte();
-        System.out.println(this.j2.getNom()+" joue la carte "+this.c2.toString());
-      }
-    }
-    else {
-      this.c2 = this.j2.jouerCarte();
-      System.out.println(this.j2.getNom()+" joue la carte "+this.c2.toString());
-    }
+    this.c2 = tourJoueur(this.j2);
+    if(this.c2 == null) return true;
 
-    if(this.c1.compareA(this.c2) > 0) {
+    if(this.c1.compareA(this.c2) > 0) { //Si la carte du joueur 1 est meilleur que celle du joueur 2 alors joueur 1 gagne la manche
       this.j1.ajouterCarteEnMain(this.c1);
       this.j1.ajouterCarteEnMain(this.c2);
       System.out.println(j1.getNom()+" remporte le tour");
       this.j1.gagneUnPoint();
     }
-    else if(this.c1.compareA(this.c2) < 0) {
+    else if(this.c1.compareA(this.c2) < 0) { //Si la carte du joueur 2 est meilleur que celle du joueur 1 alors joueur 2 gagne la manche
       this.j2.ajouterCarteEnMain(this.c1);
       this.j2.ajouterCarteEnMain(this.c2);
       System.out.println(j2.getNom()+" remporte le tour");
       this.j2.gagneUnPoint();
     } else {
-      Bataille.bataille(this.j1,this.j2,this.c1,this.c2);
+      Bataille.grandeBataille(this.j1,this.j2,this.c1,this.c2);
     }
 
     this.affichageDuScore();
     this.nbTour++;
+    return false;
+  }
+
+  public Carte tourJoueur(Joueur j) {
+    System.out.println(j.getNom()+", à votre tour : (1 ou autre) pour jouer , (2) pour quitter.");
+    Carte c = null;
+    String choixJoueur = choixJeu.nextLine();
+    if(choixJoueur.equals("2")) {
+      return c;
+    }
+    else {
+      c = j.jouerCarte();
+      System.out.println(j.getNom()+" joue la carte "+c.toString());
+    }
+    return c;
   }
 
   public void distributionDesCartes() {
@@ -168,7 +160,7 @@ public class Bataille {
     }
   }
 
-  public static void bataille(Joueur j1, Joueur j2, Carte c1, Carte c2) {
+  public static void grandeBataille(Joueur j1, Joueur j2, Carte c1, Carte c2) {
     ArrayList<Carte> tas = new ArrayList<Carte>();
     tas.addAll(Arrays.asList(c1,c2));
     System.out.println("BATAILLE !!!\n");

@@ -13,7 +13,7 @@ public class Game {
 	public Scanner console = new Scanner( System.in );
 	
 	private int nbCartes;
-	
+
 	private Paquet jeuDeCarte = new Paquet();
 	
 	public Game( Joueur Player1, Joueur Player2, int nombreC, String modeplay ) {
@@ -72,7 +72,7 @@ public class Game {
 			}
 		}
 		
-		System.out.println( "Appuyer sur entree pour retourner une carte chacun ('/quit' pour quitter le jeu)" );
+		System.out.println( "Appuyer sur entree pour retourner une carte chacun ('exit' pour quitter le jeu)" );
 		
 		if( modeplay == "points" ) {
 			modePts();
@@ -92,7 +92,7 @@ public class Game {
 	private void modePts() {
 		do {
 			System.out.flush();
-			if( console.nextLine() == "/quit" ) System.exit( 0 );
+			if ( console.nextLine().equals( "exit" ) )	System.exit( 0 );
 			System.out.println( J1 + "(" + J1.nbPts() + "pts) : " + J1.deck.getCard( 0 ) + " VS " + J2.deck.getCard( 0 ) + " : " + J2 + "(" + J2.nbPts() + "pts)" );
 			if( J1.deck.getCard( 0 ).compare( J2.deck.getCard( 0 ) ) != 0){
 				switch( J1.deck.getCard( 0 ).compare( J2.deck.getCard( 0 ) ) ) {
@@ -133,7 +133,7 @@ public class Game {
 			J2.deck.melange();
 			
 			System.out.flush();
-			if( console.nextLine() == "/quit" ) System.exit( 0 );
+			if ( console.nextLine().equals( "exit" ) )	System.exit( 0 );
 			System.out.println( J1 + "(" + J1.deck.nbCard() + ") : " + J1.deck.getCard( 0 ) + " VS " + J2.deck.getCard( 0 ) + " : " + J2 + "(" + J2.deck.nbCard() + ")" );
 			
 			//Resultat de manche

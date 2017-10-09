@@ -24,7 +24,7 @@ public class Paquet {
                 paquetCarte.add(new Carte(valeur[i], j));
             }
         }
-        //Collections.shuffle(paquetCarte);
+        Collections.shuffle(paquetCarte);
     }
     
     public Paquet(int nbCarte){

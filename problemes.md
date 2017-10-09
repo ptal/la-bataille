@@ -6,12 +6,6 @@ Classe A
 
 * Fork le dépôt et modifier le projet sur le dépôt forké
 * Mettre son nom sur le dépôt Github (sinon comment je sais que c'est vous ?)
-
-=> Supprimer les dépôts qui ne sont pas forkés.
-=> Supprimer les forks inutiles si vous avez plusieurs comptes.
-=> Ne créer pas un autre projet bataille à l'intérieur du projet, modifier le code existant.
-=> Faites un git pull de mon répertoire.
-
 * Tester le projet avant de le rendre, régler les conflits:
 
 ```
@@ -21,11 +15,19 @@ import java.util.ArrayList;
 >>>>>>> 2a0aa9fd2b4ecdb54dbb9ee8ac1e295cb54597e8
 ```
 
+À faire (entre autres !!) :
+
+1. Supprimer les dépôts qui ne sont pas forkés.
+2. Supprimer les forks inutiles si vous avez plusieurs comptes.
+3. Ne créer pas un autre projet bataille à l'intérieur du projet, modifier le code existant.
+4. Faites un git pull de mon répertoire.
+
 Classe B
 ********
 
 * Petit commit et messages explicites.
 * Ne pas commit dans le dépôt les fichiers générés (.class, dossier "dist"/"build"/"classes"/"nbproject"/...)
+
 
 Problèmes projet
 ================

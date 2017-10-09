@@ -13,33 +13,35 @@ public class Carte {
     private String couleur;
     private int valeur;
     
-    public String getCouleur(){
-        return couleur;
-    }
-    
-    public int getValeur(){
-        return valeur;
-    }
-    
-    public String afficher()    {
-        return couleur+" "+valeur;
-    }
-    
     public Carte(String couleur, int valeur){
         this.couleur = couleur;
         this.valeur = valeur;
     }
     
-    public String toString(){
-        return couleur+" "+valeur;
-        
-    }
+    /*public String getCouleur(){
+        return couleur;
+    }*/
     
-    public boolean compareTo(Carte c2){
-        Carte c1 = this;
-        if(c1.valeur > c2.valeur){
+    public int getValeur(){
+        return valeur;
+    }
+       
+    /*public boolean compareTo(Carte c2){
+        if(this.valeur > c2.valeur){
             return true;
         }
         return false;
+    }*/
+    
+    public boolean superieur(Carte c2){
+        return this.valeur>c2.valeur;
+    }
+    public boolean inferieur(Carte c2){
+        return this.valeur<c2.valeur;
+    }
+    
+    public String toString(){
+        return couleur+" "+valeur;
+        
     }
 }

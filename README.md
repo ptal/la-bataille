@@ -34,3 +34,16 @@ TP 2
 * Utiliser `MenuPseudo` dans votre méthode `main` principale.
 
 La date de rendu est sur le [site du cours](hyc.io/teaching/java.html).
+
+Info
+====
+
+Synchroniser un fork avec son répertoire courant:
+
+```
+git remote add upstream https://github.com/ptal/la-bataille.git
+git fetch upstream
+git checkout master
+git merge upstream/master
+```
+Source: [synchroniser un fork](https://help.github.com/articles/syncing-a-fork/)

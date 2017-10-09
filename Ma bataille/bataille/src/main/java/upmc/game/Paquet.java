@@ -45,13 +45,10 @@ public class Paquet {
         }
     }
 
-    public String toString(){
-        return paquetCarte.toString(); 
+    public void tireCartePaquet(Carte c) {
+        this.paquetCarte.remove(c);
     }
-
-    public Carte tireCartePaquet() {
-        Carte carte = paquetCarte.get(0);
-        paquetCarte.remove(0);
-        return carte;
+     public String toString(){
+        return paquetCarte.toString(); 
     }
 }

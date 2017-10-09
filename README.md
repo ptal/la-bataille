@@ -23,7 +23,7 @@ TP 1
 * Faites un rapport d'une page maximum pour expliquer les nouvelles règles implémentées.
 * Veuillez à respecter la grille d'évaluation.
 
-La date de rendu est sur le [site du cours](hyc.io/teaching/java.html).
+La date de rendu est sur le [site du cours](http://hyc.io/teaching/java.html).
 
 TP 2
 ====
@@ -47,7 +47,7 @@ On peut utiliser `lirePseudo` sur `LecturePseudo` de manière générique.
 
 * Utiliser `MenuPseudo` dans votre méthode `main` principale.
 
-La date de rendu est sur le [site du cours](hyc.io/teaching/java.html).
+La date de rendu est sur le [site du cours](http://hyc.io/teaching/java.html).
 
 Info
 ====

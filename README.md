@@ -23,7 +23,7 @@ TP 1
 * Faites un rapport d'une page maximum pour expliquer les nouvelles règles implémentées.
 * Veuillez à respecter la grille d'évaluation.
 
-La date de rendu est sur le [site du cours](hyc.io/teaching/java.html).
+La date de rendu est sur le [site du cours](http://hyc.io/teaching/java.html).
 
 TP 2
 ====
@@ -33,7 +33,7 @@ TP 2
 * Ajouter une classe `MenuPseudo` qui propose une méthode `public LecturePseudo lirePseudo()` qui va demander proposer un menu pour que l'utilisateur puisse choisir de quelles manières il veut lire les pseudos et renvoyer la classe correspondante.
 * Utiliser `MenuPseudo` dans votre méthode `main` principale.
 
-La date de rendu est sur le [site du cours](hyc.io/teaching/java.html).
+La date de rendu est sur le [site du cours](http://hyc.io/teaching/java.html).
 
 Info
 ====

@@ -1,31 +1,49 @@
-// Copyright 2017 Pierre Talbot (IRCAM)
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-//     http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package upmc.game;
 
 import java.util.Scanner;
 
-public class Bataille
-{
-  public static void main(String[] args)
-  {
-    System.out.println("C'est le jeu de la bataille!\n");
-    System.out.print("Veuillez entrer un choix : ");
-    System.out.flush();
-    Scanner console = new Scanner(System.in);
-    String choice = console.nextLine();
-    System.out.println("\nL'utilisateur a choisi : \"" + choice + "\"");
-    System.out.println("C'est terminé :-(\n\nIl n'y a pas beaucoup de fonctionnalités...");
-  }
+/**
+ *
+ * @author NICO
+ */
+public class Bataille {
+    
+public static void main(String[] args) {
+        
+        Scanner sc = new Scanner(System.in);
+        
+        Joueur j1 = new Joueur("joueur 1");
+        Joueur j2 = new Joueur("IA joueur2");
+        
+        System.out.println("Vous jouez contre l'IA.");
+        
+        System.out.println("Joueur 1, saisissez votre nom :");
+        j1.setNom(sc.nextLine());
+        
+
+        for(int i = 0; i < 52; i++){
+            Carte c1 = j1.tireCarte();
+            Carte c2 = j2.tireCarte();
+
+            System.out.println(c1.toString());
+            System.out.println(c2.toString());
+
+            if(c1.compareTo(c2)){
+                j1.gagnePoint();
+            }
+            else{
+                j2.gagnePoint();
+            }
+        }
+        System.out.println("================");
+        System.out.println("SCORE :");
+        System.out.println(j1.getNom()+" : "+j1.getPoint());
+        System.out.println("IA joueur2: "+j2.getPoint());
+        System.out.println("================");
+    }
 }

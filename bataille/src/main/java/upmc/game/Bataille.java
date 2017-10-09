@@ -1,4 +1,4 @@
-package tp_bataille;
+package upmc.game;
 
 import java.util.Scanner;
 
@@ -22,7 +22,7 @@ public class Bataille {
 		Jeu jeu1 = new Jeu(joueur1, joueur2);
 		jeu1.LancerJeu();
 		
-		System.out.println("Le jeu est terminé, pour relancer la partie appuyez sur Run");
+		System.out.println("Le jeu est terminï¿½, pour relancer la partie appuyez sur Run");
 		
 	}
 

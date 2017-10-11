@@ -40,10 +40,7 @@ public class WarUtility
         System.out.println("(2) : JOUEUR VS ORDI");
         System.out.println("(3) : STATS");
         System.out.print("Votre choix : ");
-        System.out.flush();
         return Integer.parseInt(keyboardChoice.nextLine());
-
-
     }
 
     /**
@@ -78,7 +75,7 @@ public class WarUtility
             System.out.println("VOUS AVEZ QUITTE.. AU REVOIR");
             try
             {
-                Thread.sleep(1000);//Sleep for 3 seconds, wait a bit...
+                Thread.sleep(10000);//Sleep for 10 seconds, wait a bit...
             } catch (InterruptedException e)
             {
                 e.printStackTrace();

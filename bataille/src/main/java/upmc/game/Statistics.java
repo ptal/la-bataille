@@ -43,7 +43,7 @@ public class Statistics extends Bataille
             //get a new deck
             j1.resetData();
             j2.resetData();
-            instantiateDeckAndSplit(j1,j2);
+            instantiateDeckAndSplit(j1, j2);
             while (!j1.isEmpty() && !j2.isEmpty())//hands different from empty
             {
                 playGame(j1, j2);

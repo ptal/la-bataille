@@ -82,11 +82,12 @@ public class Bataille
         player2.resetData();
 
         //Creating a new deck
-        instantiateDeckAndSplit(player1,player2);
+        instantiateDeckAndSplit(player1, player2);
     }
 
     /**
      * Instantiate a deck and split it by 2
+     *
      * @param player1
      * @param player2
      */
@@ -152,8 +153,6 @@ public class Bataille
      */
     protected void playGame(Player j1, Player j2)
     {
-        System.out.flush();
-
         // Draw a card
         Card j1CardChosen = j1.drawCard();
         Card j2CardChosen = j2.drawCard();
@@ -174,10 +173,11 @@ public class Bataille
      * Check which player is the winner
      * Compare the value of j1's card and j2's card
      * In case of equality we reach the manageEquality method
-     * @param j1 player 1
-     * @param j2 player 2
-     * @param j1CardChosen the j1's card drawn
-     * @param j2CardChosen the j2's card drawn
+     *
+     * @param j1            player 1
+     * @param j2            player 2
+     * @param j1CardChosen  the j1's card drawn
+     * @param j2CardChosen  the j2's card drawn
      * @param alCardsInGame the cards in play
      */
     private void checkWinner(Player j1, Player j2, Card j1CardChosen, Card j2CardChosen, ArrayList<Card> alCardsInGame)

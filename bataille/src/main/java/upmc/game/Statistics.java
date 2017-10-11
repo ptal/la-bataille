@@ -7,19 +7,19 @@ package upmc.game;
  * It support the auto-run (IA vs IA) so we can use it to do some statistics
  * The program will invite you to enter how much runs you want and will display all the steps and the final result
  * (usage : test with 3 or 4 battles then with 10 runs to show that the winning rate will go to the 50%, demonstrate the randomness)
- * It extends the main WarGame because it's a "type of WarGame". We can use some inheriting from the WarGame class.
+ * It extends the main Bataille because it's a "type of Bataille". We can use some inheriting from the Bataille class.
  * It can also be used as a unit-test in a way or to play a very quick game
  *
  * @author Timothé Pardieu
  */
-public class Statistics extends WarGame
+public class Statistics extends Bataille
 {
 
     private Player j1 = new Player();
     private Player j2 = new Player();
 
     /**
-     * Statistics is a type of WarGame
+     * Statistics is a type of Bataille
      *
      * @param j1 the first player
      * @param j2 the second one
@@ -43,8 +43,7 @@ public class Statistics extends WarGame
             //get a new deck
             j1.resetData();
             j2.resetData();
-            Deck deck = new Deck();
-            deck.splitDeck(deck, j1, j2);
+            instantiateDeckAndSplit(j1,j2);
             while (!j1.isEmpty() && !j2.isEmpty())//hands different from empty
             {
                 playGame(j1, j2);

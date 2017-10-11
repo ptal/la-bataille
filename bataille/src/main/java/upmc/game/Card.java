@@ -10,6 +10,7 @@ package upmc.game;
  * It's mainly used in the Deck which is in a way a factory of many cards
  * It's also used when a user draw a Card.
  * The value of a Card will give the winner
+ *
  * @author Timothé Pardieu
  */
 public class Card
@@ -19,6 +20,7 @@ public class Card
 
     /**
      * Constructor in order to cosntruct the  two main variables
+     *
      * @param color the color of the card (color means Heart, Spade, Club and Diamond)
      * @param value the value represents the number from 2 to 10 + 11 to 14 which represents the Queen, King, As..
      */
@@ -30,6 +32,7 @@ public class Card
 
     /**
      * Verify if it's a King, Queen... and binding the value to a String
+     *
      * @param value the value of the card
      * @return the value in String mode in order to print "4" or "King".
      */

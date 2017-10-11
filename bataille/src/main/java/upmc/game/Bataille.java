@@ -198,14 +198,14 @@ public class Bataille {
     public static void afficheGagnant(Joueur joueur1, Joueur joueur2) {
         //Si abandon
         if(joueur1.boolAbandon())
-            System.out.println(joueur1.afficheNom()+" a perdu par abandon !");
+            System.out.println(joueur1.afficheNom()+" a perdu par abandon ! "+joueur2.afficheNom()+" a gagné !");
         else if(joueur2.boolAbandon())
-            System.out.println(joueur2.afficheNom()+" a perdu par abandon !");
+            System.out.println(joueur2.afficheNom()+" a perdu par abandon ! "+joueur1.afficheNom()+" a gagné !");
         //Si plus de cartes
         else if(joueur1.deckVide())
-            System.out.println(joueur1.afficheNom()+" a perdu car il n'a plus de cartes !");
+            System.out.println(joueur2.afficheNom()+" a gagné car, "+joueur1.afficheNom()+" n'a plus de cartes !");
         else if(joueur2.deckVide())
-            System.out.println(joueur2.afficheNom()+" a perdu car il n'a plus de cartes !");
+            System.out.println(joueur1.afficheNom()+" a gagné car, "+joueur2.afficheNom()+" n'a plus de cartes !");
         
         System.out.println("===================");
         System.out.println("Score final : ");

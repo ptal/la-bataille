@@ -12,6 +12,7 @@ import java.util.ArrayList;
  * The game has 3 modes : (Player vs Player / Player vs IA / IA vs IA (aka Statistics))
  * The Player will have many actions like : draw a card / increase score / reset the hand / Checking if the hand is empty (loose the game)
  * In order to have 2 type of Player (IA and Player-user) there is two constructor.
+ *
  * @author Timothé Pardieu
  */
 public class Player
@@ -32,6 +33,7 @@ public class Player
 
     /**
      * Creating a player - user (based on Computer version but with a name)
+     *
      * @param name user can define a name
      */
     Player(String name)
@@ -43,6 +45,7 @@ public class Player
 
     /**
      * Enables the player to draw a card from the last position of his deck
+     *
      * @return the card that have been drawn
      */
     public Card drawCard()
@@ -59,6 +62,7 @@ public class Player
 
     /**
      * Enables to create a player's deck from a main deck
+     *
      * @param start   beginning of where we cut the deck
      * @param end     end of deck's cut
      * @param alCards the main deck
@@ -95,6 +99,7 @@ public class Player
 
     /**
      * Get the percentage of victory (win rate)
+     *
      * @param numberOfGame the number of games the users chose
      * @return the percentage of victory
      */
@@ -139,4 +144,14 @@ public class Player
     }
 
 
+    public void showWinningMsg()
+    {
+        System.out.println(this.name + " Gagne");
+    }
+
+    public void addWonCards(ArrayList<Card> alCardsInGame)
+    {
+        this.showWinningMsg();
+        this.alPlayerDeck.addAll(0, alCardsInGame);
+    }
 }

@@ -23,4 +23,41 @@ TP 1
 * Faites un rapport d'une page maximum pour expliquer les nouvelles règles implémentées.
 * Veuillez à respecter la grille d'évaluation.
 
-La date de rendu est sur le [site du cours](hyc.io/teaching/java.html) et doit être rendu sous forme de [pull-request](https://help.github.com/articles/about-pull-requests/).
+La date de rendu est sur le [site du cours](http://hyc.io/teaching/java.html).
+
+TP 2
+====
+
+* Lire le code de l'interface `LecturePseudo` fournie.
+Elle indique que les classes qui implémenteront cette interface permettent de lire le pseudo d'un joueur.
+* Implémenter cette interface avec les classes `LectureConsole` et `LectureFichier`.
+Elles permettent de lire respectivement les pseudos d'un fichier et de la console.
+* La classe `LectureConsole` demandera de l'utilisateur le nom d'un fichier à lire.
+Dans ce fichier, il y aura les pseudos utilisateurs à raison d'un par ligne.
+* Ensuite vous ajoutez une classe `MenuPseudo` qui propose une méthode `public LecturePseudo modeLecturePseudo()`.
+Elle propose un menu dans lequel l'utilisateur peut choisir de quelles manières il veut lire les pseudos: via un fichier ou via la console.
+La méthode renvoie la classe correspondante (i.e. `LectureConsole` ou `LectureFichier`): vu qu'elles implémentent toutes deux `LecturePseudo`, on peut juste les manipuler via `LecturePseudo`.
+Un exemple:
+```
+LecturePseudo lecturePseudo = menu.modeLecturePseudo();
+ArrayList<String> pseudos = lecturePseudo.lirePseudo();
+...
+```
+On peut utiliser `lirePseudo` sur `LecturePseudo` de manière générique.
+
+* Utiliser `MenuPseudo` dans votre méthode `main` principale.
+
+La date de rendu est sur le [site du cours](http://hyc.io/teaching/java.html).
+
+Info
+====
+
+Synchroniser un fork avec son répertoire courant:
+
+```
+git remote add upstream https://github.com/ptal/la-bataille.git
+git fetch upstream
+git checkout master
+git merge upstream/master
+```
+Source: [synchroniser un fork](https://help.github.com/articles/syncing-a-fork/)

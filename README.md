@@ -32,7 +32,7 @@ TP 2
 Elle indique que les classes qui implémenteront cette interface permettent de lire le pseudo d'un joueur.
 * Implémenter cette interface avec les classes `LectureConsole` et `LectureFichier`.
 Elles permettent de lire respectivement les pseudos d'un fichier et de la console.
-* La classe `LectureConsole` demandera de l'utilisateur le nom d'un fichier à lire.
+* La classe `LectureFichier` demandera à l'utilisateur le nom d'un fichier à lire.
 Dans ce fichier, il y aura les pseudos utilisateurs à raison d'un par ligne.
 * Ensuite vous ajoutez une classe `MenuPseudo` qui propose une méthode `public LecturePseudo modeLecturePseudo()`.
 Elle propose un menu dans lequel l'utilisateur peut choisir de quelles manières il veut lire les pseudos: via un fichier ou via la console.

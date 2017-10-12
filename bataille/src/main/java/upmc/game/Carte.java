@@ -1,8 +1,8 @@
-package tp_bataille;
+package upmc.game;
 
 public class Carte {
 
-	public static String[] couleurs = { "Coeur","Pique", "Carreau",  "Trèfle" };
+	public static String[] couleurs = { "Coeur","Pique", "Carreau",  "Trï¿½fle" };
 	public static int[] valeurs = { 1,2, 3, 4, 5, 6, 7, 8, 9,
 			10, 11, 12, 13 };
 	
@@ -33,9 +33,11 @@ public class Carte {
 	}
 
 	public int comparateur(Carte carte) {
+            
 		if (carte.getValeur() == this.getValeur()) return 0;
 		if (carte.getValeur() > this.getValeur()) return -1;
 		return 1;
-	}
-
+	}  
 }
+
+     

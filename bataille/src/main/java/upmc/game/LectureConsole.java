@@ -22,7 +22,7 @@ public class LectureConsole implements LecturePseudo{
             // traitement 
             System.out.println("Veuillez entrer le nom du joueur " + nbr_joueur);
             Scanner sc = new Scanner(System.in);
-            this.pseudo.add(sc.nextLine()); 
+            this.pseudo.add(sc.nextLine());
         }
         return this.pseudo;
     }

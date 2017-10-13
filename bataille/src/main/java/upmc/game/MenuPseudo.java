@@ -5,6 +5,7 @@
  */
 package upmc.game;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
@@ -17,7 +18,7 @@ public class MenuPseudo {
     
     
     
-    public LecturePseudo modeLecturePseudo(Game game1){
+    public LecturePseudo modeLecturePseudo(Game game1) throws IOException{
         System.out.println("Renseigner les pseudos par \n   (1) Console \n   (2) Fichier");
         
         Scanner sc = new Scanner(System.in);   
@@ -28,15 +29,26 @@ public class MenuPseudo {
             
             LectureConsole lc = new LectureConsole(); 
         
-            ArrayList<String> tab = lc.lirePseudo(); 
+            ArrayList<String> tab_console = lc.lirePseudo(); 
 
-            Joueur j1 = new Joueur(tab.get(0));
-            Joueur j2 = new Joueur(tab.get(1)); 
+            Joueur j1 = new Joueur(tab_console.get(0));
+            Joueur j2 = new Joueur(tab_console.get(1)); 
             Lancement(j1, j2, game1);
 
 
         }else if(mode==2){
-            System.out.println("Vous avez séléctioné le mode fichier");
+            System.out.println("Vous avez séléctioné le mode Fichier");
+            
+            LectureFichier lf = new LectureFichier(); 
+        
+            ArrayList<String> tab_fichier = lf.lirePseudo(); 
+
+            Joueur j1 = new Joueur(tab_fichier.get(0));
+            Joueur j2 = new Joueur(tab_fichier.get(1)); 
+            
+            
+            
+            Lancement(j1, j2, game1);
             
         }else{
             System.out.println("Il y a un probleme de séléction \n Veuillez saisir 1 ou 2");

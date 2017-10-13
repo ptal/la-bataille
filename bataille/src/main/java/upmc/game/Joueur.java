@@ -18,17 +18,11 @@ public class Joueur {
     public Joueur(String nom){
         this.nom = nom;
         compteurPts = 0;
-        paquet = new Paquet();
+        this.paquet = new Paquet();
     }
-      
-    public Carte tireCarte(){
-        return paquet.tireCartePaquet();
-    }
-    
     public void gagnePoint(){
         compteurPts++;
     }
-    
     public int getPoint(){
         return compteurPts;
     }

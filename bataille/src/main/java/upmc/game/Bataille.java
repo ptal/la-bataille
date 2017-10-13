@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Bataille
 {
-    private Player player1, player2;
+    private Player player1 = null ,player2 = null;
     private Scanner keyboardChoice = new Scanner(System.in);
 
 
@@ -110,22 +110,35 @@ public class Bataille
     private void createPlayerDependingChoice(int gameModeSelected)
     {
         String choice = "";
+        MenuPseudo menuPseudo = new MenuPseudo();
+        LecturePseudo lecturePseudo;
+        ArrayList<String> alPseudos;
+
         switch (gameModeSelected)
         {
             case 1:  //Player vs Player
-                choice = askName("Joueur1");
-                player1 = new Player(choice);
-                choice = askName("Joueur2");
-                player2 = new Player(choice);
+                lecturePseudo = menuPseudo.modeLecturePseudo();
+                alPseudos = lecturePseudo.lirePseudo();
+
+                player1 = new Player(alPseudos.get(0));
+                player2 = new Player(alPseudos.get(1));
+
+                //choice = askName("Joueur1");
+                //player1 = new Player(choice);
+                //choice = askName("Joueur2");
+                //player2 = new Player(choice);
                 break;
             case 2: //Player vs Ordi
-                choice = askName("Joueur1");
-                player1 = new Player(choice);
+                lecturePseudo = menuPseudo.modeLecturePseudo();
+                alPseudos = lecturePseudo.lirePseudo();
+                //choice = askName("Joueur1");
+                player1 = new Player(alPseudos.get(0));
                 player2 = new Player(); //IA
                 break;
             case 3: //Statistique
                 player1 = new Player("Ordi1");
                 player2 = new Player("Ordi2"); //IA
+                System.out.flush();
                 System.out.print("ENTRER LE NOMBRE DE PARTIES A SIMULER : ");
                 int numberOfGames = keyboardChoice.nextInt();
                 Statistics s = new Statistics(player1, player2);

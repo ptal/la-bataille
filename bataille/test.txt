@@ -1,2 +1,2 @@
-cetrico
-lepape
+Joueur1
+Joueur2

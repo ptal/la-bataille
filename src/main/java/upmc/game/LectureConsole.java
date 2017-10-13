@@ -19,16 +19,13 @@ public class LectureConsole implements LecturePseudo{
 
         int nbJoueur = 0; 
 
-        while (sc.hasNextLine() && nbJoueur < 3) {
-
-            // traitement 
+        
 
             System.out.println("Veuillez entrer le nom du joueur " + nbJoueur); 
 
             this.pseudo.add(sc.nextLine()); 
 
-        }
-
+  
         
 
         return this.pseudo;

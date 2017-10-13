@@ -1,4 +1,4 @@
-﻿Bataille!
+Bataille! by *Timothé PARDIEU*
 ===================
 descriptions
 
@@ -23,7 +23,7 @@ En cas d'égalité il y'a "**bataille**" .
  - Il reste une carte au joueur
  - Le joueur a encore au moins deux cartes
 
-Si le joueur dispose d'assez de carte il met en jeu la carte qui a provoqué l'égalité, il tire une autre carte qui est aussi misé puis il tire une troisième carte qui sera décisive en étant comparé à la troisième carte de l'adversaire . Sinon on vérifie laquelle des cartes est la plus "forte"
+Si le joueur dispose d'assez de cartes il met en jeu la carte qui a provoqué l'égalité, il tire une autre carte qui est aussi misé puis il tire une troisième carte qui sera décisive en étant comparé à la troisième carte de l'adversaire . Sinon on vérifie laquelle des cartes est la plus "forte"
 
 
 ----------

@@ -44,14 +44,6 @@ public class Paquet {
             }
         }
     }
-
-    public void tireCartePaquet(Carte c) {
-        this.paquetCarte.remove(c);
-    }
-    public void ajoutCartePaquet(Carte c) {
-        this.paquetCarte.add(c);
-    }
-    
      public String toString(){
         return paquetCarte.toString(); 
     }

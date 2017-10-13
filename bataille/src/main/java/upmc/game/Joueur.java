@@ -5,6 +5,8 @@
  */
 package upmc.game;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author NICO
@@ -12,16 +14,22 @@ package upmc.game;
 public class Joueur {
     
     private int compteurPts;
-    private Paquet paquet;
+    private ArrayList<Carte> paquet;
     private String nom;
     
     public Joueur(String nom){
         this.nom = nom;
         compteurPts = 0;
-        this.paquet = new Paquet();
+        this.paquet = new ArrayList<Carte>();
     }
     public void gagnePoint(){
         compteurPts++;
+    }
+    public void tireCartePaquet(Carte c) {
+        this.paquet.remove(c);
+    }
+    public void ajoutCartePaquet(Carte c) {
+        this.paquet.add(c);
     }
     public int getPoint(){
         return compteurPts;

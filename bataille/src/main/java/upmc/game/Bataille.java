@@ -33,7 +33,7 @@ public class Bataille {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
        
         //Choix du mode
         System.out.println("Bonjour, \n Choissisez un mode : \n (1) Jouez contre l'ordinateur \n (2) Mode 2 joueurs");
@@ -43,19 +43,8 @@ public class Bataille {
         
         //TP2
                 
-        LectureConsole lc = new LectureConsole(); 
-        
-        ArrayList<String> tab = lc.lirePseudo(); 
-        Joueur j1 = null; 
-        Joueur j2 = null; 
-        for(int i = 0; i < tab.size(); i++) {
-            if (i == 0) { 
-                j1 = new Joueur(tab.get(i));
-            }else{
-                j2 = new Joueur(tab.get(i)); 
-            }
-        }
-        
+        MenuPseudo menu_pseudo = new MenuPseudo();
+        menu_pseudo.modeLecturePseudo(game1);
         
         
         
@@ -76,17 +65,7 @@ public class Bataille {
         
 
              
-        System.out.println("Création des cartes ...");
-        TimeUnit.SECONDS.sleep(1);
-        //crea un deck
-        Deck deck1 = new Deck();
         
-        //distribution
-        deck1.Distribution(j1,j2);
-        //deck1.VoirDeck();    
-  
-        //lancement du menu
-       game1.Menu(j1.VoirNomJoueur(), j2.VoirNomJoueur(), j1, j2);
        
     }
 }

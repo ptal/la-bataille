@@ -11,7 +11,7 @@ public class LectureConsole implements LecturePseudo {
 
         Scanner sc = new Scanner(System.in);
 
-        int nbJoueur = 0;
+        int nbJoueur = 1;
 
         System.out.println("Veuillez entrer le nom du joueur " + nbJoueur);
 

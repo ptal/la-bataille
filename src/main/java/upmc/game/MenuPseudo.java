@@ -1,6 +1,6 @@
 package upmc.game;
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 public class MenuPseudo {

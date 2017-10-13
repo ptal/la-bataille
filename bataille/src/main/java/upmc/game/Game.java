@@ -77,7 +77,10 @@ public class Game {
             System.out.println("---------------------------------------------------------");   
         }
     }
-    
+    public void ProblemeSelection(String nom_joueur_1, String nom_joueur_2, Joueur j1, Joueur j2){
+        System.out.println("Il y a un probleme de séléction \n Veuillez saisir 1, 2 ou 3");
+        Menu(nom_joueur_1, nom_joueur_2, j1, j2);
+    }
     
     public void Menu(String nom_joueur_1, String nom_joueur_2, Joueur j1, Joueur j2){
         
@@ -106,8 +109,7 @@ public class Game {
             }else if("3".equals(menu1)){
                 System.exit(0);
             }else{
-                System.out.println("Il y a un probleme de séléction \n Veuillez saisir 1, 2 ou 3");
-                Menu(nom_joueur_1, nom_joueur_2, j1, j2);
+                ProblemeSelection(nom_joueur_1, nom_joueur_2, j1, j2);
             }
 
             
@@ -131,8 +133,7 @@ public class Game {
                 System.exit(0);
             }else{
                 System.out.println("---------------------------------------------------------");
-                System.out.println("Il y a un probleme de séléction \n Veuillez saisir 1, 2 ou 3");
-                Menu(nom_joueur_1, nom_joueur_2, j1, j2);
+                ProblemeSelection(nom_joueur_1, nom_joueur_2, j1, j2);
             }  
             
             
@@ -152,15 +153,14 @@ public class Game {
                 Verifie(nom_joueur_1, nom_joueur_2, j1, j2);
                   
                 //comptabilise les rounds
-                Point(nom_joueur_1, nom_joueur_2, j1, j2);
+                Point(nom_joueur_1, nom_joueur_2, j1, j2); //ne peut pas faire réduire pour cette instruction
                 
             }else if("2".equals(menu_j2)){
                 TableauScore(nom_joueur_1, nom_joueur_2, j1, j2);
             }else if("3".equals(menu_j2)){
                 System.exit(0);
             }else{
-                System.out.println("Il y a un probleme de séléction \n Veuillez saisir 1, 2 ou 3");
-                Menu(nom_joueur_1, nom_joueur_2, j1, j2);
+                ProblemeSelection(nom_joueur_1, nom_joueur_2, j1, j2);
             }
         }
     }

@@ -16,6 +16,7 @@ package upmc.game;
 
 import java.awt.Event;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import java.util.LinkedList;
@@ -39,8 +40,27 @@ public class Bataille {
         Game game1 = new Game();
         game1.Mode();
               
+        
+        //TP2
+                
+        LectureConsole lc = new LectureConsole(); 
+        
+        ArrayList<String> tab = lc.lirePseudo(); 
+        Joueur j1 = null; 
+        Joueur j2 = null; 
+        for(int i = 0; i < tab.size(); i++) {
+            if (i == 0) { 
+                j1 = new Joueur(tab.get(i));
+            }else{
+                j2 = new Joueur(tab.get(i)); 
+            }
+        }
+        
+        
+        
+        
         //creation joueur
-        System.out.println("Creation des joueurs ...");
+       /* System.out.println("Creation des joueurs ...");
         System.out.println("Votre nom : ");
         System.out.flush();
         Scanner sc_nom_1 = new Scanner(System.in);
@@ -52,7 +72,7 @@ public class Bataille {
         String nom_joueur_2 = sc_nom_2.nextLine();
         
         Joueur j1 = new Joueur(0);
-        Joueur j2 = new Joueur(0);
+        Joueur j2 = new Joueur(0); */
         
 
              
@@ -66,7 +86,7 @@ public class Bataille {
         //deck1.VoirDeck();    
   
         //lancement du menu
-        game1.Menu(nom_joueur_1, nom_joueur_2, j1, j2);
+       game1.Menu(j1.VoirNomJoueur(), j2.VoirNomJoueur(), j1, j2);
        
     }
 }

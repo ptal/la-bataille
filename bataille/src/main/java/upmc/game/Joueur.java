@@ -16,9 +16,14 @@ public class Joueur{
     
     private int score;
     private List joueur_deck = new LinkedList();
+    private String nom;
     
-    public Joueur(int score){
-        this.score = score;
+    public Joueur(String nom){
+        this.nom = nom;
+    }
+    
+    public String VoirNomJoueur(){
+        return nom;
     }
     
     public void AjoutScore(int score){

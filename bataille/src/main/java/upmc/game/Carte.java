@@ -14,25 +14,11 @@ public class Carte {
     private int num;
     private String couleur;
     
-
-    public Carte(){
-        this.num=0;
-        this.couleur="Joker";
-    }
-    
     public Carte( int pNum, String pCouleur ){
         this.num = pNum;
         this.couleur = pCouleur;
     }
-    
 
-    public int getNum(){
-        return this.num;
-    }
-    public String getCouleur(){
-        return this.couleur;
-    }
-    
     public String compare(Carte cCarte_adverse, Joueur pJoueur_1, Joueur pJoueur_2, ArrayList pCartes_a_gagner, int pCondition_de_victoire){
         
         String resultat;
@@ -43,7 +29,6 @@ public class Carte {
         }else{
             if ( this.num < cCarte_adverse.num ){
                 gagnant = pJoueur_2;
-
             }
             pCartes_a_gagner.add(this);
             pCartes_a_gagner.add(cCarte_adverse);
@@ -51,9 +36,6 @@ public class Carte {
             
             gagnant.gagne_cartes( pCartes_a_gagner, pCondition_de_victoire);
         }
-        
-        
-        
         return resultat;
     }
     

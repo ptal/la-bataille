@@ -37,7 +37,7 @@ public class Joueur {
         Carte c = (Carte) this.tas_de_carte.get(0);
         this.tas_de_carte.remove(0);
         
-         System.out.println(this + " a tiré " + c);
+        Bataille.affiche(this + " a tiré " + c);
         return c;
         
     }
@@ -47,7 +47,7 @@ public class Joueur {
         return str;
     }
     
-    public int get_nombre_cartes_restantes(){
+    public int affiche_nombre_cartes_restantes(){
         return this.tas_de_carte.size();
     }
     
@@ -59,12 +59,6 @@ public class Joueur {
             }else{
                 this.tas_de_carte.add(pCartes_gagnees.get(i));
             }
-        }
-    }
-    
-    public void affiche_tas_de_carte(){
-        for(int i=0; i<this.tas_de_carte.size(); i++){
-            System.out.println(this.tas_de_carte.get(i));
         }
     }
     
@@ -83,7 +77,6 @@ public class Joueur {
         }else{
             points_joueur = this.tas_de_carte.size();
             points_joueur_adverse = pJoueur_adverse.tas_de_carte.size(); 
-            
         }
         
         str = this + " a " + points_joueur + " cartes.";
@@ -97,12 +90,8 @@ public class Joueur {
                         gagnant=pJoueur_adverse;
                     }
                     str+= "\n"+gagnant+" a gagné la partie !";
-                }
-                
+                } 
          }
-       
-        
-        
         return str;
     }
 }

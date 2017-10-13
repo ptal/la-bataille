@@ -11,51 +11,62 @@ import java.util.Scanner;
  * @author licence
  */
 public class Partie {
-    Scanner sc = new Scanner(System.in);
-    ArrayList paquet =new ArrayList();
-    char mode_automatique='A';
-    int condition_de_victoire;
-    int choix_menu=1;
-    ArrayList<Carte> cartes_a_gagner=new ArrayList();
+    private Scanner sc = new Scanner(System.in);
+    private ArrayList paquet =new ArrayList();
+    private char mode_automatique='A';
+    private int condition_de_victoire;
+    private int choix_menu=1;
+    private ArrayList<Carte> cartes_a_gagner=new ArrayList();
     
-    Joueur joueur_1;
-    Joueur joueur_2;
+    private Joueur joueur_1;
+    private Joueur joueur_2;
     
     
     public Partie(){
         
         Bataille.affiche("------------------------ LE JEU DE LA BATAILLE -------------------------------\n");
-        this.paquet = generer_paquet(this.paquet); 
-        this.paquet = melanger_paquet(this.paquet);
         
+        // Questions à l'utilisateur 
         while(mode_automatique!='O' && mode_automatique!='N' ){
             Bataille.affiche("Souhaitez-vous jouer en mode automatique ? O/N");
             mode_automatique=Bataille.test_scanner(sc); 
         }
-        
         demande_condition_de_victoire(this.mode_automatique, this.sc);
         
-        this.joueur_1=new Joueur(0, this.paquet, nom_joueur(this.sc));
-        this.joueur_2=new Joueur(1, this.paquet, nom_joueur(this.sc));
+        LecturePseudo lecturepseudo=MenuPseudo.modeLecturePseudo();
+        ArrayList<String> pseudos = lecturepseudo.lirePseudo();
         
-        while((this.joueur_1.get_nombre_cartes_restantes() >0 || this.joueur_2.get_nombre_cartes_restantes() >0 ) && this.choix_menu == 1){
+        
+        // Génération du paquet de cartes et des joueurs
+        this.paquet = generer_paquet(this.paquet); 
+        this.paquet = melanger_paquet(this.paquet);
+
+        this.joueur_1=new Joueur(0, this.paquet, pseudos.get(0));
+        this.joueur_2=new Joueur(1, this.paquet, pseudos.get(1));
+        
+        
+        // Déroulement d'une manche :
+        // - (si mode non automatique) choix_menu() => choix entre tirer une carte, abandonner et voir les scores en mode non automatique
+        // - (si mode automatique ou choix de tirer une cartejoue, on joue la manche
+        // - Si partie fini ou choix d'abandonner, on compare les points et la partie est finie.
+
+        while((this.joueur_1.affiche_nombre_cartes_restantes() >0 || this.joueur_2.affiche_nombre_cartes_restantes() >0 ) && this.choix_menu == 1){
             if(this.mode_automatique=='N'){
                 this.choix_menu=4;
                 while(this.choix_menu!= 1 && this.choix_menu !=2){
                     this.choix_menu=choisir_menu();
-                    if(this.choix_menu==3){
+                    if(this.choix_menu==3){ // Choix : voir les scores
                         Bataille.affiche(joueur_1.compare_points(joueur_2, condition_de_victoire));
                     }
                 }
             }
-            if(this.choix_menu==1){
-                joue_manche();            
+            if(this.choix_menu==1){  // Choix tirer une carte, ou jeu en mode automatique
+                joue_manche();       
             }
         }
         
         Bataille.affiche("\n" +joueur_1.compare_points(joueur_2, condition_de_victoire));
 
-        
     }
     
     
@@ -81,7 +92,6 @@ public class Partie {
             
             paquet_melange.add(pPaquet.get(index));
             pPaquet.remove(index);
-            
         }
             
         Bataille.affiche("On mélange !");
@@ -90,8 +100,9 @@ public class Partie {
     
     
     private void demande_condition_de_victoire(char mode_automatique, Scanner sc){
-    
-        if(mode_automatique=='N'){
+        
+        // J'ai préféré désactivé le mode automatique si les cartes sont remises dans le tas (conditions de victoire 2), parce que c'est VRAIMENT trop long sinon
+        if(mode_automatique=='N'){ 
             while(this.condition_de_victoire!=1 && this.condition_de_victoire!=2){
                 Bataille.affiche("Choisissez votre condition de victoire");
                 Bataille.affiche("1 - Les cartes gagnées sont mises de côté et comptées comme des points. Le jeu se termine lorsque les joueurs n'ont plus de cartes en main.");
@@ -107,29 +118,6 @@ public class Partie {
     
     }
     
-    private String nom_joueur(Scanner sc){
-        String str="";
-        String test="";
-        
-        while(str.equals("") || str.equals(null)|| str.length()>40){
-            Bataille.affiche("Entrez le nom d'un joueur (40 caractères maximum) :");
-            test=sc.nextLine();
-            if(!test.equals("")){ // Permet d'éviter les fantômes
-                while(test.charAt(0)==' ' && test.length()>1){
-                    test=test.substring(1);
-                }
-            }
-            if(!test.equals(" ")){
-                str=test;
-                      
-            }else{
-                str="";
-            }
-        }
-        Bataille.affiche("Bienvenue "+str+" !");
-        return str;
-    
-   }
     private int choisir_menu(){
         Bataille.affiche("Souhaitez vous : ");
         Bataille.affiche("1 - Tirer une nouvelle carte");
@@ -153,8 +141,8 @@ public class Partie {
         String resultat = c1.compare(c2, this.joueur_1, this.joueur_2, this.cartes_a_gagner, this.condition_de_victoire);
         Bataille.affiche(resultat);
 
-        if(resultat.equals("BATAILLE !")){
-            this.cartes_a_gagner.add(c1);
+        if(resultat.equals("BATAILLE !")){ //en cas de batailles, on ajoutes les cartes jouées dans le paquet de carte_a_gagner remis en jeu à la manche suivante
+            this.cartes_a_gagner.add(c1); 
             this.cartes_a_gagner.add(c2);
         }else{
             this.cartes_a_gagner.clear();

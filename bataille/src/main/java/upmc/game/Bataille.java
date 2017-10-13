@@ -14,11 +14,12 @@
 
 package upmc.game;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
  * Bataille est la classe qui contient la fonction principale du jeu de bataille
- * 
+ *
  * @author Nicolas BOULLET
  */
 public class Bataille {
@@ -28,19 +29,22 @@ public class Bataille {
         int modeJeu = 0;
         int resultatCombat = 0;
         boolean bataille = false;
+        MenuPseudo menu = new MenuPseudo();
+        LecturePseudo lecturePseudo;
+        ArrayList<String> pseudos;
         Deck deckTempo = new Deck(false);
         Deck deck = new Deck(true);
         Joueur joueur1 = new Joueur("Default1");
         Joueur joueur2 = new Joueur("Default2");
         Carte carte1;
         Carte carte2;
-        
+
         //Initialisation du jeu
         System.out.println("Jeu de la bataille!\n");
         System.out.println("Le jeu se joue en tour durant lesquels les deux joueurs jouent leurs cartes en meme temps.");
         System.out.println("Quand un des deux joueurs n'a plus de cartes ou se rend, le jeu s'arrete.");
         deck.melange();
-        
+
         //Choix du mode de jeu
         while(modeJeu != 1 && modeJeu != 2 && modeJeu != 3) {
             System.out.println("\nChoisissez votre mode de jeu parmis les 2 suivants :");
@@ -49,17 +53,14 @@ public class Bataille {
             modeJeu = scan.nextInt();
         }
         scan.nextLine(); //vide la ligne
-        
+
         //Choix du nom des joueurs
-        System.out.println("Entre le nom du Joueur 1 : ");
-        joueur1.setNom(scan.nextLine());
-        if(modeJeu == 1) {
-            System.out.println("Entre le nom du Joueur 2 : ");
-            joueur2.setNom(scan.nextLine());
-        }
-        else {
-            joueur2.setNom("IA");
-        }
+        lecturePseudo = menu.modeLecturePseudo();
+        if(modeJeu == 1)
+            pseudos = lecturePseudo.lirePseudo(false); //Sans IA
+        else
+            pseudos = lecturePseudo.lirePseudo(true); //Avec IA
+        attribuePseudo(joueur1, joueur2, pseudos);
         
         //Distribution égale des cartes entre les deux joueurs
         while(!deck.estVide()) {
@@ -68,7 +69,7 @@ public class Bataille {
             else
                 joueur2.ajouterCarte(deck.derniereCarte());
         }
-        
+
         //Boucle de jeu principale
         while(!joueur1.deckVide() && !joueur2.deckVide() && !joueur1.boolAbandon() && !joueur2.boolAbandon()) {
             //Les joueurs tirent leurs cartes puis elles sont place dans une pile temporaire pour la suite
@@ -76,7 +77,7 @@ public class Bataille {
             carte2 = joueur2.tireCarte();
             deckTempo.ajouterCarte(carte1);
             deckTempo.ajouterCarte(carte2);
-            
+
             if(modeJeu != 3) {
                 //Comparaison
                 if(!bataille)
@@ -107,7 +108,7 @@ public class Bataille {
                 //Si bataille
                 else {
                     System.out.println("Bataille !\n");
-                    //Les deux joueurs posent une carte en plus et on revient au debut de la boucle 
+                    //Les deux joueurs posent une carte en plus et on revient au debut de la boucle
                     //avec cette fois plus de cartes dans le deck tempo jusqu'a qu'un joueur gagne
                     if(!joueur1.deckVide())
                         deckTempo.ajouterCarte(joueur1.tireCarte());
@@ -161,23 +162,23 @@ public class Bataille {
                 System.out.println(joueur1.toString()+"\n"+joueur2.toString());
             }
         }
-        
+
         //Affiche le joueur gagnant
         afficheGagnant(joueur1, joueur2);
-        
+
     }
-    
+
     /**
      * Demande au joueur ce qu'il veut faire et agit en consequence
      */
     public static void choixJoueur(Joueur joueur, Joueur autreJoueur) {
         Scanner scanChoix = new Scanner(System.in);
         String choix = "undefined";
-        
+
         while(!choix.equals("") && !choix.equals("q")) {
             System.out.println(joueur.afficheNom()+" : Que voulez-vous faire ? ");
             choix = scanChoix.nextLine();
-            
+
             System.out.println("Choix : "+choix);
             //abandonne
             if(choix.equals("q")) {
@@ -193,6 +194,14 @@ public class Bataille {
     }
     
     /**
+     * Attribue les noms aux différents joueurs
+     */
+    public static void attribuePseudo(Joueur joueur1, Joueur joueur2, ArrayList<String> tabPseudo) {
+        joueur1.setNom(tabPseudo.get(0));
+        joueur2.setNom(tabPseudo.get(1));
+    }
+
+    /**
      * Affiche le gagnant
      */
     public static void afficheGagnant(Joueur joueur1, Joueur joueur2) {
@@ -206,7 +215,7 @@ public class Bataille {
             System.out.println(joueur2.afficheNom()+" a gagné car, "+joueur1.afficheNom()+" n'a plus de cartes !");
         else if(joueur2.deckVide())
             System.out.println(joueur1.afficheNom()+" a gagné car, "+joueur2.afficheNom()+" n'a plus de cartes !");
-        
+
         System.out.println("===================");
         System.out.println("Score final : ");
         System.out.println(joueur1.toString()+" | "+joueur2.toString());

@@ -7,5 +7,5 @@ import java.util.*;
  * @author Nicolas
  */
 public interface LecturePseudo {
-  public ArrayList<String> lirePseudo();
+  public ArrayList<String> lirePseudo(boolean avecIA);
 }

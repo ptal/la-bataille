@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package upmc.game;
-import java.util.Scanner;
 /**
  *
  * @author licence
@@ -12,23 +11,17 @@ import java.util.Scanner;
 public class MenuPseudo {
     
     public static LecturePseudo modeLecturePseudo(){
-        Scanner sc=new Scanner(System.in);
-        int modeLecture=3;
+        int mode_lecture=3;
         LecturePseudo lecture;
         
-        while(modeLecture!=1 && modeLecture!=2){
-            Bataille.affiche("Choisissez le mode de récupération des pseudo :");
-            Bataille.affiche("1 - Entrer de nouveux pseudos via la console");
-            Bataille.affiche("2 - Selectionner un fichier");
-
-            if(sc.hasNextInt()){
-                modeLecture=sc.nextInt(); 
-            }else{
-                modeLecture=3;
-            }
-            sc.nextLine();
+        Bataille.affiche("Choisissez le mode de récupération des pseudo :");
+        Bataille.affiche("1 - Entrer de nouveux pseudos via la console");
+        Bataille.affiche("2 - Selectionner un fichier");
+        
+        while(mode_lecture!=1 && mode_lecture!=2){
+            mode_lecture=Bataille.test_int(3);
         }
-        if(modeLecture==1){
+        if(mode_lecture==1){
             lecture=new LectureConsole();
         }else{
             lecture=new LectureFichier();

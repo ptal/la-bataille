@@ -25,25 +25,16 @@ public class LectureConsole implements LecturePseudo{
     }
     
     private String nom_joueur(){
-        Scanner sc=new Scanner(System.in);
+        
         String str="";
-        String test="";
+        
+        Bataille.affiche("Entrez le nom d'un joueur (40 caractères maximum) :");
         
         while(str.equals("") || str.length()>40){
-            Bataille.affiche("Entrez le nom d'un joueur (40 caractères maximum) :");
-            test=sc.nextLine();
-            if(!test.equals("")){ // Permet d'éviter les fantômes
-                while(test.charAt(0)==' ' && test.length()>1){
-                    test=test.substring(1);
-                }
-            }
-            if(!test.equals(" ")){
-                str=test;     
-            }else{
-                str="";
-            }
+            str=Bataille.test_string();
         }
         Bataille.affiche("Bienvenue "+str+" !");
+        
         return str;
     
    }

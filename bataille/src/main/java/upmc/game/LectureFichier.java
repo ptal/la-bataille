@@ -40,16 +40,11 @@ public class LectureFichier implements LecturePseudo{
         }
         // Selection du fichier
         while(num_fichier>i || num_fichier<1){
-            if(sc.hasNextInt()){
-                num_fichier=sc.nextInt();
-            }else{
-                num_fichier=-1;
-            }
-            sc.nextLine();
+            num_fichier=Bataille.test_int(-1);
         }
         f=liste_fichiers.get(num_fichier-1);
         
-        Bataille.affiche("Vous avez choisis le fichier"+f.getName());
+        Bataille.affiche("Vous avez choisis le fichier "+f.getName());
         return f;
     }
     

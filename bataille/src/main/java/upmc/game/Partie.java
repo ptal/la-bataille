@@ -12,14 +12,16 @@ import java.util.Scanner;
  */
 public class Partie {
     private Scanner sc = new Scanner(System.in);
-    private ArrayList paquet =new ArrayList();
-    private char mode_automatique='A';
-    private int condition_de_victoire;
-    private int choix_menu=1;
+    private ArrayList<Carte> paquet =null;
     private ArrayList<Carte> cartes_a_gagner=new ArrayList();
+    private ArrayList<String> pseudos=null;
+    private char mode_automatique='A';
+    private int condition_de_victoire=0;
+    private int choix_menu=1;
+    private boolean campagne=false;
     
-    private Joueur joueur_1;
-    private Joueur joueur_2;
+    private Joueur joueur_1=null;
+    private Joueur joueur_2=null;
     
     
     public Partie(){
@@ -27,18 +29,17 @@ public class Partie {
         Bataille.affiche("------------------------ LE JEU DE LA BATAILLE -------------------------------\n");
         
         // Questions à l'utilisateur 
-        while(mode_automatique!='O' && mode_automatique!='N' ){
-            Bataille.affiche("Souhaitez-vous jouer en mode automatique ? O/N");
-            mode_automatique=Bataille.test_scanner(sc); 
+        this.pseudos=choix_des_pseudos();
+        if(!this.campagne){
+            demande_enregistrement();
         }
-        demande_condition_de_victoire(this.mode_automatique, this.sc);
+        this.mode_automatique=demande_mode_de_jeu(this.mode_automatique);
         
-        LecturePseudo lecturepseudo=MenuPseudo.modeLecturePseudo();
-        ArrayList<String> pseudos = lecturepseudo.lirePseudo();
+        this.condition_de_victoire=demande_condition_de_victoire(this.mode_automatique, this.sc);
         
         
         // Génération du paquet de cartes et des joueurs
-        this.paquet = generer_paquet(this.paquet); 
+        this.paquet = generer_paquet(); 
         this.paquet = melanger_paquet(this.paquet);
 
         this.joueur_1=new Joueur(0, this.paquet, pseudos.get(0));
@@ -69,18 +70,29 @@ public class Partie {
 
     }
     
+    private ArrayList choix_des_pseudos(){
+        
+        LecturePseudo lecturepseudo=MenuPseudo.modeLecturePseudo();
+        ArrayList<String> p = lecturepseudo.lirePseudo();
+        
+        if(lecturepseudo.getClass().getName().equals("upmc.game.LectureFichier")){
+            this.campagne=true;
+        }
+        return p;
+    }
     
-    private ArrayList generer_paquet(ArrayList paquet){
+    private ArrayList generer_paquet(){
+        ArrayList<Carte> p=new ArrayList();
         String couleurs[] = {"trefle", "pique", "carreau", "coeur"};
         for(int i=0; i<couleurs.length; i++){
             for(int j=2; j<15; j++){
                 Carte c=new Carte(j, couleurs[i]);
-                paquet.add(c);
+                p.add(c);
             }
         }
 
         Bataille.affiche("Création d'un paquet de 52 cartes");
-        return paquet;
+        return p;
     }
     
     private ArrayList melanger_paquet(ArrayList pPaquet){
@@ -99,42 +111,41 @@ public class Partie {
     }
     
     
-    private void demande_condition_de_victoire(char mode_automatique, Scanner sc){
-        
+    private int demande_condition_de_victoire(char mode_automatique, Scanner sc){
+        int c=3;
         // J'ai préféré désactivé le mode automatique si les cartes sont remises dans le tas (conditions de victoire 2), parce que c'est VRAIMENT trop long sinon
         if(mode_automatique=='N'){ 
-            while(this.condition_de_victoire!=1 && this.condition_de_victoire!=2){
-                Bataille.affiche("Choisissez votre condition de victoire");
-                Bataille.affiche("1 - Les cartes gagnées sont mises de côté et comptées comme des points. Le jeu se termine lorsque les joueurs n'ont plus de cartes en main.");
-                Bataille.affiche("2 - Les cartes gagnées s'ajoutent à la main du gagnant de la main. Le jeu se termine lorsqu'un des joueurs détient toutes les cartes (non disponible en mode automatique)");
-                if(sc.hasNextInt()){
-                    this.condition_de_victoire=sc.nextInt(); 
-                }
-                sc.nextLine();
+            
+            Bataille.affiche("Choisissez votre condition de victoire");
+            Bataille.affiche("1 - Les cartes gagnées sont mises de côté et comptées comme des points. Le jeu se termine lorsque les joueurs n'ont plus de cartes en main.");
+            Bataille.affiche("2 - Les cartes gagnées s'ajoutent à la main du gagnant de la main. Le jeu se termine lorsqu'un des joueurs détient toutes les cartes (non disponible en mode automatique)");
+            
+            while(c!=1 && c!=2){
+                c=Bataille.test_int(3);
             }
+            
         }else{
-            this.condition_de_victoire=1;
+            c=1;
         }
+        return c;
     
     }
     
     private int choisir_menu(){
+        int choix=4;
+        Bataille.affiche("\n");
         Bataille.affiche("Souhaitez vous : ");
         Bataille.affiche("1 - Tirer une nouvelle carte");
         Bataille.affiche("2 - Abandonner la partie");
         Bataille.affiche("3 - Connaitre le nombre de cartes des joueurs");
-
-        if(sc.hasNextInt()){
-            this.choix_menu = this.sc.nextInt();
-        }else{
-            this.choix_menu=4; 
+        while(choix!=1 && choix!=2 && choix!=3){
+            choix=Bataille.test_int(4);
         }
-        sc.nextLine();
         
-        return this.choix_menu;
+        return choix;
     }
     private void joue_manche(){
-        Bataille.affiche(" ");
+        Bataille.affiche("\n ----------------- Manche\n");
         Carte c1 = this.joueur_1.joue();
         Carte c2 = this.joueur_2.joue();
 
@@ -148,5 +159,25 @@ public class Partie {
             this.cartes_a_gagner.clear();
         }
     }
-    
+
+    private char demande_mode_de_jeu(char mode_automatique) {
+        Bataille.affiche("Souhaitez-vous jouer en mode automatique ? O/N");
+        while(mode_automatique!='O' && mode_automatique!='N' ){
+            mode_automatique=Bataille.test_char(); 
+        }
+        return mode_automatique;
+    }
+
+    private void demande_enregistrement() {
+        char enregistrer='A';
+        Bataille.affiche("Souhaitez-vous enregistrer ces pseudos ? O/N");
+        while(enregistrer!='O' && enregistrer!='N' ){ 
+            enregistrer=Bataille.test_char(); 
+        }
+        if(enregistrer=='O'){
+            EcrireFichier.ecrire_fichier(this.pseudos);
+        }
+    }
+
+  
 }

@@ -80,7 +80,7 @@ public class Joueur {
         }
         
         str = this + " a " + points_joueur + " cartes.";
-        str += "\n " + pJoueur_adverse + " a " + points_joueur_adverse + " cartes.";
+        str += "\n" + pJoueur_adverse + " a " + points_joueur_adverse + " cartes.";
         
         if(this.tas_de_carte.size()==0 || pJoueur_adverse.tas_de_carte.size()==0){
                 if(points_joueur_adverse == points_joueur){

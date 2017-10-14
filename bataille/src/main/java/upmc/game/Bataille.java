@@ -20,8 +20,6 @@ public class Bataille
 {
   public static void main(String[] args)
   {
-      
-        Scanner sc=new Scanner(System.in);
         char rejouer='O';
         
         while(rejouer== 'O'){
@@ -29,28 +27,64 @@ public class Bataille
             Partie partie = new Partie();
             
             rejouer= ' ';
+            
+            affiche("Souhaitez vous rejouer ? O/N");
             while(rejouer!='O' && rejouer!='N'){
-                affiche("Souhaitez vous rejouer ? O/N");
-                rejouer=test_scanner(sc);
+                rejouer=test_char();
             }
         }
         affiche("A la prochaine !");       
     }
     
-    public static char test_scanner(Scanner sc){
-                String test=sc.nextLine();
-                char res=' ';
-                if(test.equals("")){
-                    res='B';
-                    System.out.println("Vous devez rentrer O ou N.");
-                }else{
-                    test=test.toUpperCase();
-                    res=test.charAt(0); 
-                }
-                return res;    
+    public static char test_char(){
+        Scanner sc=new Scanner(System.in);
+        String test=sc.nextLine();
+        char res=' ';
+        if(test.equals("")){
+            res='B';
+            System.out.println("Vous devez rentrer O ou N.");
+        }else{
+            test=test.toUpperCase();
+            res=test.charAt(0); 
+        }
+        return res;    
     }
     
     public static void affiche(String str){
         System.out.println(str);
+    }
+
+    static String test_string() {
+        Scanner sc=new Scanner(System.in);
+        String str="";
+        String test="";
+        
+        test=sc.nextLine();
+        if(!test.equals("")){ // Permet d'éviter les fantômes
+            while(test.charAt(0)==' ' && test.length()>1){
+                test=test.substring(1);
+            }
+        }
+        if(!test.equals(" ")){
+            str=test;     
+        }else{
+            str="";
+            affiche("Veuillez entrer un nom valide");
+        }
+        return str;
+    }
+
+    static int test_int(int defaut) {
+        int i=defaut;
+        Scanner sc=new Scanner(System.in);
+        
+        if(sc.hasNextInt()){
+            i = sc.nextInt();
+        }else{
+            i=defaut; 
+            affiche("Veuillez entrer un chiffre valide");
+        }
+        sc.nextLine();
+        return i;
     }
 }

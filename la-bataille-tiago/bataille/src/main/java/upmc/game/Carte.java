@@ -4,34 +4,58 @@ public class Carte {
     
     
     //Atributs
-    public static String couleur[] = {"pique","carreau","trefle", "coeur"};
-    private String coul;
-    public static int valeur[] = {11, 12, 5, 6};
-    private int val;
+    private String couleur;
+    private int valeur;
+
    
+    
+    
     //Constructeur
-    public Carte(String couleur, int valeur) {
-        this.coul = couleur;
-        this.val = valeur;
+    public Carte(int coul, int valeur) {
+        this.valeur = valeur;
+        switch (coul) {
+            case 1 : couleur = "carreau"; break;
+            case 2 : couleur = "pique"; break;
+            case 3 : couleur = "coeur"; break;
+            case 4 : couleur = "trefle"; break;
+        }
     }
+    
+    
     
     //Accesseurs
     public String getCouleur(){
-        return coul;
+        return couleur+valeur;
     }
     
     
     public int getValeur() {
-        return val;
+        return valeur;
     }
     
-    //Comparateur
-   public boolean Comparateur(Carte c2){
+    
+   
+    public boolean comparateur(Carte c2){
         Carte c1 = this;
-        if(c1.val > c2.val){
+        if(c1.valeur > c2.valeur){
             return true;
         }
         return false;
+   }
+   
+   public int comparateurvaleur(Carte c2){
+        Carte c1 = this;
+        if(c1.valeur == c2.valeur){
+            return 1;
+        }
+        
+        else if (c1.valeur > c2.valeur) {
+            return 2;
+        }
+        else {
+            return 3;
+        }
+       
    }
 }
 

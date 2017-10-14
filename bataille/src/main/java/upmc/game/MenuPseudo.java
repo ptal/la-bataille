@@ -13,7 +13,7 @@ public class MenuPseudo{
 		console = new Scanner( System.in );
 		LecturePseudo pseudo;
 		
-		System.out.print( " (1: Ecrire dans console   2: Recuperer dans fichier)" );
+		System.out.print( " (1: Ecrire dans console   2: Recuperer dans fichier) :" );
 		do {
 			try {
 				choix = Integer.parseInt( console.nextLine() );
@@ -32,7 +32,6 @@ public class MenuPseudo{
 			pseudo = new LectureFichier();
 			
 		}
-		
 		return pseudo;
 		
 	}

@@ -7,9 +7,11 @@ public class Joueur {
     protected Paquet deck;		//A defaut d'utiliser des extends entre classes, attribut protected permet d'acceder au deck depuis le joueur
     
     public Joueur( String nom ) {
-    	
-        name = nom;
-        
+    	if( nom == "" ) {
+    		name = "Anonyme";
+    	} else {
+    		name = nom;
+    	}        
     }
     
     //Retourne le nom du joueur

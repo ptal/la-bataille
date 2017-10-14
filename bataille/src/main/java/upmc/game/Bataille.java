@@ -30,10 +30,10 @@ public class Bataille{
     //Initialisation des joueurs
 	private static void initPlayers() {
 		
-        System.out.print( "Nom du premier joueur" );
+        System.out.print( "   *~* Pseudo du 1er joueur *~*" );
         J1 = new Joueur( MenuPseudo.modeLecturePseudo().lirePseudo() );
-        
-        System.out.print( "Nom du second joueur" );
+        System.out.println();
+        System.out.print( "   *~* Pseudo du 2nd joueur *~*" );
         J2 = new Joueur( MenuPseudo.modeLecturePseudo().lirePseudo() );
         	
 	}

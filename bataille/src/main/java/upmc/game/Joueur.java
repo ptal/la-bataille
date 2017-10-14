@@ -13,31 +13,41 @@ import java.util.ArrayList;
  */
 public class Joueur {
     
-    private int compteurPts;
-    private ArrayList<Carte> paquet;
-    private String nom;
+    private int points = 0; //Compteur de points
+    private String joueur; //Joueur
+    private ArrayList<Carte> jeu;
     
-    public Joueur(String nom){
-        this.nom = nom;
-        compteurPts = 0;
-        this.paquet = new ArrayList<Carte>();
+    public Joueur(String nom) {
+        jeu = new ArrayList<Carte>();
+        joueur = nom;
     }
+    
+    //Tire une carte
+    public void tireCarte(Carte c){
+        jeu.remove(c);
+    }
+    
+    //Ajoute une carte
+    public void ajoutCarte(Carte c) {
+        jeu.add(c);
+    }
+    
+    //Incrémentation points
     public void gagnePoint(){
-        compteurPts++;
+        this.points++;
     }
-    public void tireCartePaquet(Carte c) {
-        this.paquet.remove(c);
+    
+
+    public int nbPts(){
+        return points;
     }
-    public void ajoutCartePaquet(Carte c) {
-        this.paquet.add(c);
+
+    public Carte getCarte() {
+        return jeu.get(0);   
     }
-    public int getPoint(){
-        return compteurPts;
-    }
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-    public String getNom() {
-        return nom;
-    }
+   
+    public String toString() {
+        return joueur;
+    }   
+    
 }

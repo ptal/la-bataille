@@ -5,53 +5,100 @@
  */
 package upmc.game;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
+
 
 /**
  *
  * @author NICO
  */
-public class Bataille {
+public class Bataille
+{
+  public static void main(String[] args)
+  {
+     
+      
+    // Création joueur N°1
+    System.out.print("Veuillez entrer un nom pour le Joueur 1: ");
+    System.out.flush();
+    Scanner console = new Scanner(System.in);
+    String j1 = console.nextLine();
+    Joueur joueur1 = new Joueur (j1);
+       
+    // Création joueur N°2
+    System.out.print("Veuillez entrer un nom pour le Joueur 2: ");
+    System.out.flush();
+    String j2 = console.nextLine();
+    Joueur joueur2 = new Joueur (j2);
+  
+
     
-public static void main(String[] args) {
     
-        Paquet paquet = new Paquet();
-        //distribution des cartes
-        for(int i =0; i<52; i++){
-        
-            
-        
+    //Tableau de carte
+    ArrayList<Carte> jeu = new ArrayList<Carte>();
+    
+    //Création d'une carte
+   
+    System.out.println("C'est le jeu de la bataille!\n");
+    
+    for (int j = 1; j<=4; j++) {
+       
+        for (int v = 1; v<=13; v++) {
+             Carte c = new Carte(j,v);
+             jeu.add(c);
         }
         
-        Scanner sc = new Scanner(System.in);
         
-        Joueur j1 = new Joueur("joueur 1");
-        Joueur j2 = new Joueur("IA joueur2");
-        
-        System.out.println("Vous jouez contre l'IA.");
-        
-        System.out.println("Joueur 1, saisissez votre nom :");
-        j1.setNom(sc.nextLine());
-        
-
-        for(int i = 0; i < 52; i++){
-            Carte c1 = j1.tireCarte();
-            Carte c2 = j2.tireCarte();
-
-            System.out.println(c1.toString());
-            System.out.println(c2.toString());
-
-            if(c1.compareTo(c2)){
-                j1.gagnePoint();
-            }
-            else{
-                j2.gagnePoint();
-            }
-        }
-        System.out.println("================");
-        System.out.println("SCORE :");
-        System.out.println(j1.getNom()+" : "+j1.getPoint());
-        System.out.println("IA joueur2: "+j2.getPoint());
-        System.out.println("================");
     }
+    
+   Collections.shuffle(jeu);
+      
+       
+       for (int p = 0; p < 26; p++) { // Ajout carte Joueur 1
+        joueur1.ajoutCarte(jeu.get(p));
+           }
+       
+       for (int m = 26; m < 52; m++) { // Ajout carte Joueur 2
+        joueur2.ajoutCarte(jeu.get(m));
+           }
+    
+       while(joueur1.nbPts() != 52 || joueur2.nbPts() != 52 ){
+       
+       
+            System.out.print("Appuyez sur entrer pour tirer une carte");
+            System.out.flush();
+            console.nextLine();
+        
+            System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
+            System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
+        
+            if (joueur1.getCarte().comparateur(joueur2.getCarte())) {
+            
+                joueur1.gagnePoint();
+                joueur1.tireCarte(joueur1.getCarte());
+                joueur2.tireCarte(joueur2.getCarte());
+                System.out.println (joueur1 + " gagne 1 point");
+            }
+        
+            else {
+                joueur2.gagnePoint();
+                joueur1.tireCarte(joueur1.getCarte());
+                joueur2.tireCarte(joueur2.getCarte());
+                System.out.println (joueur2 + " gagne 1 point");
+            }
+        
+            System.out.println (joueur1.nbPts() );
+            System.out.println (joueur2.nbPts() );
+        
+       }
+       if(joueur1.nbPts() == 52){
+           System.out.println ( "le joueur 1 à gagné !" );
+  
+       }
+       else{
+           System.out.println ( "le joueur 2Nic à gagné !" );
+       }
+  }
 }

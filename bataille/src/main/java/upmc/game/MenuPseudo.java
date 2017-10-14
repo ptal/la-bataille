@@ -11,6 +11,6 @@ package upmc.game;
  */
 public class MenuPseudo {
     public LecturePseudo modeLecturePseudo() {
-        return 
+        return null;
     }
 }

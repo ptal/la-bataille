@@ -10,38 +10,44 @@ package upmc.game;
  * @author NICO
  */
 public class Carte {
+    
+    
+    //Atributs
     private String couleur;
     private int valeur;
+
+   
     
-    public Carte(String couleur, int valeur){
-        this.couleur = couleur;
+    
+    //Constructeur
+    public Carte(int coul, int valeur) {
         this.valeur = valeur;
+        switch (coul) {
+            case 1 : couleur = "carreau"; break;
+            case 2 : couleur = "pique"; break;
+            case 3 : couleur = "coeur"; break;
+            case 4 : couleur = "trefle"; break;
+        }
     }
     
-    /*public String getCouleur(){
-        return couleur;
-    }*/
     
-    public int getValeur(){
+    
+    //Accesseurs
+    public String getCouleur(){
+        return couleur+valeur;
+    }
+    
+    
+    public int getValeur() {
         return valeur;
     }
-       
-    /*public boolean compareTo(Carte c2){
-        if(this.valeur > c2.valeur){
+    
+    //Comparateur
+   public boolean comparateur(Carte c2){
+        Carte c1 = this;
+        if(c1.valeur > c2.valeur){
             return true;
         }
         return false;
-    }*/
-    
-    public boolean superieur(Carte c2){
-        return this.valeur>c2.valeur;
-    }
-    public boolean inferieur(Carte c2){
-        return this.valeur<c2.valeur;
-    }
-    
-    public String toString(){
-        return couleur+" "+valeur;
-        
-    }
+   }
 }

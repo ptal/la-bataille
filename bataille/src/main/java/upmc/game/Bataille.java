@@ -13,6 +13,7 @@ public class Bataille{
 
 	private static int nCartes = 52;
 	private static String mode = "points";
+	
 
     public static void main( String[] args ) {
     	
@@ -29,15 +30,11 @@ public class Bataille{
     //Initialisation des joueurs
 	private static void initPlayers() {
 		
-        System.out.println( "Entrez le nom du premier joueur :" );
-        System.out.flush();
-        String name = console.nextLine();
-        J1 = new Joueur( name );
+        System.out.print( "Nom du premier joueur" );
+        J1 = new Joueur( MenuPseudo.modeLecturePseudo().lirePseudo() );
         
-        System.out.println( "Entrez le nom du second joueur :" );
-        System.out.flush();
-        name = console.nextLine();
-        J2 = new Joueur( name );
+        System.out.print( "Nom du second joueur" );
+        J2 = new Joueur( MenuPseudo.modeLecturePseudo().lirePseudo() );
         	
 	}
 	

@@ -15,9 +15,6 @@ public class Carte {
     //Atributs
     private String couleur;
     private int valeur;
-
-   
-    
     
     //Constructeur
     public Carte(int coul, int valeur) {

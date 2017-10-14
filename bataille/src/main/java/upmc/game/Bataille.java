@@ -21,14 +21,14 @@ public class Bataille
      
       
     // Création joueur N°1
-    System.out.print("Veuillez entrer un nom pour le Joueur 1: ");
+    System.out.print("Nom du Joueur 1: ");
     System.out.flush();
     Scanner console = new Scanner(System.in);
     String j1 = console.nextLine();
     Joueur joueur1 = new Joueur (j1);
        
     // Création joueur N°2
-    System.out.print("Veuillez entrer un nom pour le Joueur 2: ");
+    System.out.print("Nom du Joueur 2: ");
     System.out.flush();
     String j2 = console.nextLine();
     Joueur joueur2 = new Joueur (j2);
@@ -40,7 +40,6 @@ public class Bataille
     ArrayList<Carte> jeu = new ArrayList<Carte>();
     
     //Création d'une carte
-   
     System.out.println("C'est le jeu de la bataille!\n");
     
     for (int j = 1; j<=4; j++) {
@@ -49,8 +48,6 @@ public class Bataille
              Carte c = new Carte(j,v);
              jeu.add(c);
         }
-        
-        
     }
     
    Collections.shuffle(jeu);
@@ -74,7 +71,17 @@ public class Bataille
             System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
             System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
         
-            if (joueur1.getCarte().comparateur(joueur2.getCarte())) {
+            
+            if(joueur1.getCarte() == joueur2.getCarte()){
+                
+                 System.out.println (joueur1 + " tire la carte cachée " + joueur1.getCarte().getCouleur());
+                 System.out.println (joueur2 + " tire la carte cachée " + joueur2.getCarte().getCouleur());
+                 
+                 System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
+                 System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
+         
+            }
+            else if (joueur1.getCarte().comparateur(joueur2.getCarte())) {
             
                 joueur1.gagnePoint();
                 joueur1.tireCarte(joueur1.getCarte());
@@ -88,17 +95,19 @@ public class Bataille
                 joueur2.tireCarte(joueur2.getCarte());
                 System.out.println (joueur2 + " gagne 1 point");
             }
-        
-            System.out.println (joueur1.nbPts() );
-            System.out.println (joueur2.nbPts() );
-        
+            
+            
+            System.out.println ("=====================");
+            System.out.println (joueur1 + " à " +joueur1.nbPts()+" points." );
+            System.out.println (joueur2 + " à " +joueur2.nbPts()+" points."  );
+            System.out.println ("=====================" );
        }
        if(joueur1.nbPts() == 52){
            System.out.println ( "le joueur 1 à gagné !" );
   
        }
        else{
-           System.out.println ( "le joueur 2Nic à gagné !" );
+           System.out.println ( "le joueur 2 à gagné !" );
        }
   }
 }

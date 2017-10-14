@@ -33,20 +33,8 @@ public class Bataille {
   private Carte c1,c2;
 
   public static void main(String[] args) {
-    LecturePseudo test = new LectureFichier();
-    ArrayList<String> hey = test.lirePseudo();
     Bataille b = new Bataille(10);
     b.jouer();
-  }
-
-  public Bataille() {
-    this.scoreLimite = 20;
-    this.choixJoueur = new Scanner(System.in);
-    this.choixJoueur2 = new Scanner(System.in);
-    this.choixJeu = new Scanner(System.in);
-    this.j1 = new Joueur();
-    this.j2 = new Joueur();
-    this.nbTour = 1;
   }
 
   public Bataille(int scoreLimite) {
@@ -61,10 +49,7 @@ public class Bataille {
 
   public void jouer() {
     System.out.println("C'est le jeu de la bataille!\n");
-    System.out.println("Joueur 1, saisissez votre nom :");
-
-    this.j1.setNom(choixJoueur.nextLine());
-    this.choixMultijoueur();
+    this.selectionPseudo();
     this.creerJeuDeCarte();
     this.distributionDesCartes();
 
@@ -109,6 +94,14 @@ public class Bataille {
     return false;
   }
 
+  public void selectionPseudo() {
+    LecturePseudo lp = new MenuPseudo().modeLecturePseudo();
+    ArrayList<String> listePseudo = lp.lirePseudo();
+    System.out.println(listePseudo);
+    this.j1.setNom(listePseudo.get(0));
+    this.j2.setNom(listePseudo.get(1));
+  }
+
   public Carte tourJoueur(Joueur j) {
     Carte c = null;
     if(j.estHumain()) {
@@ -142,23 +135,6 @@ public class Bataille {
     for(int i=0 ; i<4 ; i++) { //Coeur , Carreau , Trefle , Pique : 4
       for(int j=1 ; j<=13 ; j++) { //1 , 2 , 3 ... Valet , Reine , Roi : 13
         pioche.add(new Carte(Carte.couleurs[i],j));
-      }
-    }
-  }
-
-  public void choixMultijoueur() {
-    int choix=0;
-    while(choix!=1 && choix!=2) {
-      System.out.println("Jouer avec un deuxième joueur (1) ou avec l'IA ? (2)");
-      choix = choixJoueur.nextInt();
-      if(choix==1) {
-        System.out.println("Joueur 2, saisissez votre nom :");
-        this.j2.setNom(choixJoueur2.nextLine());
-      } else if(choix==2) {
-        this.j2.setNom("IA");
-        this.j2.setEstHumain(false);
-      } else {
-        System.out.print("Erreur : ");
       }
     }
   }

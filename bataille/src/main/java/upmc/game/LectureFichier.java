@@ -11,7 +11,6 @@ public class LectureFichier implements LecturePseudo {
     public ArrayList<String> lirePseudo() {
         Scanner sc = new Scanner(System.in);
         ArrayList<String> listePseudo = new ArrayList<String>();
-        String pseudo;
 
         System.out.print("Saisissez le fichier à lire : ");
         String nomFichier = "src/main/java/upmc/game/"+sc.nextLine();

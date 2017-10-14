@@ -14,27 +14,23 @@
 
 package upmc.game;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Bataille {
-    private Joueur joueur1;
-    private Joueur joueur2;
-    private int nbCartes = 52;
-    private ArrayList<Carte> carteJouees = new ArrayList<Carte>();
-    private int pointsJoueur = 0;
-    private int pointsBot = 0;
-    private int nbJoueurs;
+    private Joueur player1;
+    private Joueur player2;
+    private int nbCards = 52;
+    private int nbPlayer;
 
     public Bataille() {
-        nbJoueurs = askNbJoueurs();
-        this.joueur1 = new Joueur();
-        this.joueur2 = new Joueur();
-        generate2PACks();
-        if (nbJoueurs == 1) {
-            gameUnJoueur(this);
+        nbPlayer = askNbJoueurs();
+        this.player1 = new Joueur();
+        this.player2 = new Joueur();
+        generateTwoPacks();
+        if (nbPlayer == 1) {
+            onePlayerGame(this);
         } else {
-            gameDeuxJoueurs(this);
+            twoPlayerGame(this);
         }
     }
 
@@ -50,110 +46,110 @@ public class Bataille {
         return choice;
     }
 
-    public Joueur getJoueur1() {
-        return joueur1;
+    public Joueur getPlayer1() {
+        return player1;
     }
 
-    public Joueur getJoueur2() {
-        return joueur2;
+    public Joueur getPlayer2() {
+        return player2;
     }
 
     // TODO: Vérification Cartes déja tirées
-    private void generate2PACks() {
-        for (int i = 0; i < nbCartes / 2; i++) {
-            getJoueur1().getCartes().add(new Carte());
-            getJoueur2().getCartes().add(new Carte());
+    private void generateTwoPacks() {
+        for (int i = 0; i < nbCards / 2; i++) {
+            getPlayer1().getCards().add(new Carte());
+            getPlayer2().getCards().add(new Carte());
         }
     }
 
-    public int getNbCartes() {
-        return nbCartes;
+    public int getNbCards() {
+        return nbCards;
     }
 
     public void getWinnerRound(Carte carteJoueur, Carte carteBot) {
 
-        if (carteJoueur.getValeur() > carteBot.getValeur()) {
+        if (carteJoueur.getValue() > carteBot.getValue()) {
             System.out.println("Joueur 1 gagne avec: " + carteJoueur.toString() + " contre " + carteBot.toString());
-            pointsJoueur++;
-        } else if (carteJoueur.getValeur() < carteBot.getValeur()) {
+            player1.addPoint();
+        } else if (carteJoueur.getValue() < carteBot.getValue()) {
             System.out.println("Joueur 1 perd avec: " + carteJoueur.toString() + " contre " + carteBot.toString());
-            pointsBot++;
+            player2.addPoint();
         } else {
             System.out.println("Égalité: " + carteJoueur.toString() + " contre " + carteBot.toString());
         }
         System.out.print("\n");
-        this.nbCartes -= 2;
+        this.nbCards -= 2;
     }
 
-    public void getGagnant() {
-        if (pointsJoueur > pointsBot) {
-            System.out.println("Fin ! Joueur 1 gagne avec " + pointsJoueur + " points contre " + pointsBot);
-        } else if (pointsBot > pointsJoueur) {
-            System.out.println("Fin ! Joueur 1 perd avec " + pointsJoueur + " points contre " + pointsBot);
+    public void getWinner() {
+        if (player1.getPoints() > player2.getPoints()) {
+            System.out.println("Fin ! Joueur 1 gagne avec " + player1.getPoints() + " points contre " + player2.getPoints());
+        } else if (player2.getPoints() > player1.getPoints()) {
+            System.out.println("Fin ! Joueur 1 perd avec " + player1.getPoints() + " points contre " + player2.getPoints());
         } else {
             System.out.println("Fin ! Égalité.");
         }
     }
 
-    public void gameUnJoueur(Bataille bataille) {
-        Joueur j1 = bataille.getJoueur1();
-        Joueur j2 = bataille.getJoueur2();
+    public void onePlayerGame(Bataille bataille) {
+        Joueur j1 = bataille.getPlayer1();
+        Joueur j2 = bataille.getPlayer2();
 
-        while (bataille.getNbCartes() - 2 != 0) {
+        while (bataille.getNbCards() - 2 != 0) {
             System.out.println("Choisissez une de vos cartes à piocher: ");
-            j1.affCartes();
+            j1.showCards();
 
             Scanner console = new Scanner(System.in);
             int choice = console.nextInt();
-            while (choice > j1.getCartes().size() - 1) {
+            while (choice > j1.getCards().size() - 1) {
                 System.out.println("Veuillez choisir une valeur possible.");
                 console = new Scanner(System.in);
                 choice = console.nextInt();
             }
 
-            Carte carteJoueur1 = j1.pioche(choice);
+            Carte carteJoueur1 = j1.pick(choice);
 
             int randomCarte = (int) Math.random() * 27;
-            Carte carteBot = j2.pioche(randomCarte);
+            Carte carteBot = j2.pick(randomCarte);
 
             bataille.getWinnerRound(carteJoueur1, carteBot);
         }
-        bataille.getGagnant();
+        bataille.getWinner();
     }
 
-    public void gameDeuxJoueurs(Bataille bataille) {
-        Joueur j1 = bataille.getJoueur1();
-        Joueur j2 = bataille.getJoueur2();
+    public void twoPlayerGame(Bataille bataille) {
+        Joueur j1 = bataille.getPlayer1();
+        Joueur j2 = bataille.getPlayer2();
 
-        while (bataille.getNbCartes() - 2 != 0) {
+        while (bataille.getNbCards() - 2 != 0) {
             System.out.println("Joueur 1, choisissez une de vos cartes à piocher: ");
-            j1.affCartes();
+            j1.showCards();
 
             Scanner console = new Scanner(System.in);
             int choice = console.nextInt();
-            while (choice > j1.getCartes().size() - 1) {
+            while (choice > j1.getCards().size() - 1) {
                 System.out.println("Veuillez choisir une valeur possible.");
                 console = new Scanner(System.in);
                 choice = console.nextInt();
             }
 
-            Carte carteJoueur1 = j1.pioche(choice);
+            Carte carteJoueur1 = j1.pick(choice);
 
             System.out.println("Joueur 2, choisissez une de vos cartes à piocher: ");
-            j2.affCartes();
+            j2.showCards();
 
             console = new Scanner(System.in);
             choice = console.nextInt();
-            while (choice > j1.getCartes().size() - 1) {
+            while (choice > j1.getCards().size() - 1) {
                 System.out.println("Veuillez choisir une valeur possible.");
                 console = new Scanner(System.in);
                 choice = console.nextInt();
             }
-            Carte carteJoueur2 = j2.pioche(choice);
+            Carte carteJoueur2 = j2.pick(choice);
 
             bataille.getWinnerRound(carteJoueur1, carteJoueur2);
         }
-        bataille.getGagnant();
+        bataille.getWinner();
     }
 
     public static void main(String[] args) {

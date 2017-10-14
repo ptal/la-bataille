@@ -13,41 +13,33 @@ import java.util.Random;
  */
 public class Carte {
     
-    private int valeur;
-    private String forme;
-    private String nom;
+    private int value;
+    private String form;
+    private String name;
     
     public Carte() {
         this.generateRandomValue();
         this.generateColor();
     }
     
-    public boolean compareCarte(Carte carte) {
-        return this.valeur == carte.valeur;
-    }
-    
     @Override
     public String toString() {
-        return this.nom + " de " + this.forme;
+        return this.name + " de " + this.form;
     }
 
-    public int getValeur() {
-        return this.valeur;
-    }
-
-    public String getForme() {
-        return this.forme;
+    public int getValue() {
+        return this.value;
     }
 
     private void generateRandomValue() {
         Random rand = new Random();
-        this.valeur = rand.nextInt(13) + 1;
-        switch (this.valeur) {
-            case 1: this.nom = "As";break;
-            case 11: this.nom = "Valet";break;
-            case 12: this.nom = "Dame";break;
-            case 13: this.nom = "Roi";break;
-            default: this.nom = String.valueOf(this.valeur);
+        this.value = rand.nextInt(13) + 1;
+        switch (this.value) {
+            case 1: this.name = "As";break;
+            case 11: this.name = "Valet";break;
+            case 12: this.name = "Dame";break;
+            case 13: this.name = "Roi";break;
+            default: this.name = String.valueOf(this.value);
         }
     }
 
@@ -55,6 +47,6 @@ public class Carte {
         String formes[] = {"Coeur", "Pique", "Trefle", "Carreau"};
         Random rand = new Random();
 
-        this.forme = formes[rand.nextInt(4)];
+        this.form = formes[rand.nextInt(4)];
     }
 }

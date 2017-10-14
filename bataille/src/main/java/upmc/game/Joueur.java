@@ -13,32 +13,41 @@ import java.util.ArrayList;
  */
 public class Joueur {
     
-    private ArrayList<Carte> cartes = new ArrayList<Carte>();
-    private String nom;
+    private ArrayList<Carte> cards = new ArrayList<Carte>();
+    private String name;
+    private int points;
 
-    public Carte pioche(int index) {
-        Carte carte = cartes.get(index);
-        cartes.remove(index);
-        return carte;
+    public Carte pick(int index) {
+        Carte card = cards.get(index);
+        cards.remove(index);
+        return card;
     }
 
-    public Carte getLastCarte() {
-        return this.cartes.get(this.cartes.size()-1);
+    public Carte getLastCard() {
+        return this.cards.get(this.cards.size()-1);
     }
 
-    public void affCartes() {
+    public void showCards() {
         int i = 0;
-        for (Carte carte: cartes) {
+        for (Carte carte: cards) {
             System.out.println(i + ": " + carte.toString());
             i++;
         }
     }
 
-    public ArrayList<Carte> getCartes() {
-        return cartes;
+    public ArrayList<Carte> getCards() {
+        return cards;
     }
 
-    public String getNom() {
-        return nom;
+    public String getName() {
+        return name;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void addPoint() {
+        points++;
     }
 }

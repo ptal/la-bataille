@@ -14,6 +14,14 @@ import java.util.Scanner;
 public class Bataille {
     
 public static void main(String[] args) {
+    
+        Paquet paquet = new Paquet();
+        //distribution des cartes
+        for(int i =0; i<52; i++){
+        
+            
+        
+        }
         
         Scanner sc = new Scanner(System.in);
         

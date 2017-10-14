@@ -33,6 +33,8 @@ public class Bataille {
   private Carte c1,c2;
 
   public static void main(String[] args) {
+    LecturePseudo test = new LectureFichier();
+    ArrayList<String> hey = test.lirePseudo();
     Bataille b = new Bataille(10);
     b.jouer();
   }

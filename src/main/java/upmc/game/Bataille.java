@@ -47,9 +47,9 @@ public class Bataille {
         System.out.println("Veuillez saisir votre prénom Joueur 1 :");
         String str = sc2.nextLine();
         System.out.println("Votre nom est  : " + str);
-        Scanner sc1 = new Scanner(System.in);
+       
         System.out.println("Veuillez saisir votre prénom Joueur 2 :");
-        String str1 = sc1.nextLine();
+        String str1 = sc2.nextLine();
         System.out.println("Votre nom est  : " + str1);
         Joueur joueur1 = new Joueur(str);
         Joueur joueur2 = new Joueur(str1);

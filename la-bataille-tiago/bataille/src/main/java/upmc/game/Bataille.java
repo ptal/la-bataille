@@ -23,7 +23,7 @@ public class Bataille
   public static void main(String[] args)
   {
      
-      
+   MenuPseudo.modeLecturePseudo();   
   // Création joueur N°1
   System.out.print("Veuillez entrer un nom pour le Joueur 1: ");
   System.out.flush();
@@ -70,68 +70,16 @@ public class Bataille
     System.out.print("Appuyez sur entrer pour tirer une carte");
     System.out.flush();
     console.nextLine();
+    processus(joueur1 , joueur2);      
         
-    System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
-    System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
-           
-        
-  // Première Comparaison
-  switch (joueur1.getCarte().comparateurvaleur(joueur2.getCarte()))
-        
-    {
-    case 1:    
-        joueur1.tireCarte(joueur1.getCarte());
-        joueur2.tireCarte(joueur2.getCarte());
-        jeu.remove(joueur1.getCarte());
-        jeu.remove(joueur2.getCarte());
-        System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
-        System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
-        
-        if (joueur1.getCarte().comparateur(joueur2.getCarte())) {
-            joueur1.gagnePoint();
-            joueur1.gagnePoint();
-            joueur1.tireCarte(joueur1.getCarte());
-            joueur2.tireCarte(joueur2.getCarte());
-            jeu.remove(joueur1.getCarte());
-            jeu.remove(joueur2.getCarte());
-            System.out.println (joueur1 + " gagne 2 point");
-        }
-            
-        else {
-            joueur2.gagnePoint();
-            joueur2.gagnePoint();
-            joueur1.tireCarte(joueur1.getCarte());
-            joueur2.tireCarte(joueur2.getCarte());
-            jeu.remove(joueur1.getCarte());
-            jeu.remove(joueur2.getCarte());
-            System.out.println (joueur2 + " gagne 2 point");
-            }; break;
-            
-    case 2:
-        joueur1.gagnePoint();
-        joueur1.tireCarte(joueur1.getCarte());
-        joueur2.tireCarte(joueur2.getCarte());
-        jeu.remove(joueur1.getCarte());
-        jeu.remove(joueur2.getCarte());
-        System.out.println (joueur1 + " gagne 1 point"); 
-        break;
-                    
-    case 3: 
-        joueur2.gagnePoint();
-        joueur1.tireCarte(joueur1.getCarte());
-        joueur2.tireCarte(joueur2.getCarte());
-        jeu.remove(joueur1.getCarte());
-        jeu.remove(joueur2.getCarte());
-        System.out.println (joueur2 + " gagne 1 point"); 
-        break;
-    }
+
         
   //Demande au joueur si il veux continuer ou quitter
   
         
   int choice = 1; 
   
-  while (jeu.size()!=0 && choice == 1) { 
+  while (endGame(joueur1, joueur2)) { 
     
       
   System.out.println("(1) Tirer la prochaine Carte");
@@ -142,45 +90,25 @@ public class Bataille
   
         
   if (choice == 1 ) {
-    System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
-    System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
+      processus(joueur1 , joueur2);
 
-  
   }
         
   else {
     System.exit(0);  
   }
+       
         
-           
-        while (jeu.size()!=0 && choice == 1) { 
-                
-    if (joueur1.getCarte().comparateur(joueur2.getCarte())) {
-        
-        joueur1.gagnePoint();
-        joueur1.tireCarte(joueur1.getCarte());
-        jeu.remove(joueur1.getCarte());
-        joueur2.tireCarte(joueur2.getCarte());
-        jeu.remove(joueur1.getCarte()); //Supprime carte du jeu 
-        jeu.remove(joueur2.getCarte());
-        System.out.println ("Il ne reste que " + jeu.size() +" cartes a jouer");
-        System.out.println (joueur1 + " gagne 1 point");
-    }
-        
-    else {
-        joueur2.gagnePoint();
-        joueur1.tireCarte(joueur1.getCarte());
-        joueur2.tireCarte(joueur2.getCarte());
-        jeu.remove(joueur1.getCarte());
-        jeu.remove(joueur2.getCarte());
-        System.out.println ("Il ne reste que " + jeu.size() +" cartes a jouer");
-        System.out.println (joueur2 + " gagne 1 point");
-    }
-        
+     
+       
   }
-        
-  //Gagnant de la partie
-    if (jeu.size() == 0) {
+  System.exit(0);
+  
+  }
+  
+  public static boolean endGame(Joueur joueur1, Joueur joueur2){
+        //Gagnant de la partie
+    if ((joueur1.nbCard() == 0) || (joueur2.nbCard()==0)) {
         joueur1.getPoint();
         joueur2.getPoint();
             
@@ -191,10 +119,55 @@ public class Bataille
         else {
             System.out.println ("Le joueur "+joueur2+" a gagner la partie !");
         }
-    }     
-       
+        return false;
+    }else {
+        return true;
+    }
   }
   
+  public static void processus(Joueur joueur1, Joueur joueur2) {
+    System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
+    System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
+  // Première Comparaison
+  switch (joueur1.getCarte().comparateurvaleur(joueur2.getCarte()))
+        
+    {
+    case 1:    
+        joueur1.tireCarte(joueur1.getCarte());
+        joueur2.tireCarte(joueur2.getCarte());
+        System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
+        System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
+        
+        if (joueur1.getCarte().comparateur(joueur2.getCarte())) {
+            joueur1.gagnePoint();
+            joueur1.gagnePoint();
+            joueur1.tireCarte(joueur1.getCarte());
+            joueur2.tireCarte(joueur2.getCarte());
+            System.out.println (joueur1 + " gagne 2 point");
+        }
+            
+        else {
+            joueur2.gagnePoint();
+            joueur2.gagnePoint();
+            joueur1.tireCarte(joueur1.getCarte());
+            joueur2.tireCarte(joueur2.getCarte());
+            System.out.println (joueur2 + " gagne 2 point");
+            }; break;
+            
+    case 2:
+        joueur1.gagnePoint();
+        joueur1.tireCarte(joueur1.getCarte());
+        joueur2.tireCarte(joueur2.getCarte());
+        System.out.println (joueur1 + " gagne 1 point"); 
+        break;
+                    
+    case 3: 
+        joueur2.gagnePoint();
+        joueur1.tireCarte(joueur1.getCarte());
+        joueur2.tireCarte(joueur2.getCarte());
+        System.out.println (joueur2 + " gagne 1 point"); 
+        break;
+    }
   }
   
 }

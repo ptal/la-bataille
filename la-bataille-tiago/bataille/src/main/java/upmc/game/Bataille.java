@@ -22,24 +22,20 @@ public class Bataille
 {
   public static void main(String[] args)
   {
-     
-   MenuPseudo.modeLecturePseudo();   
-  // Création joueur N°1
-  System.out.print("Veuillez entrer un nom pour le Joueur 1: ");
-  System.out.flush();
-  Scanner console = new Scanner(System.in);
-  String j1 = console.nextLine();
-  Joueur joueur1 = new Joueur (j1);
-       
-  // Création joueur N°2
-  System.out.print("Veuillez entrer un nom pour le Joueur 2: ");
-  System.out.flush();
-  String j2 = console.nextLine();
-  Joueur joueur2 = new Joueur (j2);
+   int choice = 1;
+   Joueur joueur1 = new Joueur ("");
+   Joueur joueur2 = new Joueur ("");
+   
+   MenuPseudo.modeLecturePseudo(choice); 
   
-
+    if (choice == 1) {
+        LectureConsole.lirePseudo();
+       // joueur1.set(pseudo.get(0));
+    }
     
-    
+    else {
+        System.out.println("Fonctionnalité non disponible");
+    }
   //Tableau de carte
   ArrayList<Carte> jeu = new ArrayList<Carte>();
     
@@ -66,7 +62,7 @@ public class Bataille
     for (int m = 26; m < 52; m++) { // Ajout carte Joueur 2
     joueur2.ajoutCarte(jeu.get(m));
     }
-    
+    Scanner console = new Scanner(System.in); 
     System.out.print("Appuyez sur entrer pour tirer une carte");
     System.out.flush();
     console.nextLine();
@@ -76,14 +72,12 @@ public class Bataille
         
   //Demande au joueur si il veux continuer ou quitter
   
-        
-  int choice = 1; 
-  
+
   while (endGame(joueur1, joueur2)) { 
     
       
-  System.out.println("(1) Tirer la prochaine Carte");
-  System.out.println("(2) Quitter");
+  System.out.println("[1] Tirer la prochaine Carte");
+  System.out.println("[2] Quitter");
   System.out.flush();
   choice = console.nextInt();
  

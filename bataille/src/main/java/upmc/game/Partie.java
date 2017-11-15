@@ -17,6 +17,11 @@ public class Partie {
     private ArrayList<String> pseudos=null;
     private char mode_automatique='A';
     private int condition_de_victoire=0;
+    private int MENU_NULL=4;
+    private int TIRER_CARTE=1;
+    private int ABANDONNER=2;
+    private int VOIR_POINT=3;
+    
     private int choix_menu=1;
     private boolean campagne=false;
     
@@ -25,6 +30,7 @@ public class Partie {
     
     
     public Partie(){
+
         
         Bataille.affiche("------------------------ LE JEU DE LA BATAILLE -------------------------------\n");
         
@@ -51,12 +57,12 @@ public class Partie {
         // - (si mode automatique ou choix de tirer une cartejoue, on joue la manche
         // - Si partie fini ou choix d'abandonner, on compare les points et la partie est finie.
 
-        while((this.joueur_1.affiche_nombre_cartes_restantes() >0 || this.joueur_2.affiche_nombre_cartes_restantes() >0 ) && this.choix_menu == 1){
+        while(jeu_continu()){
             if(this.mode_automatique=='N'){
-                this.choix_menu=4;
-                while(this.choix_menu!= 1 && this.choix_menu !=2){
+                this.choix_menu=MENU_NULL;
+                while(this.choix_menu!= TIRER_CARTE && this.choix_menu !=ABANDONNER){
                     this.choix_menu=choisir_menu();
-                    if(this.choix_menu==3){ // Choix : voir les scores
+                    if(this.choix_menu==VOIR_POINT){ // Choix : voir les scores
                         Bataille.affiche(joueur_1.compare_points(joueur_2, condition_de_victoire));
                     }
                 }
@@ -162,21 +168,34 @@ public class Partie {
 
     private char demande_mode_de_jeu(char mode_automatique) {
         Bataille.affiche("Souhaitez-vous jouer en mode automatique ? O/N");
-        while(mode_automatique!='O' && mode_automatique!='N' ){
-            mode_automatique=Bataille.test_char(); 
-        }
+        char[] valeurs_ok={'O', 'N'};
+        mode_automatique=Bataille.test_char(valeurs_ok, '0'); 
+       
         return mode_automatique;
     }
 
     private void demande_enregistrement() {
         char enregistrer='A';
         Bataille.affiche("Souhaitez-vous enregistrer ces pseudos ? O/N");
-        while(enregistrer!='O' && enregistrer!='N' ){ 
-            enregistrer=Bataille.test_char(); 
-        }
+        char[] valeurs_ok={'O', 'N'};
+        enregistrer=Bataille.test_char(valeurs_ok, '0'); 
         if(enregistrer=='O'){
             EcrireFichier.ecrire_fichier(this.pseudos);
         }
+    }
+
+    private boolean jeu_continu() {
+        boolean continu=true;
+        if(this.joueur_1.affiche_nombre_cartes_restantes()<=0){
+            continu=false;
+        }
+        if(this.joueur_2.affiche_nombre_cartes_restantes() <=0){
+            continu=false;
+        }
+        if(choix_menu!=1){
+            continu=false;
+        }
+        return continu;
     }
 
   

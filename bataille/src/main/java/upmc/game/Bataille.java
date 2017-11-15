@@ -29,24 +29,34 @@ public class Bataille
             rejouer= ' ';
             
             affiche("Souhaitez vous rejouer ? O/N");
-            while(rejouer!='O' && rejouer!='N'){
-                rejouer=test_char();
-            }
+            
+            char[] valeurs_ok={'O', 'N'};
+            rejouer=test_char(valeurs_ok, '0');
+            
         }
         affiche("A la prochaine !");       
     }
     
-    public static char test_char(){
+    public static char test_char(char[] valeurs_ok, char valeur_defaut){
         Scanner sc=new Scanner(System.in);
-        String test=sc.nextLine();
-        char res=' ';
-        if(test.equals("")){
-            res='B';
-            System.out.println("Vous devez rentrer O ou N.");
-        }else{
-            test=test.toUpperCase();
-            res=test.charAt(0); 
+        
+        char res=valeur_defaut;
+        while(res==valeur_defaut){
+            String test=sc.nextLine();
+            if(test.equals("")){
+                res=valeur_defaut;
+                System.out.println("Vous devez rentrer O ou N.");
+            }else{
+                test=test.toUpperCase();
+                res=test.charAt(0); 
+            }
+            for(int i=0;i<valeurs_ok.length; i++){
+                if(res==valeurs_ok[i]){
+                    res=valeur_defaut;
+                }
+            }
         }
+        
         return res;    
     }
     

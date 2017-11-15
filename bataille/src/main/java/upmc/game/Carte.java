@@ -2,7 +2,7 @@ package upmc.game;
 
 public class Carte {
 
-	public static String[] couleurs = { "Coeur","Pique", "Carreau",  "Tr�fle" };
+	public static String[] couleurs = { "Coeur","Pique", "Carreau",  "Trefle" };
 	public static int[] valeurs = { 1,2, 3, 4, 5, 6, 7, 8, 9,
 			10, 11, 12, 13 };
 	
@@ -39,5 +39,5 @@ public class Carte {
 		return 1;
 	}  
 }
-
+// redha aissaoui
      

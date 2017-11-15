@@ -12,10 +12,10 @@ public class Jeu {
     public Jeu(Joueur j1, Joueur j2) {
         this.joueur1 = j1;
         this.joueur2 = j2;
-        this.InitialiserPaquet();
+        this.initialiserPaquet();
 
-        this.MelangerCartes();
-        this.DonnerCartes();
+        this.melangerCartes();
+        this.donnerCartes();
     }
 
     public Joueur getJoueur1() {
@@ -38,7 +38,7 @@ public class Jeu {
         return paquet;
     }
 
-    public void InitialiserPaquet() {
+    public void initialiserPaquet() {
         this.paquet = new Carte[52];
         int c = 0;
 
@@ -50,7 +50,7 @@ public class Jeu {
         }
     }
 
-    public void MelangerCartes() {
+    public void melangerCartes() {
         for (int i = 0; i < paquet.length; i++) {
             int r = (int) (Math.random() * 52);
             Carte tmp = paquet[i];
@@ -59,7 +59,7 @@ public class Jeu {
         }
     }
 
-    public void DonnerCartes() {
+    public void donnerCartes() {
         for (int i = 0; i < paquet.length; i++) {
             if (i < (paquet.length / 2)) {
                 joueur1.ajouterCarte(paquet[i]);
@@ -69,7 +69,7 @@ public class Jeu {
         }
     }
 
-    public void LancerJeu() {
+    public void lancerJeu() {
         
 
         do {
@@ -110,5 +110,5 @@ public class Jeu {
                 gagne2++;
             }   
     }
-
+// redha aissaoui
 }

@@ -39,4 +39,4 @@ public class Joueur {
 		return "Carte : " + c.getCouleur() + " " + c.getValeur();		
 	}
 
-}
+}// redha aissaoui

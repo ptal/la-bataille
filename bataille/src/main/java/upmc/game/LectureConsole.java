@@ -29,4 +29,4 @@ public class LectureConsole implements LecturePseudo{
         return this.pseudo;
     }
     
-}
+}// redha aissaoui

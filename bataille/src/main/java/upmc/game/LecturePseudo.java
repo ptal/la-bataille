@@ -6,3 +6,4 @@ public interface LecturePseudo
 {
   public ArrayList<String> lirePseudo();
 }
+// redha aissaoui

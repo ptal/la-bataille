@@ -11,23 +11,15 @@ import java.util.Scanner;
  * @author lepor
  */
 public class MenuPseudo {
-    public LecturePseudo modeLecturePseudo() {
+    public static int modeLecturePseudo(int choice) {
         //Demande le choix à l'utilisateur
-        System.out.println("(1) Lecture console");
-        System.out.println("(2) Lecture fichier"); 
+        System.out.println("[1] Jouer contre un joueur");
+        System.out.println("[2] Jouer contre l'ordinateur"); 
        
         Scanner sc = new Scanner(System.in); 
-        int choice = sc.nextInt();
+        choice = sc.nextInt();
       
-        //Cas console
-        if (choice == 1) {
-            LectureConsole console = new LectureConsole();     
-        }
         
-        //Cas fichier
-        else {
-            LectureFichier fichier = new LectureFichier();
-        }
-        return null;
+        return choice;
     }  
 }

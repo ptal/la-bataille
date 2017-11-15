@@ -40,5 +40,10 @@ private ArrayList<Carte> jeu;
         return joueur;
     }
     
+    public void name(String name) {
+        this.joueur = name;
+    }
+    
+    
     
 }

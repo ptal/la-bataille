@@ -44,4 +44,8 @@ public class LectureFichier implements LecturePseudo{
         }
     return file;
     }
+
+    public ArrayList<String> lirePseudo(int x) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

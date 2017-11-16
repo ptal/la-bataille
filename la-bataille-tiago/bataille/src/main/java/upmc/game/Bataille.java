@@ -22,7 +22,6 @@ public class Bataille
 {
   public static void main(String[] args)
   {
-   int modeJeu = 0;
    int choice = 1;
    Joueur joueur1 = new Joueur ("");
    Joueur joueur2 = new Joueur ("");
@@ -30,8 +29,8 @@ public class Bataille
    MenuPseudo.modeLecturePseudo(choice); 
   
     if (choice == 1) {
-        LectureConsole.lirePseudo(1);
-       choixPseudoJoueur(joueur1, joueur2, modeJeu);
+        LectureConsole.lirePseudo();
+        pseudoJoueur(joueur1, joueur2);
         
     }
     
@@ -168,30 +167,24 @@ public class Bataille
   
   
   
-  public static void Pseudo(Joueur joueur1, Joueur joueur2, ArrayList<String> pseudo) {
+    public static void Pseudo(Joueur joueur1, Joueur joueur2, ArrayList<String> pseudo) {
         joueur1.name(pseudo.get(0));
         joueur2.name(pseudo.get(1));
     }
   
-public static void choixPseudoJoueur(Joueur joueur1, Joueur joueur2, int modeJeu) {
+      public static void pseudoJoueur(Joueur joueur1, Joueur joueur2) {
         MenuPseudo menu = new MenuPseudo();
-        LecturePseudo lecturePseudo = null;
-        ArrayList<String> pseudos;
-        modeJeu = 1;
-        
-        if(modeJeu == 1) {
-            pseudos = lecturePseudo.lirePseudo(1); //Sans IA
-            Pseudo(joueur1, joueur2, pseudos);
-        }
-            else {
-            pseudos = lecturePseudo.lirePseudo(1); //Avec IA
-            Pseudo(joueur1, joueur2, pseudos);
-                    }
+        LectureConsole lirePseudo;
+        ArrayList<String> pseudo;
+        pseudo = LectureConsole.lirePseudo(); //Sans IA
+        Pseudo(joueur1, joueur2, pseudo);
+}
+      
 }
 
 
   
-}
+
 
 
 

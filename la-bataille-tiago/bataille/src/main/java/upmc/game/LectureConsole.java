@@ -13,16 +13,19 @@ import java.util.Scanner;
 public class LectureConsole {
     
     
-    public static ArrayList<String> lirePseudo(int y) {
+    public static ArrayList<String> lirePseudo() {
     ArrayList<String> pseudo = new ArrayList<String>();
-    int nbrjoueur = 1;
     
-    for (int x=1; x<3; x++) {
-        System.out.println("Veuillez entrer un joueur " + nbrjoueur);
-        Scanner sc = new Scanner(System.in);
+    
+    Scanner sc = new Scanner(System.in);
+ 
+        System.out.println("Veuillez entrer und joueur 1 :");
         pseudo.add(sc.nextLine());
-        nbrjoueur++;
-    }
+        
+        
+        System.out.println("Veuillez entrer und joueur 2 :");
+        pseudo.add(sc.nextLine());
+    
     return pseudo;
     }
     

@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package upmc.game;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -13,6 +14,7 @@ import java.util.Scanner;
 public class MenuPseudo {
     public static int modeLecturePseudo(int choice) {
         //Demande le choix à l'utilisateur
+        
         System.out.println("[1] Jouer contre un joueur");
         System.out.println("[2] Jouer contre l'ordinateur"); 
        
@@ -22,4 +24,6 @@ public class MenuPseudo {
         
         return choice;
     }  
+    
+    
 }

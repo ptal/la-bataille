@@ -44,6 +44,9 @@ private ArrayList<Carte> jeu;
         this.joueur = name;
     }
     
+    public int nbCard(){
+        return jeu.size();
+    }
     
     
 }

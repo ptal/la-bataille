@@ -19,11 +19,11 @@ public class LectureConsole {
     
     Scanner sc = new Scanner(System.in);
  
-        System.out.println("Veuillez entrer und joueur 1 :");
+        System.out.println("Veuillez entrer un joueur 1 :");
         pseudo.add(sc.nextLine());
         
         
-        System.out.println("Veuillez entrer und joueur 2 :");
+        System.out.println("Veuillez entrer un joueur 2 :");
         pseudo.add(sc.nextLine());
     
     return pseudo;

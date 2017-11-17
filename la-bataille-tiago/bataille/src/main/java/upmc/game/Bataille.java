@@ -20,94 +20,77 @@ import java.util.Collections;
 
 public class Bataille
 {
-  public static void main(String[] args)
-  {
-   int choice = 0;
-   Joueur joueur1 = new Joueur ("");
-   Joueur joueur2 = new Joueur ("");
+    public static void main(String[] args) {
+    
+    int choice = 0;
+    Joueur joueur1 = new Joueur ("");
+    Joueur joueur2 = new Joueur ("");
     ArrayList<String> pseudo;
-   
- 
-   choice = MenuPseudo.modeLecturePseudo(choice);
+    
+    choice = MenuPseudo.modeLecturePseudo(choice);
    
     if (choice == 1) {
         pseudo = LectureConsole.lirePseudo();
         pseudoJoueur(joueur1, joueur2, pseudo);
-        
     }
     
     else {
         System.out.println("Fonctionnalité non disponible");
     }
-  //Tableau de carte
-  ArrayList<Carte> jeu = new ArrayList<Carte>();
     
-  //Création d'une carte
-  System.out.println("C'est le jeu de la bataille!\n");
+    //Tableau de carte
+    ArrayList<Carte> jeu = new ArrayList<Carte>();
     
-  for (int j = 1; j<=4; j++) {
-       
-    for (int v = 1; v<=13; v++) {
-        Carte c = new Carte(j,v);
-        jeu.add(c);
+    //Création d'une carte
+    System.out.println("C'est le jeu de la bataille!\n");
+    
+    for (int j = 1; j<=4; j++) {
+        for (int v = 1; v<=13; v++) {
+            Carte c = new Carte(j,v);
+            jeu.add(c);
+        }
     }
-        
-        
-  }
 
-  Collections.shuffle(jeu);
+    Collections.shuffle(jeu);
       
        
-  for (int p = 0; p < 26; p++) { // Ajout carte Joueur 1
-    joueur1.ajoutCarte(jeu.get(p));
-  }
+    for (int p = 0; p < 26; p++) { // Ajout carte Joueur 1
+        joueur1.ajoutCarte(jeu.get(p));
+    }
        
     for (int m = 26; m < 52; m++) { // Ajout carte Joueur 2
-    joueur2.ajoutCarte(jeu.get(m));
+        joueur2.ajoutCarte(jeu.get(m));
     }
+    
     Scanner console = new Scanner(System.in); 
     System.out.print("Appuyez sur entrer pour tirer une carte");
     System.out.flush();
     console.nextLine();
     processus(joueur1 , joueur2);      
         
-
-        
-  //Demande au joueur si il veux continuer ou quitter
-  
-
-  while (endGame(joueur1, joueur2)) { 
-    
-      
-  System.out.println("[1] Tirer la prochaine Carte");
-  System.out.println("[2] Quitter");
-  System.out.flush();
-  choice = console.nextInt();
+    //Demande au joueur si il veux continuer ou quitter
+    while (endGame(joueur1, joueur2)) { 
+        System.out.println("[1] Tirer la prochaine Carte");
+        System.out.println("[2] Quitter");
+        System.out.flush();
+        choice = console.nextInt();
  
-  
+        if (choice == 1 ) {
+            processus(joueur1 , joueur2);
+        }
         
-  if (choice == 1 ) {
-      processus(joueur1 , joueur2);
-
-  }
-        
-  else {
-    System.exit(0);  
-  }
-       
-        
-     
-       
-  }
-  System.exit(0);
+        else {
+            System.exit(0);  
+        }
+    }
+            System.exit(0);
+    }
   
-  }
-  
-  public static boolean endGame(Joueur joueur1, Joueur joueur2){
+    public static boolean endGame(Joueur joueur1, Joueur joueur2){
         //Gagnant de la partie
-    if ((joueur1.nbCard() == 0) || (joueur2.nbCard()==0)) {
-        joueur1.getPoint();
-        joueur2.getPoint();
+        if ((joueur1.nbCard() == 0) || (joueur2.nbCard()==0)) {
+            joueur1.getPoint();
+            joueur2.getPoint();
             
         if (joueur1.getPoint() == 52) {
             System.out.println ("Le joueur "+joueur1+" a gagner la partie !");
@@ -116,66 +99,64 @@ public class Bataille
         else {
             System.out.println ("Le joueur "+joueur2+" a gagner la partie !");
         }
-        return false;
-    }else {
-        return true;
-    }
-  }
-  
-  public static void processus(Joueur joueur1, Joueur joueur2) {
-    System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
-    System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
-  // Première Comparaison
-  switch (joueur1.getCarte().comparateurvaleur(joueur2.getCarte()))
         
-    {
-    case 1:    
-        joueur1.tireCarte(joueur1.getCarte());
-        joueur2.tireCarte(joueur2.getCarte());
+            return false;
+        }
+        
+        else {
+            return true;
+        }
+    }
+  
+    public static void processus(Joueur joueur1, Joueur joueur2) {
         System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
         System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
+        // Première Comparaison
+        switch (joueur1.getCarte().comparateurvaleur(joueur2.getCarte())) {
+                
+            case 1:    
+                System.out.println("----------- Bataille ! -----------");
+                joueur1.tireCarte(joueur1.getCarte());
+                joueur2.tireCarte(joueur2.getCarte());
+                System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
+                System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
         
-        if (joueur1.getCarte().comparateur(joueur2.getCarte())) {
-            joueur1.gagnePoint();
-            joueur1.gagnePoint();
-            joueur1.tireCarte(joueur1.getCarte());
-            joueur2.tireCarte(joueur2.getCarte());
-            System.out.println (joueur1 + " gagne 2 point");
-        }
+                if (joueur1.getCarte().comparateur(joueur2.getCarte())) {
+                    joueur1.gagnePoint();
+                    joueur1.gagnePoint();
+                    joueur1.tireCarte(joueur1.getCarte());
+                    joueur2.tireCarte(joueur2.getCarte());
+                    System.out.println (joueur1 + " gagne 2 point");
+                }
             
-        else {
-            joueur2.gagnePoint();
-            joueur2.gagnePoint();
-            joueur1.tireCarte(joueur1.getCarte());
-            joueur2.tireCarte(joueur2.getCarte());
-            System.out.println (joueur2 + " gagne 2 point");
-            }; break;
+                else {
+                    joueur2.gagnePoint();
+                    joueur2.gagnePoint();
+                    joueur1.tireCarte(joueur1.getCarte());
+                    joueur2.tireCarte(joueur2.getCarte());
+                    System.out.println (joueur2 + " gagne 2 point");
+                }; break;
             
-    case 2:
-        joueur1.gagnePoint();
-        joueur1.tireCarte(joueur1.getCarte());
-        joueur2.tireCarte(joueur2.getCarte());
-        System.out.println (joueur1 + " gagne 1 point"); 
-        break;
+            case 2:
+                joueur1.gagnePoint();
+                joueur1.tireCarte(joueur1.getCarte());
+                joueur2.tireCarte(joueur2.getCarte());
+                System.out.println (joueur1 + " gagne 1 point"); 
+                break;
                     
-    case 3: 
-        joueur2.gagnePoint();
-        joueur1.tireCarte(joueur1.getCarte());
-        joueur2.tireCarte(joueur2.getCarte());
-        System.out.println (joueur2 + " gagne 1 point"); 
-        break;
+            case 3: 
+                joueur2.gagnePoint();
+                joueur1.tireCarte(joueur1.getCarte());
+                joueur2.tireCarte(joueur2.getCarte());
+                System.out.println (joueur2 + " gagne 1 point"); 
+                break;
+        }
     }
-  }
   
-  
-  
-
-  
-      public static void pseudoJoueur(Joueur joueur1, Joueur joueur2, ArrayList<String> pseudo) {
-       
-       joueur1.name(pseudo.get(0));
+    public static void pseudoJoueur(Joueur joueur1, Joueur joueur2, ArrayList<String> pseudo) {
+        joueur1.name(pseudo.get(0));
         joueur2.name(pseudo.get(1));
-}
+    }
       
 }
 

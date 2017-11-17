@@ -35,7 +35,7 @@ public class Carte {
     
     
    
-    public boolean comparateur(Carte c2){
+    public boolean comparateurValeur(Carte c2){
         Carte c1 = this;
         if(c1.valeur > c2.valeur){
             return true;
@@ -43,7 +43,7 @@ public class Carte {
         return false;
    }
    
-   public int comparateurvaleur(Carte c2){
+   public int comparateurBataille(Carte c2){
         Carte c1 = this;
         if(c1.valeur == c2.valeur){
             return 1;
@@ -57,6 +57,6 @@ public class Carte {
         }
        
    }
-   
+    
 }
 

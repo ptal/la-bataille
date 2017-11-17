@@ -12,22 +12,18 @@ private ArrayList<Carte> jeu;
         joueur = nom;
     }
     
-    
     public void tireCarte(Carte c){
         jeu.remove(c);
     }
     
-  
     public void ajoutCarte(Carte c) {
         jeu.add(c);
     }
-    
     
     public void gagnePoint(){
         compteur++;
     }
     
-    //Accésseur point
     public int getPoint(){
         return compteur;
     }
@@ -44,9 +40,15 @@ private ArrayList<Carte> jeu;
         this.joueur = name;
     }
     
-    public int nbCard(){
+    public int nbrCarte(){
         return jeu.size();
     }
     
+    public void msgPointJoueur1(Joueur joueur1, int x) {
+        System.out.println(joueur1+" gagne "+x+" point");
+    }
     
+    public void msgPointJoueur2(Joueur joueur2, int x) {
+        System.out.println(joueur2+" gagne "+x+" point");
+    }
 }

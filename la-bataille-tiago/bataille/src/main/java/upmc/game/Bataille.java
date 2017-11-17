@@ -22,15 +22,17 @@ public class Bataille
 {
   public static void main(String[] args)
   {
-   int choice = 1;
+   int choice = 0;
    Joueur joueur1 = new Joueur ("");
    Joueur joueur2 = new Joueur ("");
+    ArrayList<String> pseudo;
    
-   MenuPseudo.modeLecturePseudo(choice); 
-  
+ 
+   choice = MenuPseudo.modeLecturePseudo(choice);
+   
     if (choice == 1) {
-        LectureConsole.lirePseudo();
-        pseudoJoueur(joueur1, joueur2);
+        pseudo = LectureConsole.lirePseudo();
+        pseudoJoueur(joueur1, joueur2, pseudo);
         
     }
     
@@ -167,17 +169,12 @@ public class Bataille
   
   
   
-    public static void Pseudo(Joueur joueur1, Joueur joueur2, ArrayList<String> pseudo) {
-        joueur1.name(pseudo.get(0));
-        joueur2.name(pseudo.get(1));
-    }
+
   
-      public static void pseudoJoueur(Joueur joueur1, Joueur joueur2) {
-        MenuPseudo menu = new MenuPseudo();
-        LectureConsole lirePseudo;
-        ArrayList<String> pseudo;
-        pseudo = LectureConsole.lirePseudo(); //Sans IA
-        Pseudo(joueur1, joueur2, pseudo);
+      public static void pseudoJoueur(Joueur joueur1, Joueur joueur2, ArrayList<String> pseudo) {
+       
+       joueur1.name(pseudo.get(0));
+        joueur2.name(pseudo.get(1));
 }
       
 }

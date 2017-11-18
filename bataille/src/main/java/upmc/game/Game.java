@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package upmc.game;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
-/**
- *
- * @author jerom
- */
 public class Game {
     private int mode_partie;
     private int round = 0;
@@ -77,6 +68,7 @@ public class Game {
             System.out.println("---------------------------------------------------------");   
         }
     }
+    
     public void ProblemeSelection(String nom_joueur_1, String nom_joueur_2, Joueur j1, Joueur j2){
         System.out.println("Il y a un probleme de séléction \n Veuillez saisir 1, 2 ou 3");
         Menu(nom_joueur_1, nom_joueur_2, j1, j2);
@@ -90,20 +82,7 @@ public class Game {
             String menu1 = sc_menu.nextLine();
             
             if("1".equals(menu1) || "".equals(menu1)){ //choix enter ou 1
-                //a chaque round
-                System.out.println("---------------------------------------------------------");
-                //montre les cartes
-                System.out.println(nom_joueur_1 + " tire la carte : ");
-                j1.VoirCarte(round);
-                System.out.println(nom_joueur_2 + " tire la carte : ");
-                j2.VoirCarte(round);     
-
-                //verifie la meilleur
-                Verifie(nom_joueur_1, nom_joueur_2, j1, j2);
-                  
-                //comptabilise les rounds
-                Point(nom_joueur_1, nom_joueur_2, j1, j2);
-            
+                unJoueur(nom_joueur_1, nom_joueur_2, j1, j2);
             }else if("2".equals(menu1)){
                 TableauScore(nom_joueur_1, nom_joueur_2, j1, j2);
             }else if("3".equals(menu1)){
@@ -112,56 +91,57 @@ public class Game {
                 ProblemeSelection(nom_joueur_1, nom_joueur_2, j1, j2);
             }
 
-            
-            
         }else{ //2 Joueur
-            
-            
-            //Premier Joueur
-            System.out.println("---------------------------------------------------------");
-            System.out.println("-> A " + nom_joueur_1 +" de jouer \n (1) Tirer la prochaine carte     (2) Score   (3) Quitter");
-            Scanner sc_menu_j1 = new Scanner(System.in);   
-            String menu_j1 = sc_menu_j1.nextLine();
 
-            if("1".equals(menu_j1) || "".equals(menu_j1)){
-                //montre la carte
-                System.out.println(nom_joueur_1 + " tire la carte : ");
-                j1.VoirCarte(round);
-            }else if("2".equals(menu_j1)){
-                TableauScore(nom_joueur_1, nom_joueur_2, j1, j2);
-            }else if("3".equals(menu_j1)){
-                System.exit(0);
-            }else{
-                System.out.println("---------------------------------------------------------");
-                ProblemeSelection(nom_joueur_1, nom_joueur_2, j1, j2);
-            }  
-            
-            
-            
-            
-            //Deuxieme Joueur
-            System.out.println("-> A " + nom_joueur_2+" de jouer\n (1) Tirer la prochaine carte     (2) Score   (3) Quitter");
-            Scanner sc_menu_j2 = new Scanner(System.in);   
-            String menu_j2 = sc_menu_j2.nextLine();
-               
-            if("1".equals(menu_j2) || "".equals(menu_j2)){
-                //montre la carte
-                System.out.println(nom_joueur_2 + " tire la carte : "); 
-                j2.VoirCarte(round);
-                
-                //verifie la meilleur
+
+                String joueur_select = nom_joueur_1;
+                deuxJoueur(nom_joueur_1, nom_joueur_2, j1, j2, joueur_select);
+                joueur_select = nom_joueur_2;
+                deuxJoueur(nom_joueur_1, nom_joueur_2, j1, j2, joueur_select);
+        }
+    }
+    
+    
+    public void unJoueur(String nom_joueur_1, String nom_joueur_2, Joueur j1, Joueur j2){
+        //a chaque round
+        System.out.println("---------------------------------------------------------");
+        //montre les cartes
+        System.out.println(nom_joueur_1 + " tire la carte : ");
+        j1.VoirCarte(round);
+        System.out.println(nom_joueur_2 + " tire la carte : ");
+        j2.VoirCarte(round);     
+
+        //verifie la meilleur
+        Verifie(nom_joueur_1, nom_joueur_2, j1, j2);
+
+        //comptabilise les rounds
+        Point(nom_joueur_1, nom_joueur_2, j1, j2);
+    }
+    
+    public void deuxJoueur(String nom_joueur_1, String nom_joueur_2, Joueur j1, Joueur j2, String joueur_select){
+                    //Deuxieme Joueur
+        System.out.println("-> A " + joueur_select+" de jouer\n (1) Tirer la prochaine carte     (2) Score   (3) Quitter");
+        Scanner sc_menu_j2 = new Scanner(System.in);   
+        String menu_j2 = sc_menu_j2.nextLine();
+
+        if("1".equals(menu_j2) || "".equals(menu_j2)){
+            //montre la carte
+            System.out.println(joueur_select + " tire la carte : "); 
+            j2.VoirCarte(round);
+
+            //verifie la meilleur
+            if(joueur_select.equals(nom_joueur_2)){
                 Verifie(nom_joueur_1, nom_joueur_2, j1, j2);
-                  
-                //comptabilise les rounds
+              
+            //comptabilise les rounds
                 Point(nom_joueur_1, nom_joueur_2, j1, j2); //ne peut pas faire réduire pour cette instruction
-                
-            }else if("2".equals(menu_j2)){
-                TableauScore(nom_joueur_1, nom_joueur_2, j1, j2);
-            }else if("3".equals(menu_j2)){
-                System.exit(0);
-            }else{
-                ProblemeSelection(nom_joueur_1, nom_joueur_2, j1, j2);
             }
+        }else if("2".equals(menu_j2)){
+            TableauScore(nom_joueur_1, nom_joueur_2, j1, j2);
+        }else if("3".equals(menu_j2)){
+            System.exit(0);
+        }else{
+            ProblemeSelection(nom_joueur_1, nom_joueur_2, j1, j2);
         }
     }
 }

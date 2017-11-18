@@ -76,7 +76,4 @@ public class MenuPseudo {
         //lancement du menu
         game1.Menu(j1.VoirNomJoueur(), j2.VoirNomJoueur(), j1, j2);
     }
-    
-    
-    
 }

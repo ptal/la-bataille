@@ -34,8 +34,7 @@ public class Deck {
 
     public void Distribution(Joueur j1, Joueur j2){
         for(int i = 0; i < deck.size(); i++){
-
-           String carte = deck.get(i).toString();
+            String carte = deck.get(i).toString();
             if(i<=26){
                 j1.AjoutCarte(carte);
             }else{

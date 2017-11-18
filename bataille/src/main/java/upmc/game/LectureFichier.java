@@ -20,10 +20,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
- *
- * @author jerom
- */
 public class LectureFichier {
     
     private ArrayList<String> pseudo = new ArrayList<String>(); 

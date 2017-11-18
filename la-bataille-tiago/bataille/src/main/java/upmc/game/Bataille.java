@@ -74,14 +74,14 @@ public class Bataille
             partie(joueur1 ,joueur2);
         }
     }
-    //Scanner console = new Scanner(System.in); 
-    /* if (choix ==1) { */
-        Scanner console = new Scanner(System.in); 
+    Scanner console = new Scanner(System.in); 
+    if (choix == 1) { 
+        
         System.out.print("Appuyez sur entrer pour tirer une carte");
         System.out.flush();
         console.nextLine();
         partie(joueur1 , joueur2); //Lancement de la partie   
-    /* } */
+    }
     //Continuer à tirer une carte / Quitter
     while (finPartie(joueur1, joueur2)) {
        
@@ -95,7 +95,7 @@ public class Bataille
         }
         
         else {
-            System.exit(0);  
+            System.exit(0); 
         }
     }
             System.exit(0);
@@ -107,10 +107,10 @@ public class Bataille
             
             
         if (joueur1.getPoint() > joueur2.getPoint()) {
-            System.out.println ("Le joueur "+joueur1+" a gagner la partie avec : "+joueur1.getPoint());
+            joueur1.victoire(joueur1);
         } 
         else {
-            System.out.println ("Le joueur "+joueur2+" a gagner la partie avec : "+joueur2.getPoint());
+            joueur2.victoire(joueur2);
         }
             return false;
         }

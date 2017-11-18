@@ -11,16 +11,15 @@ public class MenuPseudo
     /**
      * @return the LecturePseudo by a console or a file. Same type from two methods
      */
-    public LecturePseudo modeLecturePseudo()
+    public LecturePseudo modeLecturePseudo(Scanner keyboardChoice)
     {
-        Scanner keyboardChoice = new Scanner(System.in);
         String choice;
         do
         {
             System.out.println("(1) : Fichier");
             System.out.println("(2) : Console");
             choice = keyboardChoice.nextLine();
-        } while (!isNumber(choice));
+        } while (!WarUtility.isNumber(choice));
 
         switch (Integer.parseInt(choice)){
             case 1: return new LectureFichier();
@@ -29,13 +28,5 @@ public class MenuPseudo
         }
     }
 
-    /**
-     * Check if it's really a number (between 1 and 2)
-     * @param choice the user's input
-     * @return if it's a number or not.
-     */
-    private boolean isNumber(String choice)
-    {
-        return choice.matches("[1-2]");
-    }
+
 }

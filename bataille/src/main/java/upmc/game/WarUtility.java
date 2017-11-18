@@ -84,4 +84,14 @@ public class WarUtility
         }
 
     }
+
+    /**
+     * Check if it's really a number (between 1 and 2)
+     * @param choice the user's input
+     * @return if it's a number or not.
+     */
+    protected static boolean isNumber(String choice)
+    {
+        return choice.matches("[1-2]");
+    }
 }

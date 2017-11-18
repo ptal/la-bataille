@@ -24,7 +24,7 @@ public class Statistics extends Bataille
      * @param j1 the first player
      * @param j2 the second one
      */
-    protected Statistics(Player j1, Player j2)
+    public Statistics(Player j1, Player j2)
     {
         super();
         this.j1 = j1;
@@ -36,7 +36,7 @@ public class Statistics extends Bataille
      *
      * @param numberOfIteration number of games we need to achieve
      */
-    protected void runStat(int numberOfIteration)
+    public void runStat(int numberOfIteration)
     {
         for (int i = 1; i < numberOfIteration + 1; i++)
         {
@@ -52,6 +52,6 @@ public class Statistics extends Bataille
         System.out.println("Score final : Ordi1 => " + j1.getScore() + " vs Ordi2 => " + j2.getScore());
         System.out.println(j1.getName() + " a gagné " + String.format("%1$,.2f", j1.percentageScore(numberOfIteration)) + " % des matchs");
         System.out.println(j2.getName() + " a gagné " + String.format("%1$,.2f", j2.percentageScore(numberOfIteration)) + " % des matchs");
-        WarUtility.isQuittingGame("2");
+        //WarUtility.isQuittingGame("2");
     }
 }

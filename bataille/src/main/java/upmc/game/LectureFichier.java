@@ -19,8 +19,8 @@ public class LectureFichier implements LecturePseudo
     public ArrayList<String> lirePseudo()
     {
         System.out.println("Entrez le nom de votre fichier (avec l'extension) : ");
-        this.file =  new File(scanner.nextLine());
-        checkFileExist();
+        this.file = readFile(this.scanner);
+        checkFileExist(this.file);
         try
         {
             addPseudos();
@@ -33,6 +33,15 @@ public class LectureFichier implements LecturePseudo
             e.printStackTrace();
         }
 
+        return null;
+    }
+
+    public File readFile(Scanner scanner) {
+        File file = new File (scanner.nextLine());
+        if (file.exists())
+        {
+            return file;
+        }
         return null;
     }
 
@@ -65,11 +74,11 @@ public class LectureFichier implements LecturePseudo
     /**
      * Used to check if the file is created. If not it enables to loop on until the user choose a existing file
      */
-    private void checkFileExist()
+    private void checkFileExist(File file)
     {
-        while(!this.file.exists()) {
+        while(!file.exists()) {
             System.out.println("Erreur, ce fichier semble inexistant. Retentez : ");
-            this.file =  new File(scanner.nextLine());
+            file =  new File(scanner.nextLine());
         }
 
     }

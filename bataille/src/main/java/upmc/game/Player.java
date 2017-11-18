@@ -25,7 +25,7 @@ public class Player
     /**
      * Creating a player - Computer
      */
-    Player()
+    public Player()
     {
         this.name = "Ordi";
         this.score = 0;
@@ -156,4 +156,7 @@ public class Player
     }
 
 
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

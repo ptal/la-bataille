@@ -19,6 +19,11 @@ import java.util.Collections;
 public class Deck
 {
     private static final int NB_CARDS = 15;
+
+    public ArrayList<Card> getAlCards() {
+        return alCards;
+    }
+
     //NB : all the arrayList are called alXXXX where al means array list (personnal convention to know when we are dealing with an arraylist)
     private ArrayList<Card> alCards;
 
@@ -49,7 +54,7 @@ public class Deck
      * @param j1   the player 1 who will get the 26 cards
      * @param j2   the second player who will get the last 26 cards remaining
      */
-    protected void splitDeck(Deck deck, Player j1, Player j2)
+    public void splitDeck(Deck deck, Player j1, Player j2)
     {
         int numberOfCardEachPlayer = deck.alCards.size() / 2;
         j1.createPlayerDeck(0, numberOfCardEachPlayer, alCards);

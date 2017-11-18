@@ -12,14 +12,12 @@ import java.util.Scanner;
  *
  * @author Timothé Pardieu
  */
-public class Bataille
-{
-    private Player player1 = null ,player2 = null;
+public class Bataille {
+    private Player player1 = null, player2 = null;
     private Scanner keyboardChoice = new Scanner(System.in);
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Bataille war = new Bataille();
         war.start();
     }
@@ -27,8 +25,7 @@ public class Bataille
     /**
      * The main action, it enables the game to start a battle (choose a mode, draw a card, compare..)
      */
-    private void start()
-    {
+    private void start() {
         //Chosing the game mode & creating players (IA vs Player or Player vs Player)
         int gameModeSelected = WarUtility.chooseGame(keyboardChoice);
         //Select the game mode
@@ -46,8 +43,7 @@ public class Bataille
      * > Showing the winner
      * > Ask if the user wants one more battle
      */
-    private void startBasicGame()
-    {
+    private void startBasicGame() {
         while (true) //Looping until the user quit
         {
             //Launching game while its end
@@ -71,8 +67,7 @@ public class Bataille
      * If no the program quits,
      * else the hands of cards are reset and a new deck is instantiated and used
      */
-    private void doOneMoreBattle()
-    {
+    private void doOneMoreBattle() {
         //Show the menu if we do one more battle or not
         WarUtility.showContinueMenu();
         WarUtility.isQuittingGame(keyboardChoice.nextLine());
@@ -91,8 +86,7 @@ public class Bataille
      * @param player1
      * @param player2
      */
-    protected void instantiateDeckAndSplit(Player player1, Player player2)
-    {
+    protected void instantiateDeckAndSplit(Player player1, Player player2) {
         Deck deck = new Deck();
         //Split by 2
         deck.splitDeck(deck, player1, player2);
@@ -107,17 +101,16 @@ public class Bataille
      *
      * @param gameModeSelected the user's choice
      */
-    private void createPlayerDependingChoice(int gameModeSelected)
-    {
+    private void createPlayerDependingChoice(int gameModeSelected) {
         String choice = "";
         MenuPseudo menuPseudo = new MenuPseudo();
         LecturePseudo lecturePseudo;
         ArrayList<String> alPseudos;
+        Scanner keyboardChoice = new Scanner(System.in);
 
-        switch (gameModeSelected)
-        {
+        switch (gameModeSelected) {
             case 1:  //Player vs Player
-                lecturePseudo = menuPseudo.modeLecturePseudo();
+                lecturePseudo = menuPseudo.modeLecturePseudo(keyboardChoice);
                 alPseudos = lecturePseudo.lirePseudo();
 
                 player1 = new Player(alPseudos.get(0));
@@ -129,7 +122,7 @@ public class Bataille
                 //player2 = new Player(choice);
                 break;
             case 2: //Player vs Ordi
-                lecturePseudo = menuPseudo.modeLecturePseudo();
+                lecturePseudo = menuPseudo.modeLecturePseudo(keyboardChoice);
                 alPseudos = lecturePseudo.lirePseudo();
                 //choice = askName("Joueur1");
                 player1 = new Player(alPseudos.get(0));
@@ -140,9 +133,13 @@ public class Bataille
                 player2 = new Player("Ordi2"); //IA
                 System.out.flush();
                 System.out.print("ENTRER LE NOMBRE DE PARTIES A SIMULER : ");
-                int numberOfGames = keyboardChoice.nextInt();
+                String numberOfGames = "";
+                do {
+                    numberOfGames = keyboardChoice.nextLine();
+                } while(!WarUtility.isNumber(numberOfGames));
+
                 Statistics s = new Statistics(player1, player2);
-                s.runStat(numberOfGames);
+                s.runStat(Integer.parseInt(numberOfGames));
                 break;
         }
 
@@ -152,8 +149,7 @@ public class Bataille
      * @param j the Player to define
      * @return the user's choice
      */
-    private String askName(String j)
-    {
+    private String askName(String j) {
         System.out.print("ENTRER LE NOM DU JOUEUR " + j + " : ");
         return keyboardChoice.nextLine();
     }
@@ -164,8 +160,7 @@ public class Bataille
      * @param j1 the first player
      * @param j2 the second player
      */
-    protected void playGame(Player j1, Player j2)
-    {
+    protected void playGame(Player j1, Player j2) {
         // Draw a card
         Card j1CardChosen = j1.drawCard();
         Card j2CardChosen = j2.drawCard();
@@ -193,18 +188,14 @@ public class Bataille
      * @param j2CardChosen  the j2's card drawn
      * @param alCardsInGame the cards in play
      */
-    private void checkWinner(Player j1, Player j2, Card j1CardChosen, Card j2CardChosen, ArrayList<Card> alCardsInGame)
-    {
+    private void checkWinner(Player j1, Player j2, Card j1CardChosen, Card j2CardChosen, ArrayList<Card> alCardsInGame) {
         //If the Player 1 wins
-        if (j1CardChosen.getValue() > j2CardChosen.getValue())
-        {
+        if (j1CardChosen.getValue() > j2CardChosen.getValue()) {
             //Push the won cards at the start of the deck (not replayed immediately)
             j1.addWonCards(alCardsInGame);
-        } else
-        {
+        } else {
             //If the Player 2 wins
-            if (j1CardChosen.getValue() < j2CardChosen.getValue())
-            {
+            if (j1CardChosen.getValue() < j2CardChosen.getValue()) {
                 j2.addWonCards(alCardsInGame);
             } else
                 //méthode Manage equality
@@ -243,8 +234,7 @@ public class Bataille
      * @param j2            the player 2
      * @param alCardsInGame the cards in play (at stake)
      */
-    private void manageEquality(Player j1, Player j2, ArrayList<Card> alCardsInGame)
-    {
+    private void manageEquality(Player j1, Player j2, ArrayList<Card> alCardsInGame) {
         System.out.println("----------------BATAILLE !! (Equalité)");
         if (!manageEqualityNoMoreCards(j1, j2, alCardsInGame))
             manageEqualityWithOneCard(j1, j2, alCardsInGame);
@@ -259,17 +249,13 @@ public class Bataille
      * @param alCardsInGame cards in play
      * @return if the hands are empty or not
      */
-    private boolean manageEqualityNoMoreCards(Player j1, Player j2, ArrayList<Card> alCardsInGame)
-    {
+    private boolean manageEqualityNoMoreCards(Player j1, Player j2, ArrayList<Card> alCardsInGame) {
         //Check if the decks aren't empty
-        if (j1.isEmpty() || j2.isEmpty())
-        {
+        if (j1.isEmpty() || j2.isEmpty()) {
             //Checking who have more cards (winner)
-            if (j1.getAlPlayerDeck().size() > j2.getAlPlayerDeck().size())
-            {
+            if (j1.getAlPlayerDeck().size() > j2.getAlPlayerDeck().size()) {
                 j1.addWonCards(alCardsInGame);
-            } else
-            {
+            } else {
                 j2.addWonCards(alCardsInGame);
             }
             return true;
@@ -287,11 +273,9 @@ public class Bataille
      * @param j2            player 2
      * @param alCardsInGame the cards in play
      */
-    private void manageEqualityWithOneCard(Player j1, Player j2, ArrayList<Card> alCardsInGame)
-    {
+    private void manageEqualityWithOneCard(Player j1, Player j2, ArrayList<Card> alCardsInGame) {
         //If the player has 1 or more cards..
-        if (j1.getAlPlayerDeck().size() >= 1 && j2.getAlPlayerDeck().size() >= 1)
-        {
+        if (j1.getAlPlayerDeck().size() >= 1 && j2.getAlPlayerDeck().size() >= 1) {
             //Get a card
             Card cardTmp1 = j1.drawCard();
             Card cardTmp2 = j2.drawCard();
@@ -300,8 +284,7 @@ public class Bataille
             alCardsInGame.add(cardTmp2);
 
             //If they haven't 2 cards we compare the card immediately
-            if (!manageEqualityWithTwoOrMore(j1, j2, alCardsInGame))
-            {
+            if (!manageEqualityWithTwoOrMore(j1, j2, alCardsInGame)) {
                 Collections.shuffle(alCardsInGame);
                 this.checkWinner(j1, j2, cardTmp1, cardTmp2, alCardsInGame);
             }
@@ -322,11 +305,9 @@ public class Bataille
      * @param alCardsInGame cards in play
      * @return if the player can do a true bataille (with at least 2 cards for each player)
      */
-    private boolean manageEqualityWithTwoOrMore(Player j1, Player j2, ArrayList<Card> alCardsInGame)
-    {
+    private boolean manageEqualityWithTwoOrMore(Player j1, Player j2, ArrayList<Card> alCardsInGame) {
         //test if they have 2 cards and so do the "right" rule of "bataille"
-        if (j1.getAlPlayerDeck().size() >= 2 && j2.getAlPlayerDeck().size() >= 2)
-        {
+        if (j1.getAlPlayerDeck().size() >= 2 && j2.getAlPlayerDeck().size() >= 2) {
             //Get the valuable cards (one's that matters)
             Card j1CardEquality = j1.drawCard();
             Card j2CardEquality = j2.drawCard();
@@ -351,8 +332,7 @@ public class Bataille
      * @param j1 player 1
      * @param j2 player 2
      */
-    private void manageScore(Player j1, Player j2)
-    {
+    private void manageScore(Player j1, Player j2) {
         //If one is loosing the round, the other one get a point
         if (j1.getAlPlayerDeck().size() == 0)
             j2.increaseScore();

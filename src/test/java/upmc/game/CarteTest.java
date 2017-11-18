@@ -1,85 +1,48 @@
 package upmc.game;
 
-import junit.framework.Test;
 import junit.framework.TestCase;
-import junit.framework.TestSuite;
-
+import upmc.game.Carte;
 /**
  *
  * @author OmarAbdalla
  */
 public class CarteTest extends TestCase {
     
-    public CarteTest(String testName) {
-        super(testName);
-    }
+   private Carte c1;
+    private Carte c2;
+    private Carte c3;
 
-    public static Test suite() {
-        TestSuite suite = new TestSuite(CarteTest.class);
-        return suite;
+    public CarteTest() {
+        this.c1 = new Carte("coeur",3);
+        this.c2 = new Carte("pique",4);
+        this.c3 = new Carte("trefle",5);
     }
     
-    @Override
-    protected void setUp() throws Exception {
-        super.setUp();
+   public void testCarteInferieure() {
+        
+        
+        int comparaison = c1.comparateur(c2);
+        boolean result = comparaison==1;
+
+        assertTrue(result);
+    }
+ public void testCarteSuperieure() {
+       
+        
+        int comparaison = c2.comparateur(c1);
+        boolean result = comparaison==-1;
+
+        assertTrue(result);
     }
     
-    @Override
-    protected void tearDown() throws Exception {
-        super.tearDown();
-    }
+    
+    public void testCarteEgale() {
+        
+        
+        int comparaison = c3.comparateur(c3);
+        boolean result = comparaison==0;
 
-    /**
-     * Test of getCouleur method, of class Carte.
-     */
-    public void testGetCouleur() {
-        System.out.println("getCouleur");
-        Carte instance = null;
-        String expResult = "";
-        String result = instance.getCouleur();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getValeur method, of class Carte.
-     */
-    public void testGetValeur() {
-        System.out.println("getValeur");
-        Carte instance = null;
-        int expResult = 0;
-        int result = instance.getValeur();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of comparateur method, of class Carte.
-     */
-    public void testComparateur() {
-        System.out.println("comparateur");
-        Carte carte2 = null;
-        Carte instance = null;
-        int expResult = 0;
-        int result = instance.comparateur(carte2);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of toString method, of class Carte.
-     */
-    public void testToString() {
-        System.out.println("toString");
-        Carte instance = null;
-        String expResult = "";
-        String result = instance.toString();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertTrue(result);
     }
     
 }

@@ -8,10 +8,7 @@ public class Bataille {
 
     public static void main(String[] args) {
 
-////         ********Méthode lirePseudo()**********
-//        LecturePseudo lecturePseudo = MenuPseudo.lirePseudo();
-//        ArrayList<String> pseudo =(ArrayList<String>) lecturePseudo;
-        
+
         System.out.println("Bonjour , bienvenue dans le jeu de la bataille.");
 
         System.out.println("Tapez sur 1 pour commencer une nouvelle partie .");

@@ -1,6 +1,7 @@
 package upmc.game;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -206,8 +207,14 @@ public class Jeu {
         
         System.out.println("\nChoisissez votre mode de jeu parmis les 2 suivants :");
         System.out.println(" 1. Deux joueurs\n 2. Contre IA\n 3. Mode rapide contre IA");
-        System.out.println("Votre choix : ");
-        modeJeu = scan.nextInt();
+        try {
+            System.out.println("Votre choix : ");
+            modeJeu = scan.nextInt();
+        }
+        catch (InputMismatchException e) {
+            System.out.print("(!) Choisissez un nombre !\n");
+            scan.nextLine();
+        }
         
         if(modeJeu != 1 && modeJeu != 2 && modeJeu != 3)
             modeJeu = choixModeJeu(modeJeu);

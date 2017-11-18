@@ -18,7 +18,7 @@ public class Carte {
     }
     
     //Accesseurs
-    public String getCouleur(){
+    public String getCouleurVal(){
         return couleur+valeur;
     }
     

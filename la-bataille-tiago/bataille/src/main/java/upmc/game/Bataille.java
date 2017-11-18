@@ -120,16 +120,16 @@ public class Bataille
     }
   
     public static void partie(Joueur joueur1, Joueur joueur2) {
-        System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
-        System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
+        System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleurVal());
+        System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleurVal());
         // Première Comparaison
         switch (joueur1.getCarte().comparateurBataille(joueur2.getCarte())) {
                 
             case 1:    
                 System.out.println("----------- Bataille ! -----------");
                 tireCarte(joueur1, joueur2);
-                System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleur());
-                System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
+                System.out.println (joueur1 + " tire la carte " + joueur1.getCarte().getCouleurVal());
+                System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleurVal());
         
                 if (joueur1.getCarte().comparateurValeur(joueur2.getCarte())) {
                     joueur1.doublePoint(joueur1);
@@ -166,4 +166,7 @@ public class Bataille
         joueur1.tireCarte(joueur1.getCarte());
         joueur2.tireCarte(joueur2.getCarte());
     }  
+    
+   
+
 }

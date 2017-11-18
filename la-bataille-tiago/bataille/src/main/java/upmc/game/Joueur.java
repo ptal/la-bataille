@@ -57,4 +57,7 @@ private ArrayList<Carte> jeu;
     public void victoire(Joueur joueur) {
         System.out.println("- Le joueur "+joueur+" a gagner la partie avec : "+joueur.getPoint()+" points");
     }
+    
+    
+    
 }

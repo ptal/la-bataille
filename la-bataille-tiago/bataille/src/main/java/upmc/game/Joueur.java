@@ -44,11 +44,13 @@ private ArrayList<Carte> jeu;
         return jeu.size();
     }
     
-    public void msgPointJoueur1(Joueur joueur1, int x) {
-        System.out.println(joueur1+" gagne "+x+" point");
+    public void msgPointJoueur(Joueur joueur, int x) {
+        System.out.println(joueur+" gagne "+x+" point");
     }
     
-    public void msgPointJoueur2(Joueur joueur2, int x) {
-        System.out.println(joueur2+" gagne "+x+" point");
+    public void doublePoint(Joueur joueur) {
+        for (int x=0; x<2; x++) {
+            joueur.gagnePoint();
+        }
     }
 }

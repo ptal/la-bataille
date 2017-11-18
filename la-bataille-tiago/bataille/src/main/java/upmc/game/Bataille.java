@@ -99,9 +99,11 @@ public class Bataille
             
         if (joueur1.getPoint() > joueur2.getPoint()) {
             System.out.println ("Le joueur "+joueur1+" a gagner la partie avec : "+joueur1.getPoint());
+             System.out.println ("Le joueur "+joueur2+" a gagner la partie avec : "+joueur2.getPoint());
         } 
         else {
             System.out.println ("Le joueur "+joueur2+" a gagner la partie avec : "+joueur2.getPoint());
+            System.out.println ("Le joueur "+joueur1+" a gagner la partie avec : "+joueur1.getPoint());
         }
             return false;
         }
@@ -123,29 +125,27 @@ public class Bataille
                 System.out.println (joueur2 + " tire la carte " + joueur2.getCarte().getCouleur());
         
                 if (joueur1.getCarte().comparateurValeur(joueur2.getCarte())) {
-                    joueur1.gagnePoint();
-                    joueur1.gagnePoint();
+                    joueur1.doublePoint(joueur1);
                     tireCarte(joueur1, joueur2);
-                    joueur1.msgPointJoueur1(joueur1,2);
+                    joueur1.msgPointJoueur(joueur1,2);
                 }
             
                 else {
-                    joueur2.gagnePoint();
-                    joueur2.gagnePoint();
+                    joueur2.doublePoint(joueur2);
                     tireCarte(joueur1, joueur2);
-                    joueur2.msgPointJoueur2(joueur2,2);
-                }; break;
+                    joueur2.msgPointJoueur(joueur2,2);
+                };  break;
             
             case 2:
                 joueur1.gagnePoint();
                 tireCarte(joueur1, joueur2);
-                joueur1.msgPointJoueur1(joueur1,1);
+                joueur1.msgPointJoueur(joueur1,1);
                 break;
                     
             case 3: 
                 joueur2.gagnePoint();
                 tireCarte(joueur1, joueur2);
-                joueur2.msgPointJoueur2(joueur2,1);
+                joueur2.msgPointJoueur(joueur2,1);
                 break;
         }
     }

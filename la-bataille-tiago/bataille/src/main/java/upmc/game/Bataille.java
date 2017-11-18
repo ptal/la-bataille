@@ -74,7 +74,8 @@ public class Bataille
     partie(joueur1 , joueur2); //Lancement de la partie   
         
     //Continuer à tirer une carte / Quitter
-    while (finPartie(joueur1, joueur2)) { 
+    while (finPartie(joueur1, joueur2)) {
+       
         System.out.println("[1] Tirer la prochaine Carte");
         System.out.println("[2] Quitter");
         System.out.flush();
@@ -150,23 +151,12 @@ public class Bataille
     }
   
     public static void pseudoJoueur(Joueur joueur1, Joueur joueur2, ArrayList<String> pseudo) {
-        joueur1.name(pseudo.get(0));
-        joueur2.name(pseudo.get(1));
+        joueur1.nom(pseudo.get(0));
+        joueur2.nom(pseudo.get(1));
     }
     
     public static void tireCarte(Joueur joueur1, Joueur joueur2) {
         joueur1.tireCarte(joueur1.getCarte());
         joueur2.tireCarte(joueur2.getCarte());
-    }
-      
-    
+    }  
 }
-
-
-  
-
-
-
-
-
-

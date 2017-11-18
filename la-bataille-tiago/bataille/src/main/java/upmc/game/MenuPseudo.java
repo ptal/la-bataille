@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package upmc.game;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 /**

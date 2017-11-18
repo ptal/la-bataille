@@ -36,8 +36,8 @@ private ArrayList<Carte> jeu;
         return joueur;
     }
     
-    public void name(String name) {
-        this.joueur = name;
+    public void nom(String nom) {
+        this.joueur = nom;
     }
     
     public int nbrCarte(){

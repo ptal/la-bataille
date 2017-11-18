@@ -2,14 +2,10 @@ package upmc.game;
 
 public class Carte {
     
-    
     //Atributs
     private String couleur;
     private int valeur;
 
-   
-    
-    
     //Constructeur
     public Carte(int coul, int valeur) {
         this.valeur = valeur;
@@ -21,20 +17,15 @@ public class Carte {
         }
     }
     
-    
-    
     //Accesseurs
     public String getCouleur(){
         return couleur+valeur;
     }
     
-    
     public int getValeur() {
         return valeur;
     }
     
-    
-   
     public boolean comparateurValeur(Carte c2){
         Carte c1 = this;
         if(c1.valeur > c2.valeur){

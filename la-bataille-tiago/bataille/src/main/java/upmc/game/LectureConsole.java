@@ -17,21 +17,21 @@ public class LectureConsole extends Bataille {
     ArrayList<String> pseudo = new ArrayList<String>();
     
     
-    Scanner sc = new Scanner(System.in);
+        Scanner console = new Scanner(System.in);
  
         System.out.println("Veuillez entrer un joueur 1 :");
-        pseudo.add(sc.nextLine());
+        pseudo.add(console.nextLine());
         
         if (ordinateur == false) {
             System.out.println("Veuillez entrer un joueur 2 :");
-            pseudo.add(sc.nextLine());
+            pseudo.add(console.nextLine());
         }
         
         else {
             pseudo.add("Ordinateur");
-}
+        }
     
-    return pseudo;
+            return pseudo;
     }
     
     

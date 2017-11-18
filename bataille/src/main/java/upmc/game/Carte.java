@@ -18,7 +18,7 @@ public class Carte {
         return this.nombre - c.getNombre();
     }
 
-    private String nomValeur() {
+    public String nomValeur() {
         String nomValeur;
         if(this.nombre == 11) nomValeur="valet";
         else if(this.nombre == 12) nomValeur="reine";

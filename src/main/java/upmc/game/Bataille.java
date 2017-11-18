@@ -1,13 +1,3 @@
-// Copyright 2017 Pierre Talbot (IRCAM)
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//     http://www.apache.org/licenses/LICENSE-2.0
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 package upmc.game;
 
 import java.util.ArrayList;
@@ -18,9 +8,9 @@ public class Bataille {
 
     public static void main(String[] args) {
 
-        // ********Méthode lirePseudo()**********
-        //LecturePseudo lecturePseudo = MenuPseudo.lirePseudo();
-        //ArrayList<String> pseudo =(ArrayList<String>) lecturePseudo;
+////         ********Méthode lirePseudo()**********
+//        LecturePseudo lecturePseudo = MenuPseudo.lirePseudo();
+//        ArrayList<String> pseudo =(ArrayList<String>) lecturePseudo;
         
         System.out.println("Bonjour , bienvenue dans le jeu de la bataille.");
 
@@ -78,10 +68,10 @@ public class Bataille {
             Scanner sc3 = new Scanner(System.in);
 
             System.out.println("Voulez vous continuez la partie ? :");
-            System.out.println("Tapez  oui pour continuer");
-            System.out.println("Tapez non pour quitter");
+            System.out.println("Tapez O pour continuer");
+            System.out.println("Tapez N pour interrompre la partie");
             String str3 = sc3.nextLine();
-            if (str3.equals("oui")) {
+            if (str3.equals("O")) {
 
                 Carte carteJ1 = joueur1.getCarte().get(0);
                 joueur1.tireUneCarte(carteJ1);
@@ -107,60 +97,12 @@ public class Bataille {
                     System.out.println(carteJ1.toString() + " contre " + carteJ2.toString());
                     System.out.println("** Egalité ! ");
 
-                    if (joueur1.getCarte().size() >= 2 && joueur2.getCarte().size() >= 2) {
-
-                        Carte carte1 = joueur1.getCarte().get(0);
-                        Carte carte2 = joueur1.getCarte().get(1);
-                        joueur1.tireUneCarte(carte1);
-                        joueur1.tireUneCarte(carte2);
-
-                        Carte carte3 = joueur2.getCarte().get(0);
-                        Carte carte4 = joueur2.getCarte().get(1);
-                        joueur2.tireUneCarte(carte3);
-                        joueur2.tireUneCarte(carte4);
-
-                        if (carte2.comparateur(carte4) == 1) {
-                            System.out.println(carte2.toString() + " contre " + carte4.toString());
-
-                            joueur1.ajouteUneCarte(carteJ1);
-                            joueur1.ajouteUneCarte(carteJ2);
-                            joueur1.ajouteUneCarte(carte1);
-                            joueur1.ajouteUneCarte(carte2);
-                            joueur1.ajouteUneCarte(carte3);
-                            joueur1.ajouteUneCarte(carte4);
-                            joueur1.gagner();
-                            System.out.println(joueur1.getNom() + " gagné ! Score : " + joueur1.getScore());
-                            System.out.println(joueur2.getNom() + " perdu ! Score : " + joueur2.getScore());
-                        } else if (carte2.comparateur(carte4) == 0) {
-                            System.out.println(carte2.toString() + " contre " + carte4.toString());
-
-                            joueur2.ajouteUneCarte(carteJ1);
-                            joueur2.ajouteUneCarte(carteJ2);
-                            joueur2.ajouteUneCarte(carte1);
-                            joueur2.ajouteUneCarte(carte2);
-                            joueur2.ajouteUneCarte(carte3);
-                            joueur2.ajouteUneCarte(carte4);
-                            joueur2.gagner();
-                            System.out.println(joueur2.getNom() + " gagné ! Score : " + joueur2.getScore());
-                            System.out.println(joueur1.getNom() + " perdu ! Score : " + joueur1.getScore());
-                        }
-                    } else {
-                        System.out.println("Impossible de jouer l'égalité !");
-                        if (joueur1.getCarte().size() < 2) {
-                            joueur2.gagner();
-                            System.out.println(joueur1.getNom() + " perdu ! Score : " + joueur1.getScore());
-                            System.out.println(joueur2.getNom() + " gagné ! Score : " + joueur2.getScore());
-                        } else if (joueur2.getCarte().size() < 2) {
-                            joueur1.gagner();
-                            System.out.println(joueur1.getNom() + " gagné ! Score : " + joueur1.getScore());
-                            System.out.println(joueur2.getNom() + " perdu ! Score : " + joueur2.getScore());
-                        }
-                    }
                 }
+                
 
                 System.out.println();
 
-            } else if (str3.equals("non")) {
+            } else if (str3.equals("N")) {
 
                 joueur1continu = false;
                 joueur2continu = false;

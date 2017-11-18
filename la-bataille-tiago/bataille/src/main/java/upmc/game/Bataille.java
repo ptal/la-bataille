@@ -23,6 +23,7 @@ public class Bataille
     public static void main(String[] args) {
     
     int choix = 0;
+    boolean ordinateur = false;
     Joueur joueur1 = new Joueur ("");
     Joueur joueur2 = new Joueur ("");
     ArrayList<String> pseudo;
@@ -31,12 +32,15 @@ public class Bataille
     choix = MenuPseudo.modeLecturePseudo(choix);
    
     if (choix == 1) {
-        pseudo = LectureConsole.lirePseudo();
+        pseudo = LectureConsole.lirePseudo(ordinateur);
         pseudoJoueur(joueur1, joueur2, pseudo);
     }
     
     else {
-        System.out.println("Fonctionnalité non disponible");
+        ordinateur = true;
+        pseudo = LectureConsole.lirePseudo(ordinateur);
+        pseudoJoueur(joueur1, joueur2, pseudo);
+       
     }
     
     //Tableau de cartes

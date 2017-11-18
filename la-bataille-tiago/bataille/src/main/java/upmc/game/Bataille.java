@@ -40,8 +40,10 @@ public class Bataille
         ordinateur = true;
         pseudo = LectureConsole.lirePseudo(ordinateur);
         pseudoJoueur(joueur1, joueur2, pseudo);
+        
        
     }
+    
     
     //Tableau de cartes
     ArrayList<Carte> jeu = new ArrayList<Carte>();
@@ -67,12 +69,19 @@ public class Bataille
         joueur2.ajoutCarte(jeu.get(m));
     }
     
-    Scanner console = new Scanner(System.in); 
-    System.out.print("Appuyez sur entrer pour tirer une carte");
-    System.out.flush();
-    console.nextLine();
-    partie(joueur1 , joueur2); //Lancement de la partie   
-        
+    if (ordinateur == true) {
+        while (finPartie(joueur1, joueur2)) {
+            partie(joueur1 ,joueur2);
+        }
+    }
+    //Scanner console = new Scanner(System.in); 
+    /* if (choix ==1) { */
+        Scanner console = new Scanner(System.in); 
+        System.out.print("Appuyez sur entrer pour tirer une carte");
+        System.out.flush();
+        console.nextLine();
+        partie(joueur1 , joueur2); //Lancement de la partie   
+    /* } */
     //Continuer à tirer une carte / Quitter
     while (finPartie(joueur1, joueur2)) {
        
@@ -99,11 +108,9 @@ public class Bataille
             
         if (joueur1.getPoint() > joueur2.getPoint()) {
             System.out.println ("Le joueur "+joueur1+" a gagner la partie avec : "+joueur1.getPoint());
-             System.out.println ("Le joueur "+joueur2+" a gagner la partie avec : "+joueur2.getPoint());
         } 
         else {
             System.out.println ("Le joueur "+joueur2+" a gagner la partie avec : "+joueur2.getPoint());
-            System.out.println ("Le joueur "+joueur1+" a gagner la partie avec : "+joueur1.getPoint());
         }
             return false;
         }

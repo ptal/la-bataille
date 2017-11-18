@@ -27,7 +27,7 @@ public class LectureConsole extends Bataille {
             pseudo.add(console.nextLine());
         }
         
-        else {
+        else if (ordinateur == true) {
             pseudo.add("Ordinateur");
         }
     

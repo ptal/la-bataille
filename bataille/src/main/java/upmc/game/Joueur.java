@@ -39,7 +39,6 @@ public class Joueur {
         
         Bataille.affiche(this + " a tiré " + c);
         return c;
-        
     }
     
     public String toString(){
@@ -68,7 +67,6 @@ public class Joueur {
         int points_joueur;
         int points_joueur_adverse; 
         
-        Joueur gagnant=this;
         
         if(pCondition_de_victoire==1){
             points_joueur = this.nombre_de_cartes_gagnees;
@@ -83,15 +81,22 @@ public class Joueur {
         str += "\n" + pJoueur_adverse + " a " + points_joueur_adverse + " cartes.";
         
         if(this.tas_de_carte.size()==0 || pJoueur_adverse.tas_de_carte.size()==0){
-                if(points_joueur_adverse == points_joueur){
-                    str+="Incroyable ! Il y a égalité !";
-                }else{
-                    if(points_joueur_adverse >points_joueur){
-                        gagnant=pJoueur_adverse;
-                    }
-                    str+= "\n"+gagnant+" a gagné la partie !";
-                } 
+                str+= fin_de_partie(points_joueur_adverse, points_joueur, this, pJoueur_adverse); 
          }
+        return str;
+    }
+    
+    private String fin_de_partie(int points_joueur_adverse, int points_joueur, Joueur pJoueur, Joueur pJoueur_adverse){
+        String str;
+        Joueur gagnant=this;
+        if(points_joueur_adverse == points_joueur){
+            str="Incroyable ! Il y a égalité !";
+        }else{
+            if(points_joueur_adverse >points_joueur){
+                gagnant=pJoueur_adverse;
+            }
+            str = "\n"+gagnant+" a gagné la partie !";
+        }
         return str;
     }
 }

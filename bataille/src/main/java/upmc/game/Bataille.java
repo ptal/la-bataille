@@ -45,15 +45,13 @@ public class Bataille
             String test=sc.nextLine();
             if(test.equals("")){
                 res=valeur_defaut;
-                System.out.println("Vous devez rentrer O ou N.");
+                erreur_entree();
             }else{
-                test=test.toUpperCase();
-                res=test.charAt(0); 
+                res=traitement_char(test); 
             }
-            for(int i=0;i<valeurs_ok.length; i++){
-                if(res==valeurs_ok[i]){
-                    res=valeur_defaut;
-                }
+            boolean ok=test_char_correct(res, valeurs_ok);
+            if(!ok){
+                res=valeur_defaut;
             }
         }
         
@@ -64,27 +62,25 @@ public class Bataille
         System.out.println(str);
     }
 
-    static String test_string() {
+    public static String test_string() {
         Scanner sc=new Scanner(System.in);
         String str="";
         String test="";
         
         test=sc.nextLine();
         if(!test.equals("")){ // Permet d'éviter les fantômes
-            while(test.charAt(0)==' ' && test.length()>1){
-                test=test.substring(1);
-            }
+            test=traitement_string(test);
         }
         if(!test.equals(" ")){
             str=test;     
         }else{
             str="";
-            affiche("Veuillez entrer un nom valide");
+            erreur_entree();
         }
         return str;
     }
 
-    static int test_int(int defaut) {
+    public static int test_int(int defaut) {
         int i=defaut;
         Scanner sc=new Scanner(System.in);
         
@@ -92,9 +88,37 @@ public class Bataille
             i = sc.nextInt();
         }else{
             i=defaut; 
-            affiche("Veuillez entrer un chiffre valide");
+            erreur_entree();
         }
         sc.nextLine();
         return i;
+    }
+
+    private static void erreur_entree() {
+        affiche("Vous devez une valeur valide.");
+    }
+
+    private static String traitement_string(String test) {
+        while(test.charAt(0)==' ' && test.length()>1){
+            test=test.substring(1);
+        }
+        return test;
+    }
+
+    private static char traitement_char(String test) {
+        test=test.toUpperCase();
+        char res=test.charAt(0);
+        return res;
+    }
+
+    private static boolean test_char_correct(char res, char[] valeurs_ok) {
+        boolean ok=false;
+        for(int i=0;i<valeurs_ok.length; i++){
+            if(res==valeurs_ok[i]){
+               ok=true;
+               break;
+            }
+        }
+        return ok;
     }
 }

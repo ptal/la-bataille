@@ -107,9 +107,9 @@ public class Game {
         System.out.println("---------------------------------------------------------");
         //montre les cartes
         System.out.println(nom_joueur_1 + " tire la carte : ");
-        j1.VoirCarte(round);
+        System.out.println(j1.VoirCarte(round));
         System.out.println(nom_joueur_2 + " tire la carte : ");
-        j2.VoirCarte(round);     
+        System.out.println(j2.VoirCarte(round));     
 
         //verifie la meilleur
         Verifie(nom_joueur_1, nom_joueur_2, j1, j2);
@@ -127,7 +127,7 @@ public class Game {
         if("1".equals(menu_j2) || "".equals(menu_j2)){
             //montre la carte
             System.out.println(joueur_select + " tire la carte : "); 
-            j2.VoirCarte(round);
+            System.out.println(j2.VoirCarte(round));
 
             //verifie la meilleur
             if(joueur_select.equals(nom_joueur_2)){

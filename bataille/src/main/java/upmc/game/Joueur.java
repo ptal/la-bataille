@@ -36,15 +36,15 @@ public class Joueur{
     
 
     
-    public void VoirCarte(int numero){
+    public String VoirCarte(int numero){
         if("11".equals(joueur_deck.get(numero).toString().substring(0, 2))){
-            System.out.println("J " + VoirCarteColor(numero));
+            return "J " + VoirCarteColor(numero);
         }else if ("12".equals(joueur_deck.get(numero).toString().substring(0, 2))){
-            System.out.println("D " + VoirCarteColor(numero));
+            return "D " + VoirCarteColor(numero);
         }else if ("13".equals(joueur_deck.get(numero).toString().substring(0, 2))){
-            System.out.println("K " + VoirCarteColor(numero));
+            return "K " + VoirCarteColor(numero);
         }else{
-            System.out.println(joueur_deck.get(numero));
+            return joueur_deck.get(numero).toString();
         }
         
     }

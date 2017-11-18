@@ -45,12 +45,16 @@ private ArrayList<Carte> jeu;
     }
     
     public void msgPointJoueur(Joueur joueur, int x) {
-        System.out.println(joueur+" gagne "+x+" point");
+        System.out.println("- "+joueur+" gagne "+x+" point(s)");
     }
     
     public void doublePoint(Joueur joueur) {
         for (int x=0; x<2; x++) {
             joueur.gagnePoint();
         }
+    }
+    
+    public void victoire(Joueur joueur) {
+        System.out.println("- Le joueur "+joueur+" a gagner la partie avec : "+joueur.getPoint()+" points");
     }
 }

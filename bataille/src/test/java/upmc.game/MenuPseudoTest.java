@@ -25,12 +25,12 @@ public class MenuPseudoTest extends TestCase {
         String input = "1";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertEquals(new MenuPseudo().modeLecturePseudo().getClass(),lp2.getClass());
+        assertEquals(new MenuPseudo().modeLecturePseudo().getClass(), lp2.getClass());
 
         input = "2";
         in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertEquals(new MenuPseudo().modeLecturePseudo().getClass(),lp1.getClass());
+        assertEquals(new MenuPseudo().modeLecturePseudo().getClass(), lp1.getClass());
     }
 
 }

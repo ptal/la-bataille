@@ -12,11 +12,11 @@ import static org.junit.Assert.*;
  */
 public class JoueurTest extends TestCase {
 
-    private Joueur j1 = new Joueur("Adrien",true);
-    private Joueur j2 = new Joueur("Toto",false);
-    private Carte c1 = new Carte("trefle",12);
-    private Carte c2 = new Carte("coeur",1);
-    private Carte c3 = new Carte("pique",4);
+    private Joueur j1 = new Joueur("Adrien", true);
+    private Joueur j2 = new Joueur("Toto", false);
+    private Carte c1 = new Carte("trefle", 12);
+    private Carte c2 = new Carte("coeur", 1);
+    private Carte c3 = new Carte("pique", 4);
 
     public JoueurTest() {
         this.j1.ajouterPlusieursCartesEnMain(new ArrayList() {{
@@ -33,21 +33,21 @@ public class JoueurTest extends TestCase {
 
     @Test
     public void testJouerCarte() throws Exception {
-        assertEquals(this.j1.jouerCarte(),c1);
-        assertEquals(this.j2.jouerCarte(),c3);
+        assertEquals(this.j1.jouerCarte(), c1);
+        assertEquals(this.j2.jouerCarte(), c3);
     }
 
     @Test
     public void testGetNom() throws Exception {
-        assertEquals(this.j1.getNom(),"Adrien");
+        assertEquals(this.j1.getNom(), "Adrien");
     }
 
     @Test
     public void getScore() throws Exception {
-        assertEquals(this.j2.getScore(),0);
+        assertEquals(this.j2.getScore(), 0);
         this.j2.gagneUnPoint();
         this.j2.gagneUnPoint();
-        assertEquals(this.j2.getScore(),2);
+        assertEquals(this.j2.getScore(), 2);
     }
 
     @Test

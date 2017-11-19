@@ -21,12 +21,13 @@ public class LectureConsole implements LecturePseudo {
         do {
             System.out.println("Voulez vous jouer contre un autre joueur (1) ou l'IA (2) ?");
             choix = sc.nextInt();
-            if(choix==1) pseudo=saisiePseudo();
-            else if(choix==2) pseudo="IA";
+            if (choix == 1) pseudo = saisiePseudo();
+            else if (choix == 2) pseudo = "IA";
             else System.out.print("Erreur, ");
-        }while (choix!=1 && choix!=2);
+        } while (choix != 1 && choix != 2);
         return pseudo;
     }
+
     public String saisiePseudo() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Saisissez votre pseudo : ");

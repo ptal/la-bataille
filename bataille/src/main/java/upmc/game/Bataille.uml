@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>upmc.game.Bataille</OriginalElement>
+  <nodes>
+    <node x="929.575" y="826.0">upmc.game.MenuPseudo</node>
+    <node x="726.875" y="264.5">upmc.game.LectureFichier</node>
+    <node x="368.875" y="134.0">upmc.game.Carte</node>
+    <node x="355.125" y="1257.0">upmc.game.Bataille</node>
+    <node x="957.575" y="0.0">upmc.game.LecturePseudo</node>
+    <node x="0.0" y="529.0">upmc.game.Joueur</node>
+    <node x="1052.875" y="227.5">upmc.game.LectureConsole</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="upmc.game.Joueur" target="upmc.game.Carte">
+      <point x="0.0" y="-339.0" />
+      <point x="316.0" y="509.0" />
+      <point x="411.125" y="509.0" />
+      <point x="-126.75" y="172.5" />
+    </edge>
+    <edge source="upmc.game.LectureFichier" target="upmc.game.LecturePseudo">
+      <point x="0.0" y="-42.0" />
+      <point x="879.875" y="109.0" />
+      <point x="1034.075" y="109.0" />
+      <point x="-76.5" y="42.0" />
+    </edge>
+    <edge source="upmc.game.LectureConsole" target="upmc.game.LecturePseudo">
+      <point x="0.0" y="-79.0" />
+      <point x="1225.875" y="109.0" />
+      <point x="1187.075" y="109.0" />
+      <point x="76.5" y="42.0" />
+    </edge>
+    <edge source="upmc.game.Bataille" target="upmc.game.Joueur">
+      <point x="-170.25" y="-431.5" />
+      <point x="525.375" y="1237.0" />
+      <point x="474.0" y="1237.0" />
+      <point x="158.0" y="339.0" />
+    </edge>
+    <edge source="upmc.game.MenuPseudo" target="upmc.game.LectureFichier">
+      <point x="-90.5" y="-42.0" />
+      <point x="1020.075" y="509.0" />
+      <point x="879.875" y="509.0" />
+      <point x="0.0" y="42.0" />
+    </edge>
+    <edge source="upmc.game.Bataille" target="upmc.game.Carte">
+      <point x="56.75" y="-431.5" />
+      <point x="752.375" y="1237.0" />
+      <point x="653.5" y="1237.0" />
+      <point x="653.5" y="499.0" />
+      <point x="580.125" y="499.0" />
+      <point x="42.25" y="172.5" />
+    </edge>
+    <edge source="upmc.game.Bataille" target="upmc.game.MenuPseudo">
+      <point x="283.75" y="-431.5" />
+      <point x="979.375" y="1237.0" />
+      <point x="1110.575" y="1237.0" />
+      <point x="0.0" y="42.0" />
+    </edge>
+    <edge source="upmc.game.MenuPseudo" target="upmc.game.LectureConsole">
+      <point x="90.5" y="-42.0" />
+      <point x="1201.075" y="509.0" />
+      <point x="1225.875" y="509.0" />
+      <point x="0.0" y="79.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5808411214953274" x="756.4599178713679" y="921.2167080435722" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

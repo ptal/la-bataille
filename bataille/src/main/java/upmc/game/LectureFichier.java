@@ -13,7 +13,7 @@ public class LectureFichier implements LecturePseudo {
         ArrayList<String> listePseudo = new ArrayList<String>();
 
         System.out.print("Saisissez le fichier à lire : ");
-        String nomFichier = "src/main/java/upmc/game/"+sc.nextLine();
+        String nomFichier = "src/main/java/upmc/game/" + sc.nextLine();
 
         try {
             File f = new File(nomFichier);
@@ -21,14 +21,14 @@ public class LectureFichier implements LecturePseudo {
             BufferedReader br = new BufferedReader(fr);
             try {
                 String ligne = br.readLine();
-                while(ligne != null) {
+                while (ligne != null) {
                     listePseudo.add(ligne);
                     ligne = br.readLine();
                 }
                 br.close();
                 fr.close();
             } catch (IOException e) {
-                System.out.println("Erreur lors de la lecture : "+e.getMessage());
+                System.out.println("Erreur lors de la lecture : " + e.getMessage());
             }
 
         } catch (FileNotFoundException e) {

@@ -5,7 +5,7 @@ package upmc.game;
  */
 public class Carte {
 
-    static String[] couleurs = {"pique","trefle","coeur","carreau"};
+    static String[] couleurs = {"pique", "trefle", "coeur", "carreau"};
     private String couleur;
     private int nombre;
 
@@ -20,9 +20,9 @@ public class Carte {
 
     public String nomValeur() {
         String nomValeur;
-        if(this.nombre == 11) nomValeur="valet";
-        else if(this.nombre == 12) nomValeur="reine";
-        else if(this.nombre ==13) nomValeur="roi";
+        if (this.nombre == 11) nomValeur = "valet";
+        else if (this.nombre == 12) nomValeur = "reine";
+        else if (this.nombre == 13) nomValeur = "roi";
         else nomValeur = String.valueOf(this.nombre);
         return nomValeur;
     }
@@ -33,6 +33,6 @@ public class Carte {
 
     @Override
     public String toString() {
-        return this.nomValeur()+" de "+this.couleur;
+        return this.nomValeur() + " de " + this.couleur;
     }
 }

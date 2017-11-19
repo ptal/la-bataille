@@ -19,7 +19,7 @@ public class LectureConsoleTest extends TestCase {
         String input = "2";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertEquals(new LectureConsole().choixAdversaire(),"IA");
+        assertEquals(new LectureConsole().choixAdversaire(), "IA");
     }
 
     @Test
@@ -27,7 +27,7 @@ public class LectureConsoleTest extends TestCase {
         String input = "Adrien";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertEquals(new LectureConsole().saisiePseudo(),input);
+        assertEquals(new LectureConsole().saisiePseudo(), input);
     }
 
 }

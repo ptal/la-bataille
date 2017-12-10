@@ -101,6 +101,12 @@ public class Bataille {
         this.j2.setNom(listePseudo.get(1));
     }
 
+    public void setPlayers(String nameJ1 , String nameJ2) {
+        this.j1.setNom(nameJ1);
+        this.j2.setNom(nameJ2);
+        if(nameJ2=="IA") this.j2.setEstHumain(false);
+    }
+
     public Carte tourJoueur(Joueur j) {
         Carte c = null;
         if (j.estHumain()) {
@@ -178,5 +184,13 @@ public class Bataille {
         if (this.joueurAGagnerLaPartie(j1)) System.out.println(this.j1.getNom() + " a gagné la partie !");
         else System.out.println(this.j2.getNom() + " a gagné la partie !");
         System.out.println("-------------");
+    }
+
+    public Joueur getJ1() {
+        return j1;
+    }
+
+    public Joueur getJ2() {
+        return j2;
     }
 }

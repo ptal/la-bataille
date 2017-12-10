@@ -39,16 +39,11 @@ public class GUI extends JFrame {
         this.setLayout(new BorderLayout());
         this.bataille = new Bataille(5);
 
-        initializePanel();
         this.selectPlayersPanel();
     }
 
-    public void initializePanel() {
-        this.panel1 = new SelectPlayersUI();
-        this.panel2 = new GameUI();
-    }
-
     public void selectPlayersPanel() {
+        this.panel1 = new SelectPlayersUI();
         this.add(panel1);
         this.setVisible(true);
         panel1.getButtonAccept().addActionListener(new ActionListener(){
@@ -68,6 +63,7 @@ public class GUI extends JFrame {
     }
 
     public void GamePanel() {
+        this.panel2 = new GameUI(this.bataille);
         add(panel2);
 //        repaint();
         this.setVisible(true);

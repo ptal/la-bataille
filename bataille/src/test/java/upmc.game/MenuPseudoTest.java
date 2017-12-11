@@ -6,15 +6,13 @@ import org.junit.Test;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static org.junit.Assert.*;
-
 /**
  * Created by Adrien on 18/11/2017.
  */
 public class MenuPseudoTest extends TestCase {
 
-    private LecturePseudo lp1 = new LectureConsole();
-    private LecturePseudo lp2 = new LectureFichier();
+    private ReadPseudo lp1 = new ReadConsole();
+    private ReadPseudo lp2 = new ReadFile();
 
     public MenuPseudoTest() {
 
@@ -25,12 +23,12 @@ public class MenuPseudoTest extends TestCase {
         String input = "1";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertEquals(new MenuPseudo().modeLecturePseudo().getClass(), lp2.getClass());
+        assertEquals(new MenuPseudo().readPseudoMode().getClass(), lp2.getClass());
 
         input = "2";
         in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertEquals(new MenuPseudo().modeLecturePseudo().getClass(), lp1.getClass());
+        assertEquals(new MenuPseudo().readPseudoMode().getClass(), lp1.getClass());
     }
 
 }

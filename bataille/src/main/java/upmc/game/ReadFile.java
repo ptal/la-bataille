@@ -7,23 +7,23 @@ import java.util.Scanner;
 /**
  * Created by Adrien on 11/10/2017.
  */
-public class LectureFichier implements LecturePseudo {
-    public ArrayList<String> lirePseudo() {
+public class ReadFile implements ReadPseudo {
+    public ArrayList<String> readPseudo() {
         Scanner sc = new Scanner(System.in);
-        ArrayList<String> listePseudo = new ArrayList<String>();
+        ArrayList<String> pseudoList = new ArrayList<String>();
 
         System.out.print("Saisissez le fichier à lire : ");
-        String nomFichier = "src/main/java/upmc/game/" + sc.nextLine();
+        String fileName = "src/main/java/upmc/game/" + sc.nextLine();
 
         try {
-            File f = new File(nomFichier);
+            File f = new File(fileName);
             FileReader fr = new FileReader(f);
             BufferedReader br = new BufferedReader(fr);
             try {
-                String ligne = br.readLine();
-                while (ligne != null) {
-                    listePseudo.add(ligne);
-                    ligne = br.readLine();
+                String line = br.readLine();
+                while (line != null) {
+                    pseudoList.add(line);
+                    line = br.readLine();
                 }
                 br.close();
                 fr.close();
@@ -34,6 +34,6 @@ public class LectureFichier implements LecturePseudo {
         } catch (FileNotFoundException e) {
             System.out.println("Le fichier n'a pas été trouvé.");
         }
-        return listePseudo;
+        return pseudoList;
     }
 }

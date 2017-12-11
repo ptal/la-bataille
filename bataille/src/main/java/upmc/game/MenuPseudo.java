@@ -7,11 +7,11 @@ import java.util.Scanner;
  */
 public class MenuPseudo {
 
-    public LecturePseudo modeLecturePseudo() {
+    public ReadPseudo readPseudoMode() {
         Scanner sc = new Scanner(System.in);
         System.out.println("De quelle manière voulez-vous lire les pseudos ? Fichier (1) ou Console(2)");
         int choixMenu = sc.nextInt();
-        if (choixMenu == 1) return new LectureFichier();
-        return new LectureConsole();
+        if (choixMenu == 1) return new ReadFile();
+        return new ReadConsole();
     }
 }

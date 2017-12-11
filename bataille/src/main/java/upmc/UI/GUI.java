@@ -33,7 +33,7 @@ public class GUI extends JFrame {
     }
 
     public void settings() {
-        this.setSize(widthWindow, heightWindow);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout());

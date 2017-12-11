@@ -31,6 +31,10 @@ public class Carte {
         return nombre;
     }
 
+    public String getCouleur() {
+        return couleur;
+    }
+
     @Override
     public String toString() {
         return this.nomValeur() + " de " + this.couleur;

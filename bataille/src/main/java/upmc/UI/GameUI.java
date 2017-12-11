@@ -6,6 +6,8 @@ import upmc.game.Joueur;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 /**
@@ -59,6 +61,27 @@ public class GameUI extends JPanel {
             carte.add(picLabel);
             JLabel number = new JLabel(Integer.toString(c.getNombre()));
             carte.add(number);
+            carte.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    super.mouseClicked(e);
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+                    super.mouseEntered(e);
+                    JPanel panel = (JPanel)e.getSource();
+                    panel.setBorder(BorderFactory.createLineBorder(Color.green,3));
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+                    super.mouseExited(e);
+                    JPanel panel = (JPanel)e.getSource();
+                    panel.setBorder(BorderFactory.createEmptyBorder());
+                }
+            });
             panelCible.add(carte);
         }
     }

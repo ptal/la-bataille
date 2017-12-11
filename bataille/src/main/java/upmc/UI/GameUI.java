@@ -4,14 +4,8 @@ import upmc.game.Bataille;
 import upmc.game.Carte;
 import upmc.game.Joueur;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -22,43 +16,38 @@ public class GameUI extends JPanel {
     private Bataille bataille;
     private JLabel j1Name;
     private JLabel j2Name;
-    private JPanel j1Panel;
-    private JPanel j2Panel;
+    private HandUI j1Panel;
+    private HandUI j2Panel;
     private JPanel table;
-    private JPanel j1PanelCards;
-    private JPanel j2PanelCards;
 
     public GameUI(Bataille bataille) {
         this.setLayout(new BorderLayout());
-        this.j1Name = new JLabel(bataille.getJ1().getNom());
-        this.j2Name = new JLabel(bataille.getJ2().getNom());
         this.bataille = bataille;
 
-        this.j1Panel = new JPanel();
-        this.j1Panel.setLayout(new BoxLayout(j1Panel,BoxLayout.Y_AXIS));
-        this.j1PanelCards = new JPanel();
-        this.j1Panel.add(j1PanelCards);
+        this.j1Name = new JLabel(bataille.getJ1().getNom());
+        this.j2Name = new JLabel(bataille.getJ2().getNom());
 
-        this.j2Panel = new JPanel();
-        this.j2Panel.setLayout(new BoxLayout(j2Panel,BoxLayout.Y_AXIS));
-        this.j2PanelCards = new JPanel();
-        this.j2Panel.add(j2PanelCards);
-
+        this.j1Panel = new HandUI();
+        this.j2Panel = new HandUI();
         this.table = new JPanel();
-        this.add(j1Panel,BorderLayout.SOUTH);
+
         this.add(j2Panel,BorderLayout.NORTH);
         this.add(table,BorderLayout.CENTER);
+        this.add(j1Panel,BorderLayout.SOUTH);
+
         this.j1Panel.add(j1Name);
         this.j2Panel.add(j2Name);
-        this.bataille.creerJeuDeCarte();
-        this.bataille.distributionDesCartes();
-        this.afficheCartes(j1PanelCards,bataille.getJ1());
-        this.afficheCartes(j2PanelCards,bataille.getJ2());
-        this.table.setBackground(new Color(29,137,60));
 
+        this.bataille.creerJeuDeCarte();
+        this.bataille.distributionDesCartes()
+        ;
+        this.displayCards(this.j1Panel.getPPanelCards(),bataille.getJ1());
+        this.displayCards(this.j2Panel.getPPanelCards(),bataille.getJ2());
+
+        this.table.setBackground(new Color(29,137,60));
     }
 
-    public void afficheCartes(JPanel panelCible,Joueur j) {
+    public void displayCards(JPanel panelCible, Joueur j) {
         ArrayList<Carte> jeuDeCarte = j.getCartesEnMain();
         for(Carte c : jeuDeCarte) {
             JPanel carte = new JPanel();
@@ -73,5 +62,19 @@ public class GameUI extends JPanel {
             panelCible.add(carte);
         }
     }
+}
 
+class HandUI extends JPanel {
+
+    private JPanel pPanelCards;
+
+    public HandUI() {
+        this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        this.pPanelCards = new JPanel();
+        this.add(pPanelCards);
+    }
+
+    public JPanel getPPanelCards() {
+        return pPanelCards;
+    }
 }

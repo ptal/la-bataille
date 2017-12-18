@@ -28,7 +28,7 @@ public class Bataille {
     private Player p1;
     private Player p2;
     private int nbTurns;
-    private Card c1, c2;
+    private Card cardJ1, cardJ2;
 
     public Bataille(int limitScore) {
         this.limitScore = limitScore;
@@ -66,21 +66,21 @@ public class Bataille {
         System.out.println("carte de " + p2.getName() + " : " + this.p2.getCardsInTheHand());
 
         //TOUR JOUEUR 1
-        this.c1 = PlayerTurn(this.p1);
-        if (this.c1 == null) return true;
+        this.cardJ1 = PlayerTurn(this.p1);
+        if (this.cardJ1 == null) return true;
 
         //TOUR JOUEUR 2
-        this.c2 = PlayerTurn(this.p2);
-        if (this.c2 == null) return true;
+        this.cardJ2 = PlayerTurn(this.p2);
+        if (this.cardJ2 == null) return true;
 
-        if (this.c1.compareA(this.c2) > 0) { //Si la carte du joueur 1 est meilleur que celle du joueur 2 alors joueur 1 gagne la manche
-            this.p1.addCardToTheHand(this.c1);
-            this.p1.addCardToTheHand(this.c2);
+        if (this.cardJ1.compareA(this.cardJ2) > 0) { //Si la carte du joueur 1 est meilleur que celle du joueur 2 alors joueur 1 gagne la manche
+            this.p1.addCardToTheHand(this.cardJ1);
+            this.p1.addCardToTheHand(this.cardJ2);
             System.out.println(p1.getName() + " remporte le tour");
             this.p1.winAPoint();
-        } else if (this.c1.compareA(this.c2) < 0) { //Si la carte du joueur 2 est meilleur que celle du joueur 1 alors joueur 2 gagne la manche
-            this.p2.addCardToTheHand(this.c1);
-            this.p2.addCardToTheHand(this.c2);
+        } else if (this.cardJ1.compareA(this.cardJ2) < 0) { //Si la carte du joueur 2 est meilleur que celle du joueur 1 alors joueur 2 gagne la manche
+            this.p2.addCardToTheHand(this.cardJ1);
+            this.p2.addCardToTheHand(this.cardJ2);
             System.out.println(p2.getName() + " remporte le tour");
             this.p2.winAPoint();
         } else {
@@ -89,6 +89,48 @@ public class Bataille {
         this.displayScore();
         this.nbTurns++;
         return false;
+    }
+
+    public Player aTurn() {
+        Player winnerOfTheTurn = whoWinTheTurn();
+        if(winnerOfTheTurn==this.p1) playerWinsCards(this.p1);
+        else if(winnerOfTheTurn==this.p2) playerWinsCards(this.p2);
+        else System.out.println("Bataille !");
+        this.resetCards();
+        return winnerOfTheTurn;
+    }
+
+    public void resetCards() {
+        this.cardJ1 = null;
+        this.cardJ2 = null;
+    }
+
+    public void playerWinsCards(Player p) {
+        p.winAPoint();
+        p.addCardToTheHand(this.cardJ1);
+        p.addCardToTheHand(this.cardJ2);
+    }
+
+    public Player whoWinTheTurn() {
+        Player winnerOfTurn = null;
+        if(whichCardIsBetter(this.cardJ1,this.cardJ2)==this.cardJ1) {
+            this.p1.addCardToTheHand(cardJ1);
+            this.p1.addCardToTheHand(cardJ2);
+            winnerOfTurn = this.p1;
+        }
+        else if(whichCardIsBetter(this.cardJ1,this.cardJ2)==this.cardJ2) {
+            this.p2.addCardToTheHand(cardJ1);
+            this.p2.addCardToTheHand(cardJ2);
+            winnerOfTurn = this.p2;
+        }
+        return winnerOfTurn;
+    }
+
+    public Card whichCardIsBetter(Card c1 , Card c2) {
+        Card bestCard = null;
+        if(c1.compareA(c2)>0) bestCard = c1;
+        else if(c1.compareA(c2)<0) bestCard = c2;
+        return bestCard;
     }
 
     public void selectPseudo() {
@@ -144,26 +186,26 @@ public class Bataille {
 
     public void bigBataille() {
         ArrayList<Card> stack = new ArrayList<Card>();
-        stack.addAll(Arrays.asList(this.c1, this.c2));
+        stack.addAll(Arrays.asList(this.cardJ1, this.cardJ2));
         System.out.println("BATAILLE !!!\n");
         do {
             //Player 1
-            this.c1 = this.PlayerTurn(p1);
-            stack.add(this.c1);
+            this.cardJ1 = this.PlayerTurn(p1);
+            stack.add(this.cardJ1);
             //Player 2
-            this.c2 = this.PlayerTurn(p2);
-            stack.add(this.c2);
+            this.cardJ2 = this.PlayerTurn(p2);
+            stack.add(this.cardJ2);
 
-            if (this.c1.compareA(this.c2) > 0) {
+            if (this.cardJ1.compareA(this.cardJ2) > 0) {
                 p1.addMulitpleCardsInTheHand(stack);
                 System.out.println(this.p1.getName() + " remporte la bataille");
                 p1.winAPoint();
-            } else if (this.c1.compareA(this.c2) < 0) {
+            } else if (this.cardJ1.compareA(this.cardJ2) < 0) {
                 this.p2.addMulitpleCardsInTheHand(stack);
                 System.out.println(this.p2.getName() + " remporte la bataille");
                 p2.winAPoint();
             }
-        } while (this.c1.compareA(this.c2) == 0);
+        } while (this.cardJ1.compareA(this.cardJ2) == 0);
     }
 
     public boolean playerWonTheGame(Player j) {
@@ -190,5 +232,21 @@ public class Bataille {
 
     public Player getP2() {
         return p2;
+    }
+
+    public Card getCardJ1() {
+        return cardJ1;
+    }
+
+    public void setCardJ1(Card cardJ1) {
+        this.cardJ1 = cardJ1;
+    }
+
+    public Card getCardJ2() {
+        return cardJ2;
+    }
+
+    public void setCardJ2(Card cardJ2) {
+        this.cardJ2 = cardJ2;
     }
 }
